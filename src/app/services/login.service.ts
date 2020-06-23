@@ -1,0 +1,25 @@
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { User } from "../model/user";
+import { CookieService } from "ngx-cookie-service";
+
+@Injectable({
+  providedIn: "root",
+})
+export class LoginService {
+  API_URI = "http://localhost:5000/api/user";
+
+  constructor(private http: HttpClient, private cookies: CookieService) {}
+
+  login(user: User) {
+    console.log(user);
+    return this.http.post(`${this.API_URI}/login`, user);
+  }
+
+  setToken(token: string) {
+    this.cookies.set("token", token);
+  }
+  getToken() {
+    return this.cookies.get("token");
+  }
+}
