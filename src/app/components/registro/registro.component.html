@@ -11,43 +11,53 @@
                         <form class="row contact_form" action="#" method="post" novalidate="novalidate">
 
                             <div class="col-md-6 form-group p_star">
+                                
                                 <input type="text" class="form-control" [(ngModel)]="userM.Nombres" id="nombres"
-                                    name="Nombres" />
-                                <span class="placeholder" data-placeholder="Nombres"></span>
+                                    name="Nombres" value="" placeholder="Nombres">
                             </div>
+
                             <div class="col-md-6 form-group p_star">
+                               
                                 <input type="text" class="form-control" [(ngModel)]="userM.Apellidos" id="aellidos"
-                                    name="Apellidos" />
-                                <span class="placeholder" data-placeholder="Apellidos"></span>
+                                name="Apellidos" value="" placeholder="Apellidos">
                             </div>
                             <!--                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" id="company" name="company"
                                 placeholder="Company name" />
                         </div> -->
                             <div class="col-md-6 form-group p_star">
+                               
+
                                 <input type="text" class="form-control" [(ngModel)]="userM.telefono" id="movil"
-                                    name="telefono" />
-                                <span class="placeholder" data-placeholder="Telefono de Celcular"></span>
+                                name="telefono" value="" placeholder="telefono">
                             </div>
+                           
+
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" [(ngModel)]="userM.DNI" id="dni" name="dni" />
-                                <span class="placeholder" data-placeholder="D.N.I"></span>
+                                
+
+                                <input type="text" class="form-control" [(ngModel)]="userM.DNI" id="dni"
+                                name="dni" value="" placeholder="D.N.I">
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                               
+
                                 <input type="text" class="form-control" [(ngModel)]="userM.email" id="email"
-                                    name="email" />
-                                <span class="placeholder" data-placeholder="Correo electronico"></span>
+                                name="email" value="" placeholder="Correo electronico">
+
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                              
+
                                 <input type="password" class="form-control" [(ngModel)]="userM.pass" id="pass"
-                                    name="pass" />
-                                <span class="placeholder" data-placeholder="Contraseña"></span>
+                                name="pass" value="" placeholder="Contraseña">
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control" id="r_pass" name="r_pass" />
-                                <span class="placeholder" data-placeholder="Repetir Contraseña"></span>
+                         
+                                <input type="password" class="form-control"  id="r_pass"
+                                name="r_pass" value="" placeholder="Repetir Contraseña">
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
@@ -55,7 +65,7 @@
                                     <label for="f-option2" style="font-size: 10px;">Al hacer clic en Registrarte,
                                         aceptas
                                         los Términos y Condiciones
-                                        de Uso de Marvetos.<br />Para obtener más información acerca de cómo Spotify
+                                        de Uso de Marvetos.Para obtener más información acerca de cómo Spotify
                                         recopila,
                                         utiliza, comparte y
                                         protege tus datos personales, consulta la Política de Privacidad de
@@ -95,38 +105,48 @@
 
 
                                             <div class="col-md-12 form-group p_star">
+                                               
+
+                                                
+
                                                 <input type="text" class="form-control" id="nameCompany"
-                                                    [(ngModel)]="userM.NombreEmpresa" name="nameCompany" />
-                                                <span class="placeholder" data-placeholder="Nombre Empresa"></span>
+                                                    [(ngModel)]="userM.NombreEmpresa" name="nameCompany" placeholder="Nombre Empresa"/>
+                                                
                                             </div>
 
 
                                             <div class="col-md-6 form-group p_star">
+                                              
                                                 <input type="text" class="form-control" [(ngModel)]="userM.RUC" id="ruc"
-                                                    name="RUC" />
-                                                <span class="placeholder" data-placeholder="RUC"></span>
+                                                name="RUC" placeholder="RUC"/>
+                                             
                                             </div>
                                             <div class="col-md-6 form-group p_star">
+                                             
                                                 <input type="text" class="form-control" [(ngModel)]="userM.telefono"
-                                                    id="telefono" name="telefono" />
-                                                <span class="placeholder" data-placeholder="Telefono"></span>
+                                                    id="telefono" name="telefono" placeholder="Celular" />
+                                                    
+                                               
                                             </div>
 
 
                                             <div class="col-md-12 form-group p_star">
+                                               
                                                 <input type="text" class="form-control" [(ngModel)]="userM.email"
-                                                    id="email" name="email" />
-                                                <span class="placeholder" data-placeholder="Correo electronico"></span>
+                                                id="email" name="email"  placeholder="Correo electronico" />
+                                              
                                             </div>
 
                                             <div class="col-md-12 form-group p_star">
+                                                
                                                 <input type="password" class="form-control" [(ngModel)]="userM.pass"
-                                                    id="pass" name="pass" />
-                                                <span class="placeholder" data-placeholder="Contraseña"></span>
+                                                    id="pass" name="pass"  placeholder="Contraseña" />
+                                               
                                             </div>
                                             <div class="col-md-12 form-group p_star">
-                                                <input type="password" class="form-control" id="r_pass" name="r_pass" />
-                                                <span class="placeholder" data-placeholder="Repetir Contraseña"></span>
+                                                <input type="password" class="form-control" id="r_pass" name="r_pass" placeholder="Repetir Contraseña" />
+
+                                              
                                             </div>
 
                                             <div class="col-md-12 form-group">
@@ -136,7 +156,7 @@
                                                             <input type="checkbox" id="f-option3" name="selector" />
                                                             <label for="f-option3" style="font-size: 10px;">Al hacer
                                                                 clic en
-                                                                Registrarte<br />, aceptas
+                                                                Registrarte, aceptas
                                                                 los Términos y Condiciones
                                                                 de Uso de Marvetos.Para obtener más información acerca
                                                                 de
@@ -161,6 +181,7 @@
                                                 </div>
 
                                             </div>
+                                            <br>
                                             <div class="col-md-12">
 
                                                 <div class="d-md-flex justify-content-center creat_account">
