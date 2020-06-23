@@ -24,4 +24,8 @@ export class ProductsService {
   getOneProduct(id: string) {
     return this.http.get(`${this.API_URI}/producto/${id}`);
   }
+
+  localsito() {
+    console.log("loclasito");
+  }
 }

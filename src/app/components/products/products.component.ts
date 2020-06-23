@@ -11,6 +11,9 @@ import { Categoria } from "../../model/categoria";
 export class ProductsComponent implements OnInit {
   products: any = [];
   categoria: any = [];
+
+  carrito: any = [];
+
   constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
@@ -30,4 +33,34 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts() {}
+
+  localsito(pr: Products) {
+    /*     this.carrito.push(pr);
+    let carrito = [];
+    if (localStorage.getItem("carrito") === null) {
+      carrito = [];
+      carrito.push(pr);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    } else {
+      carrito = JSON.parse(localStorage.getItem("carrito"));
+      carrito.push(pr);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    } */
+
+    this.carrito.push(pr);
+    let carrito = [];
+    if (localStorage.getItem("carrito") === null) {
+      carrito = [];
+      carrito.push(pr);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    } else {
+      carrito = JSON.parse(localStorage.getItem("carrito"));
+      carrito.push(pr);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+  }
+
+  getCantidad() {
+    return this.carrito.length;
+  }
 }
