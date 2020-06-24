@@ -20,6 +20,19 @@ export class RegistroComponent implements OnInit {
     Nombres: "",
     idRol: 0,
     NombreEmpresa: "",
+    telefono: 123434567,
+  };
+
+  userE: User = {
+    idUser: 0,
+    email: "",
+    pass: "",
+    RUC: "",
+    DNI: "",
+    Apellidos: "",
+    Nombres: "",
+    idRol: 0,
+    NombreEmpresa: "",
     telefono: 1234567,
   };
 
@@ -61,9 +74,9 @@ export class RegistroComponent implements OnInit {
   }
 
   saveNewUserEmpresa() {
-    delete this.userM.idUser;
-    this.userM.idRol = 1;
-    this.registroService.saveUser(this.userM).subscribe(
+    delete this.userE.idUser;
+    this.userE.idRol = 1;
+    this.registroService.saveUser(this.userE).subscribe(
       (res) => {
         console.log(res);
         this.router.navigate(["/registro"]);

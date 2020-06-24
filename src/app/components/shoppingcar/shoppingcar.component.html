@@ -27,6 +27,8 @@
               <th scope="col">Precio</th>
               <th scope="col">Canidad</th>
               <th scope="col">Total</th>
+              <th scope="col">Eliminar</th>
+
             </tr>
 
 
@@ -50,53 +52,97 @@
               </td>
               <td>
                 <div class="product_count">
-
-                  <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                  <a (click)="disminuirCant(productoC.producto.idProducto)">
+                    <span class="input-number-decrement"> <i class="ti-minus" href="#"></i></span>
+                  </a>
                   <input class="input-number" type="text" value="{{productoC.count}}" min="0" max="10">
-                  <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                  <a (click)="AumentarCant(productoC.producto.idProducto)">
+
+                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+
+
+                  </a>
                 </div>
+
+
+
               </td>
               <td>
-                <h5>{{productoC.producto.precio*productoC.count}}</h5>
+                <h5>S/.{{productoC.producto.precio*productoC.count}}</h5>
+              </td>
+              <td>
+                <button class="btn-primary" (click)="eliminarProducto(productoC.producto.idProducto)">
+                  eliminar</button>
               </td>
             </tr>
 
 
             <!-- Subtotal y botones -->
-            <tr class="bottom_button">
-              <td>
-                <a class="btn_1" href="#">Update Cart</a>
-              </td>
+            <tr class=" bottom_button">
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td>
                 <div class="cupon_text float-right">
-                  <a class="btn_1" href="#">Close Coupon</a>
+                  <a class="btn_1" (click)="limpiarCarrito()">Limpiar Carrito</a>
                 </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td>
+                <h5>Subtotal</h5>
+              </td>
+              <td>
+                <h5>S/.{{suma}}</h5>
               </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
+              <td></td>
+
               <td>
-                <h5>Subtotal</h5>
+                <h5>I.G.V</h5>
               </td>
               <td>
-                <h5>$2160.00</h5>
+                <h5>S/.{{(suma*0.17).toFixed(2)}}</h5>
               </td>
             </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td>
+                <h5>Total: </h5>
+              </td>
+              <td>
+                <h5>S/.{{((suma*0.17)+ suma).toFixed(2)}}</h5>
+              </td>
+            </tr>
+
+
+
             <tr class="shipping_area">
               <td></td>
               <td></td>
+
               <td>
-                <h5>Shipping</h5>
+                <h5>Informacion de Entrega</h5>
               </td>
+              <td></td>
+
               <td>
                 <div class="shipping_box">
-                  <ul class="list">
+                  <!--                   <ul class="list">
                     <li>
-                      Flat Rate: $5.00
-                      <input type="radio" aria-label="Radio button for following text input">
+                      I.G:V:
                     </li>
                     <li>
                       Free Shipping
@@ -110,26 +156,26 @@
                       Local Delivery: $2.00
                       <input type="radio" aria-label="Radio button for following text input">
                     </li>
-                  </ul>
-                  <h6>
+                  </ul> -->
+                  <!--                   <h6>
                     Calculate Shipping
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
-                  </h6>
+                  </h6> -->
                   <select class="shipping_select">
-                    <option value="1">Bangladesh</option>
-                    <option value="2">India</option>
-                    <option value="4">Pakistan</option>
+                    <option value="{{x}}" *ngFor="let x of distritos">{{x}}</option>
                   </select>
                   <select class="shipping_select section_bg">
                     <option value="1">Select a State</option>
                     <option value="2">Select a State</option>
                     <option value="4">Select a State</option>
                   </select>
-                  <input class="post_code" type="text" placeholder="Postcode/Zipcode" />
-                  <a class="btn_1" href="#">Update Details</a>
+                  <input class="post_code" type="text" placeholder="Direccion de entrega" />
+                  <!--  <a class="btn_1" href="#">Update Details</a> -->
                 </div>
               </td>
             </tr>
+
+
           </tbody>
         </table>
         <div class="checkout_btn_inner float-right">

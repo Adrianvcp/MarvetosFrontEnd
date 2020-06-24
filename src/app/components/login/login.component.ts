@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     NombreEmpresa: "",
     telefono: 1234567,
   };
+
   constructor(
     private loginService: LoginService,
     private router: Router,
