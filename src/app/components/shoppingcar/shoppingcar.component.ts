@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "../../services/products.service";
 import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+
+import { Orden } from "../../model/orden";
 
 @Component({
   selector: "app-shoppingcar",
@@ -14,9 +16,23 @@ export class ShoppingcarComponent implements OnInit {
   cantProducto: any = [];
   suma: any = 0;
   distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
+  obj_or = {
+    idOrden: 0,
+    idEstado: 0,
+    idConductor: 0,
+    idVendedor: 0,
+    idUser: 0,
+    fechaOrden: "",
+    fechaEntrega: "",
+    Comentario: "",
+    Direccion: "",
+    PrecioTotal: 1,
+  };
+
   constructor(
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private activtedRoute: ActivatedRoute
   ) {
     this.carrito = JSON.parse(localStorage.getItem("carrito"));
 
@@ -133,5 +149,9 @@ export class ShoppingcarComponent implements OnInit {
     localStorage.setItem("carrito", JSON.stringify(carritoTemp));
 
     this.reloadComponent();
+  }
+
+  AgregarOrden(ordenO: Orden) {
+    console.log(ordenO);
   }
 }
