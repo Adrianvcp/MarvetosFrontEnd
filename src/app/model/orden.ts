@@ -8,5 +8,7 @@ export interface Orden {
   fechaEntrega: string;
   Comentario: string;
   Direccion: string;
+  idPago: number;
+  idUbicacion: number;
   PrecioTotal: number;
 }

@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Products } from "../model/products";
 import { Categoria } from "../model/categoria";
+import { Orden } from "../model/orden";
+import { DetalleCarrito } from "../model/detallecarrito";
 
 @Injectable({
   providedIn: "root",
@@ -23,6 +25,21 @@ export class ProductsService {
   }
   getOneProduct(id: string) {
     return this.http.get(`${this.API_URI}/producto/${id}`);
+  }
+
+  postOrden(orden: Orden) {
+    console.log("entro");
+    return this.http.post(`${this.API_URI}/orden`, orden);
+  }
+
+  getUltimoID() {
+    return this.http.get(`${this.API_URI}/orden/gid`);
+  }
+
+  postDetalleCarrito(detalleCarrito: DetalleCarrito) {
+    console.log("llegando ---");
+    console.log(detalleCarrito);
+    return this.http.post(`${this.API_URI}/detalleCarrito`, detalleCarrito);
   }
 
   localsito() {

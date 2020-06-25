@@ -3,8 +3,10 @@ import { ProductsService } from "../../services/products.service";
 import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
 import { Router, ActivatedRoute } from "@angular/router";
+import { DetalleCarrito } from "../../model/detallecarrito";
 
 import { Orden } from "../../model/orden";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-shoppingcar",
@@ -16,6 +18,14 @@ export class ShoppingcarComponent implements OnInit {
   cantProducto: any = [];
   suma: any = 0;
   distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
+  Objdetallecarrito = {
+    idDetalleCarrito: 0,
+    idProducto: 0,
+
+    SubTotal: 0,
+    cantProducto: 0,
+    idOrden: 0,
+  };
   obj_or = {
     idOrden: 0,
     idEstado: 0,
@@ -23,6 +33,8 @@ export class ShoppingcarComponent implements OnInit {
     idVendedor: 0,
     idUser: 0,
     fechaOrden: "",
+    idPago: 1,
+    idUbicacion: 1,
     fechaEntrega: "",
     Comentario: "",
     Direccion: "",
@@ -151,7 +163,75 @@ export class ShoppingcarComponent implements OnInit {
     this.reloadComponent();
   }
 
-  AgregarOrden(ordenO: Orden) {
-    console.log(ordenO);
+  AgregarOrden() {
+    //Deberia ser asincrona
+    this.obj_or.idOrden = 8;
+    this.obj_or.idEstado = 1;
+    this.obj_or.idConductor = 1;
+    this.obj_or.idVendedor = 1;
+    this.obj_or.idUser = 1;
+    this.obj_or.fechaOrden = "";
+    this.obj_or.fechaEntrega = "";
+
+    this.obj_or.idPago = 1;
+    this.obj_or.idUbicacion = 1;
+
+    this.obj_or.Comentario = "fsdfsdf";
+    this.obj_or.Direccion = "dfsdfsdf";
+    this.obj_or.PrecioTotal = (this.suma + this.suma * 0.17).toFixed(2);
+
+    delete this.obj_or.idOrden;
+    delete this.obj_or.fechaEntrega;
+    delete this.obj_or.fechaOrden;
+
+    console.log(this.obj_or);
+
+    //Orden
+    this.productsService.postOrden(this.obj_or).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    //orden carrito
+
+    //id
+    this.productsService.getUltimoID().subscribe(
+      (res) => {
+        var idUltimo = res[0]["max(idOrden)"];
+
+        console.log(idUltimo);
+
+        //bucle - producto
+        var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
+        for (let i = 0; i < datosCarrito.length; i++) {
+          this.Objdetallecarrito.idDetalleCarrito = 1;
+          this.Objdetallecarrito.idProducto = datosCarrito[i].idProducto;
+
+          this.Objdetallecarrito.idOrden = idUltimo + 1;
+          this.Objdetallecarrito.SubTotal = datosCarrito[i].precio * 5;
+          this.Objdetallecarrito.cantProducto = 5;
+          delete this.Objdetallecarrito.idDetalleCarrito;
+
+          console.log(this.Objdetallecarrito);
+          this.productsService
+            .postDetalleCarrito(this.Objdetallecarrito)
+            .subscribe(
+              (res) => {
+                console.log(res);
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
