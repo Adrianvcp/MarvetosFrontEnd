@@ -25,7 +25,7 @@
 
               <th scope="col">Producto</th>
               <th scope="col">Precio</th>
-              <th scope="col">Canidad</th>
+              <th scope="col">Cantidad</th>
               <th scope="col">Total</th>
               <th scope="col">Eliminar</th>
 
@@ -71,8 +71,8 @@
                 <h5>S/.{{productoC.producto.precio*productoC.count}}</h5>
               </td>
               <td>
-                <button class="btn-primary" (click)="eliminarProducto(productoC.producto.idProducto)">
-                  eliminar</button>
+                <button class="btn btn-danger" (click)="eliminarProducto(productoC.producto.idProducto)" ><i class="fas fa-trash-alt"></i>
+                   </button>
               </td>
             </tr>
 
@@ -85,7 +85,7 @@
               <td></td>
               <td>
                 <div class="cupon_text float-right">
-                  <a class="btn_1" (click)="limpiarCarrito()">Limpiar Carrito</a>
+                  <a class="btn_1 " (click)="limpiarCarrito()">Limpiar Carrito</a>
                 </div>
               </td>
             </tr>
@@ -179,8 +179,8 @@
           </tbody>
         </table>
         <div class="checkout_btn_inner float-right">
-          <a class="btn_1" href="#">Continue Shopping</a>
-          <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+          <a class="btn_1" href="http://localhost:4200/productos">Continuar Comprando</a>
+          <a class="btn_1 checkout_btn_1" href="http://localhost:4200/pagar">Comprar Producto</a>
         </div>
       </div>
     </div>
