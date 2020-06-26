@@ -13,19 +13,24 @@ import { ThrowStmt } from "@angular/compiler";
   templateUrl: "./shoppingcar.component.html",
   styleUrls: ["./shoppingcar.component.css"],
 })
+
 export class ShoppingcarComponent implements OnInit {
   carrito: any = [];
+  
   cantProducto: any = [];
+  
   suma: any = 0;
+  
   distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
+  
   Objdetallecarrito = {
     idDetalleCarrito: 0,
-    idProducto: 0,
-
-    SubTotal: 0,
-    cantProducto: 0,
     idOrden: 0,
+    idProducto: 0,
+    subTotal: 0,
+    cantProducto: 0,
   };
+  
   obj_or = {
     idOrden: 0,
     idEstado: 0,
@@ -33,19 +38,22 @@ export class ShoppingcarComponent implements OnInit {
     idVendedor: 0,
     idUser: 0,
     fechaOrden: "",
-    idPago: 1,
-    idUbicacion: 1,
     fechaEntrega: "",
     Comentario: "",
     Direccion: "",
     PrecioTotal: 1,
+    idPago: 1,
+    idUbicacion: 1,
+    bDescuento: 0
   };
 
+  //Inicio del constructor
   constructor(
     private productsService: ProductsService,
     private router: Router,
     private activtedRoute: ActivatedRoute
   ) {
+
     this.carrito = JSON.parse(localStorage.getItem("carrito"));
 
     var getObject = (id) => {
@@ -55,7 +63,9 @@ export class ShoppingcarComponent implements OnInit {
         }
       }
     };
+  //Fin del constructor
 
+    
     /* Arreglo carrito con contador */
     const group = (arr) => {
       const reduced = arr.reduce((acc, curr) => {
@@ -71,6 +81,7 @@ export class ShoppingcarComponent implements OnInit {
       }));
     };
 
+    
     var grouped = group(this.carrito);
     console.log(JSON.stringify(grouped, null, 4));
     (this.cantProducto = grouped), null, 4;
@@ -85,17 +96,20 @@ export class ShoppingcarComponent implements OnInit {
 
   ngOnInit() {}
 
+  //Recargar componente
   reloadComponent() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = "reload";
     this.router.navigate(["/carrito"]);
   }
 
+  //Limpiar carrito del local Storage
   limpiarCarrito() {
     localStorage.removeItem("carrito");
     this.reloadComponent();
   }
 
+  //Eliminar carrito del local Storage
   eliminarProducto(id: number) {
     var carritoTemp = [];
     var result = [];
@@ -163,23 +177,23 @@ export class ShoppingcarComponent implements OnInit {
     this.reloadComponent();
   }
 
+  //Funcion Agregar orden y productos
   AgregarOrden() {
     //Deberia ser asincrona
-    this.obj_or.idOrden = 8;
+    this.obj_or.idOrden = 1;
     this.obj_or.idEstado = 1;
     this.obj_or.idConductor = 1;
     this.obj_or.idVendedor = 1;
     this.obj_or.idUser = 1;
     this.obj_or.fechaOrden = "";
     this.obj_or.fechaEntrega = "";
-
-    this.obj_or.idPago = 1;
-    this.obj_or.idUbicacion = 1;
-
     this.obj_or.Comentario = "fsdfsdf";
     this.obj_or.Direccion = "dfsdfsdf";
     this.obj_or.PrecioTotal = (this.suma + this.suma * 0.17).toFixed(2);
-
+    this.obj_or.idPago = 1;
+    this.obj_or.idUbicacion = 1;
+    this.obj_or.bDescuento = 0;
+ 
     delete this.obj_or.idOrden;
     delete this.obj_or.fechaEntrega;
     delete this.obj_or.fechaOrden;
@@ -209,10 +223,9 @@ export class ShoppingcarComponent implements OnInit {
         var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
         for (let i = 0; i < datosCarrito.length; i++) {
           this.Objdetallecarrito.idDetalleCarrito = 1;
-          this.Objdetallecarrito.idProducto = datosCarrito[i].idProducto;
-
           this.Objdetallecarrito.idOrden = idUltimo + 1;
-          this.Objdetallecarrito.SubTotal = datosCarrito[i].precio * 5;
+          this.Objdetallecarrito.idProducto = datosCarrito[i].idProducto;
+          this.Objdetallecarrito.subTotal = datosCarrito[i].precio * 5;
           this.Objdetallecarrito.cantProducto = 5;
           delete this.Objdetallecarrito.idDetalleCarrito;
 
@@ -232,6 +245,6 @@ export class ShoppingcarComponent implements OnInit {
       (err) => {
         console.log(err);
       }
-    );
+    ); 
   }
 }

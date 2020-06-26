@@ -459,11 +459,7 @@ LOCK TABLES `user` WRITE;
                                                 (2, 'marvetos@gmail.com', 'asdasd', '123123', '05291141', 'Cruz', 'Vela', 1, 'Marvetos', 986141854),
                                                 (3, 'pedro.velacc1@hotmail.com', 'asgdsgja', '7162472', '', 'Cruz', '', 1, 'mArvetos', 986141854),
                                                 (4, 'pedro.velacc1@hotmail.com', 'asgdsgja', '7162472', '', 'Cruz', '', 1, 'mArvetos', 986141854),
-                                                (5, 'pedro.velacc1@hotmail.com', 'asgdsgja', '7162472', '', 'Cruz', '', 1, 'mArvetos', 986141854),
-                                                (6, '', '', '', '', '', '', 1, '', 1234567),
-                                                (7, '', '', '', '', '', '', 1, '', 1234567),
-                                                (8, 'we', 'werw', 'wer', '', '', '', 1, 'ewrw', 123123),
-                                                (9, 'pedro.velacc1@hotmail.com', 'werw', 'wer', '', '', '', 1, 'everis', 123123);
+                                                (5, 'pedro.velacc1@hotmail.com', 'asgdsgja', '7162472', '', 'Cruz', '', 1, 'mArvetos', 986141854);
                                             /*!40000 ALTER TABLE `user` ENABLE KEYS */;
                                             UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
