@@ -63,4 +63,6 @@ export class ProductsComponent implements OnInit {
   getCantidad() {
     return this.carrito.length;
   }
+
+  
 }

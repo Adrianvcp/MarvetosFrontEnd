@@ -25,6 +25,14 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/producto/${id}`);
   }
 
+  //seleccionar categoria
+  getSelecCate(id: string){
+    return this.http.get(`${this.API_URI}/producto/${id}`);
+  }
+
+
+
+
   localsito() {
     console.log("loclasito");
   }
