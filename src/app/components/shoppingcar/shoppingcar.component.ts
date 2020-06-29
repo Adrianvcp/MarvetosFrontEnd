@@ -4,6 +4,7 @@ import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DetalleCarrito } from "../../model/detallecarrito";
+import { Distrito } from "../../model/distrito";
 
 import { Orden } from "../../model/orden";
 import { ThrowStmt } from "@angular/compiler";
@@ -22,6 +23,8 @@ export class ShoppingcarComponent implements OnInit {
 
   distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
 
+  //Distritos
+  getDistrito: any = [];
   //Comentario y Direccion
   direccion = "";
   comentario = "";
@@ -122,6 +125,18 @@ export class ShoppingcarComponent implements OnInit {
         console.log(err);
       }
     );
+
+    //Distritos
+    this.productsService.getDistritos().subscribe(
+      (res) => {
+        this.getDistrito = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    console.log(this.getDistrito);
   }
 
   ngOnInit() {}
@@ -276,30 +291,6 @@ export class ShoppingcarComponent implements OnInit {
               }
             );
         }
-
-        /* 
-        for (let i = 0; i < datosCarrito.length; i++) {
-          this.Objdetallecarrito.idDetalleCarrito = 1;
-          this.Objdetallecarrito.idOrden = idUltimo + 1;
-          this.Objdetallecarrito.idProducto = datosCarrito[i].idProducto;
-          this.Objdetallecarrito.subTotal = datosCarrito[i].precio * 5;
-          this.Objdetallecarrito.cantProducto = this.aux_getCantObj_Pro(
-            datosCarrito[i]
-          );
-          delete this.Objdetallecarrito.idDetalleCarrito;
-
-          console.log(this.Objdetallecarrito);
-          this.productsService
-            .postDetalleCarrito(this.Objdetallecarrito)
-            .subscribe(
-              (res) => {
-                console.log(res);
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
-        } */
       },
       (err) => {
         console.log(err);

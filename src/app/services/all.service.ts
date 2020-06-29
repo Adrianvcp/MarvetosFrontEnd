@@ -12,5 +12,4 @@ export class AllService {
   getOneBuy(id: string) {
     return this.http.get(`${this.API_URI}/todo/${id}`);
   }
-
-  }
+}

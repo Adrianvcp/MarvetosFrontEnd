@@ -55,4 +55,8 @@ export class ProductsService {
   localsito() {
     console.log("loclasito");
   }
+
+  getDistritos() {
+    return this.http.get(`${this.API_URI}/ubicacion`);
+  }
 }

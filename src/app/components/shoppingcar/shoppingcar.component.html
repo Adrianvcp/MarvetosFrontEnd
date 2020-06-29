@@ -166,11 +166,14 @@
                   <br>
                   <!-- DISTRITOS -->
                   <select class="shipping_select">
+                    <option>Selecciona un distrito</option>
+
                     <option value="{{x}}" *ngFor="let x of distritos">{{x}}</option>
                   </select>
 
                   <!-- FORMA DE PAGO -->
-                  <select class="shipping_select" (click)="onEditClick($event.target.value)">
+                  <select class="shipping_select" (change)="onEditClick($event.target.value)">
+                    <option>Selecciona una forma de Pago</option>
                     <option [value]="x.idPago" *ngFor="let x of pago">{{x.name}}
                     </option>
                   </select>
