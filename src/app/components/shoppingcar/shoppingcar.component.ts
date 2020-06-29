@@ -7,22 +7,30 @@ import { DetalleCarrito } from "../../model/detallecarrito";
 
 import { Orden } from "../../model/orden";
 import { ThrowStmt } from "@angular/compiler";
-
+import { HeaderComponent } from "../header/header.component";
 @Component({
   selector: "app-shoppingcar",
   templateUrl: "./shoppingcar.component.html",
   styleUrls: ["./shoppingcar.component.css"],
 })
-
 export class ShoppingcarComponent implements OnInit {
   carrito: any = [];
-  
+
   cantProducto: any = [];
-  
+
   suma: any = 0;
-  
+
   distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
-  
+
+  //Comentario y Direccion
+  direccion = "";
+  comentario = "";
+
+  //FormaPago
+  pago: any = [];
+  idPago = 0;
+
+  //Objetos DetalleCarrito y Orden
   Objdetallecarrito = {
     idDetalleCarrito: 0,
     idOrden: 0,
@@ -30,7 +38,7 @@ export class ShoppingcarComponent implements OnInit {
     subTotal: 0,
     cantProducto: 0,
   };
-  
+
   obj_or = {
     idOrden: 0,
     idEstado: 0,
@@ -44,16 +52,11 @@ export class ShoppingcarComponent implements OnInit {
     PrecioTotal: 1,
     idPago: 1,
     idUbicacion: 1,
-    bDescuento: 0
+    bDescuento: 0,
   };
 
-  //Inicio del constructor
-  constructor(
-    private productsService: ProductsService,
-    private router: Router,
-    private activtedRoute: ActivatedRoute
-  ) {
-
+  getCantxProducto() {
+    /*  OBJETOS DE LOS PRODUCTOS AGREGADOS EN EL LOCALSTORAGE CON SU CANTIDAD  */
     this.carrito = JSON.parse(localStorage.getItem("carrito"));
 
     var getObject = (id) => {
@@ -63,9 +66,8 @@ export class ShoppingcarComponent implements OnInit {
         }
       }
     };
-  //Fin del constructor
+    //Fin del constructor
 
-    
     /* Arreglo carrito con contador */
     const group = (arr) => {
       const reduced = arr.reduce((acc, curr) => {
@@ -81,10 +83,28 @@ export class ShoppingcarComponent implements OnInit {
       }));
     };
 
-    
     var grouped = group(this.carrito);
     console.log(JSON.stringify(grouped, null, 4));
     (this.cantProducto = grouped), null, 4;
+  }
+
+  //metodo auxiliar para obtener cantidad del objeto
+  aux_getCantObj_Pro(Obj: Products) {
+    for (let i = 0; i < this.cantProducto.length; i++) {
+      if (this.cantProducto[i]["producto"].idProducto == Obj.idProducto) {
+        return this.cantProducto[i]["count"];
+        break;
+      }
+    }
+  }
+
+  //Inicio del constructor
+  constructor(
+    private productsService: ProductsService,
+    private router: Router,
+    private activtedRoute: ActivatedRoute
+  ) {
+    this.getCantxProducto();
 
     //getSubtotal
     for (let i = 0; i < this.cantProducto.length; i++) {
@@ -92,9 +112,30 @@ export class ShoppingcarComponent implements OnInit {
         this.suma +
         this.cantProducto[i].producto.precio * this.cantProducto[i].count;
     }
+
+    //Foma de pago
+    this.productsService.getFormaPago().subscribe(
+      (res) => {
+        this.pago = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit() {}
+
+  setDataPago(d) {
+    console.log("ad");
+    console.log(d);
+  }
+
+  onEditClick(skill: any) {
+    console.log(skill[0]);
+    console.log("skill name", skill);
+    this.idPago = skill;
+  }
 
   //Recargar componente
   reloadComponent() {
@@ -114,7 +155,6 @@ export class ShoppingcarComponent implements OnInit {
     var carritoTemp = [];
     var result = [];
     carritoTemp = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carritoTemp);
     //quitar id producto
     for (let i = 0; i < carritoTemp.length; i++) {
       if (carritoTemp[i].idProducto != id) {
@@ -123,8 +163,6 @@ export class ShoppingcarComponent implements OnInit {
         continue;
       }
     }
-
-    console.log(result);
 
     //elimino el localst
     localStorage.removeItem("carrito");
@@ -145,8 +183,6 @@ export class ShoppingcarComponent implements OnInit {
       }
     }
 
-    console.log(carritoTemp);
-
     //elimino el localst
     localStorage.removeItem("carrito");
     localStorage.setItem("carrito", JSON.stringify(carritoTemp));
@@ -159,7 +195,6 @@ export class ShoppingcarComponent implements OnInit {
     var Obj = {};
 
     carritoTemp = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carritoTemp);
     //quitar id producto
     for (let i = 0; i < carritoTemp.length; i++) {
       if (carritoTemp[i].idProducto == id) {
@@ -168,7 +203,6 @@ export class ShoppingcarComponent implements OnInit {
       }
     }
     carritoTemp.push(Obj);
-    console.log(carritoTemp);
 
     //elimino el localst
     localStorage.removeItem("carrito");
@@ -182,23 +216,21 @@ export class ShoppingcarComponent implements OnInit {
     //Deberia ser asincrona
     this.obj_or.idOrden = 1;
     this.obj_or.idEstado = 1;
-    this.obj_or.idConductor = 1;
-    this.obj_or.idVendedor = 1;
-    this.obj_or.idUser = 1;
+    this.obj_or.idConductor = 0;
+    this.obj_or.idVendedor = 1; //RANDOM VENDEDOR
+    this.obj_or.idUser = 1; // LOGIN
     this.obj_or.fechaOrden = "";
     this.obj_or.fechaEntrega = "";
-    this.obj_or.Comentario = "fsdfsdf";
-    this.obj_or.Direccion = "dfsdfsdf";
+    this.obj_or.Comentario = this.comentario;
+    this.obj_or.Direccion = this.direccion;
     this.obj_or.PrecioTotal = (this.suma + this.suma * 0.17).toFixed(2);
-    this.obj_or.idPago = 1;
+    this.obj_or.idPago = this.idPago;
     this.obj_or.idUbicacion = 1;
     this.obj_or.bDescuento = 0;
- 
-    delete this.obj_or.idOrden;
-    delete this.obj_or.fechaEntrega;
-    delete this.obj_or.fechaOrden;
 
-    console.log(this.obj_or);
+    delete this.obj_or.idOrden;
+    delete this.obj_or.fechaOrden;
+    delete this.obj_or.fechaEntrega;
 
     //Orden
     this.productsService.postOrden(this.obj_or).subscribe(
@@ -217,16 +249,43 @@ export class ShoppingcarComponent implements OnInit {
       (res) => {
         var idUltimo = res[0]["max(idOrden)"];
 
-        console.log(idUltimo);
-
         //bucle - producto
         var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
+        for (let index = 0; index < this.cantProducto.length; index++) {
+          this.Objdetallecarrito.idDetalleCarrito = 1;
+          this.Objdetallecarrito.idOrden = idUltimo + 1;
+          this.Objdetallecarrito.idProducto = this.cantProducto[index][
+            "producto"
+          ].idProducto;
+          this.Objdetallecarrito.subTotal =
+            this.cantProducto[index]["producto"].precio *
+            this.cantProducto[index]["count"];
+          this.Objdetallecarrito.cantProducto = this.cantProducto[index][
+            "count"
+          ];
+
+          delete this.Objdetallecarrito.idDetalleCarrito;
+          this.productsService
+            .postDetalleCarrito(this.Objdetallecarrito)
+            .subscribe(
+              (res) => {
+                console.log(res);
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+        }
+
+        /* 
         for (let i = 0; i < datosCarrito.length; i++) {
           this.Objdetallecarrito.idDetalleCarrito = 1;
           this.Objdetallecarrito.idOrden = idUltimo + 1;
           this.Objdetallecarrito.idProducto = datosCarrito[i].idProducto;
           this.Objdetallecarrito.subTotal = datosCarrito[i].precio * 5;
-          this.Objdetallecarrito.cantProducto = 5;
+          this.Objdetallecarrito.cantProducto = this.aux_getCantObj_Pro(
+            datosCarrito[i]
+          );
           delete this.Objdetallecarrito.idDetalleCarrito;
 
           console.log(this.Objdetallecarrito);
@@ -240,11 +299,11 @@ export class ShoppingcarComponent implements OnInit {
                 console.log(err);
               }
             );
-        }
+        } */
       },
       (err) => {
         console.log(err);
       }
-    ); 
+    );
   }
 }

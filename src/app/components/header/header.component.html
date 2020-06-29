@@ -51,7 +51,11 @@
                         </ul>
                     </div>
                     <!-- Card and search -->
+                    <div style="padding-top: 15px;">
+                        <p *ngIf="login">Hola, {{nombre}}</p>
+                    </div>
                     <div class="hearer_icon d-flex">
+
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,25 +86,25 @@
                                 </div>
                             </div> -->
 
-                            
+
                         </div>
-                        
+
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbarDropdown4" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                
+
                                 <i class="fas fa-shipping-fast"></i>
-                                
+
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
                                 <div class="single_product">
                                     <a class="dropdown-item" href="ingresar">Mis pedidos</a>
-                                    
+
 
                                 </div>
                             </div>
                         </div>
-                        
+
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                     </div>
                 </nav>

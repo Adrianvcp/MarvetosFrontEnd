@@ -27,12 +27,19 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/producto/detalle/${id}`);
   }
 
+<<<<<<< Updated upstream
   //mostrar la lista de los productos con su categoria seleccionada
   getSelecCat(ids: string){
     return this.http.get(`${this.API_URI}/producto/${ids}`);
   }
 
   //------------------------------------------------------
+=======
+  getFormaPago() {
+    return this.http.get(`${this.API_URI}/formaPago`);
+  }
+
+>>>>>>> Stashed changes
   postOrden(orden: Orden) {
     console.log("entro");
     return this.http.post(`${this.API_URI}/orden`, orden);

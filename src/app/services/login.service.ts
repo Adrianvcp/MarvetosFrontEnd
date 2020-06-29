@@ -10,7 +10,6 @@ export class LoginService {
   API_URI = "http://localhost:5000/api/user";
 
   constructor(private http: HttpClient, private cookies: CookieService) {}
-
   login(user: User) {
     console.log(user);
     return this.http.post(`${this.API_URI}/login`, user);
@@ -20,6 +19,12 @@ export class LoginService {
     this.cookies.set("token", token);
   }
   getToken() {
-    return this.cookies.get("token");
+    var token = "";
+    try {
+      token = this.cookies.get("token");
+      return token;
+    } catch (error) {
+      return "";
+    }
   }
 }

@@ -58,10 +58,7 @@
                   </a>
                   <input class="input-number" type="text" value="{{productoC.count}}" min="0" max="10">
                   <a (click)="AumentarCant(productoC.producto.idProducto)">
-
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
-
-
                   </a>
                 </div>
 
@@ -165,17 +162,25 @@
                     Calculate Shipping
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                   </h6> -->
+<<<<<<< Updated upstream
                   <h5>Informacion de Entrega</h5>
                   <br>
+=======
+                  <!-- DISTRITOS -->
+>>>>>>> Stashed changes
                   <select class="shipping_select">
                     <option value="{{x}}" *ngFor="let x of distritos">{{x}}</option>
                   </select>
-                  <select class="shipping_select section_bg">
-                    <option value="1">Select a State</option>
-                    <option value="2">Select a State</option>
-                    <option value="4">Select a State</option>
+
+                  <!-- FORMA DE PAGO -->
+                  <select class="shipping_select" (click)="onEditClick($event.target.value)">
+                    <option [value]="x.idPago" *ngFor="let x of pago">{{x.name}}
+                    </option>
                   </select>
-                  <input class="post_code" type="text" placeholder="Direccion de entrega" />
+
+                  <input class="post_code" type="text" placeholder="Comentario" [(ngModel)]=comentario />
+
+                  <input class="post_code" type="text" placeholder="Direccion de entrega" [(ngModel)]=direccion />
                   <!--  <a class="btn_1" href="#">Update Details</a> -->
                 </div>
               </td>

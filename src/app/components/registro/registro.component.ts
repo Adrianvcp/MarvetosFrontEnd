@@ -64,7 +64,9 @@ export class RegistroComponent implements OnInit {
     this.registroService.saveUser(this.userM).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(["/registro"]);
+        /*         this.registroService.setToken(res["token"]);
+         */ this.router.navigate(["/registro"]);
+        this.router.navigateByUrl("/");
       },
       (err) => {
         console.log(err);
@@ -79,7 +81,9 @@ export class RegistroComponent implements OnInit {
     this.registroService.saveUser(this.userE).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(["/registro"]);
+        /*         this.registroService.setToken(res["token"]);
+         */ this.router.navigate(["/registro"]);
+        this.router.navigateByUrl("/");
       },
       (err) => {
         console.log(err);
