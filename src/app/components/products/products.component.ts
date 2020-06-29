@@ -3,6 +3,12 @@ import { ProductsService } from "../../services/products.service";
 import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
 
+//importar categoria datos
+import { ActivatedRoute, Router } from "@angular/router";
+
+
+
+
 @Component({
   selector: "app-products",
   templateUrl: "./products.component.html",
@@ -14,7 +20,9 @@ export class ProductsComponent implements OnInit {
 
   carrito: any = [];
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.productsService.getCategoria().subscribe(
@@ -63,4 +71,22 @@ export class ProductsComponent implements OnInit {
   getCantidad() {
     return this.carrito.length;
   }
+
+
+  //selecionar categoria y producto
+  selectCat(id){
+    //const params = this.activatedRoute.snapshot.params;
+    //console.log(params)
+    if(id){
+      
+      this.productsService.getSelecCat(id).subscribe(
+        (res) =>{
+          this.products = res;
+        },
+        (err) => console.error(err)
+      );
+    }
+  }
+
+  
 }

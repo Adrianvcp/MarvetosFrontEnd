@@ -24,9 +24,15 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/producto/lista`);
   }
   getOneProduct(id: string) {
-    return this.http.get(`${this.API_URI}/producto/${id}`);
+    return this.http.get(`${this.API_URI}/producto/detalle/${id}`);
   }
 
+  //mostrar la lista de los productos con su categoria seleccionada
+  getSelecCat(ids: string){
+    return this.http.get(`${this.API_URI}/producto/${ids}`);
+  }
+
+  //------------------------------------------------------
   postOrden(orden: Orden) {
     console.log("entro");
     return this.http.post(`${this.API_URI}/orden`, orden);
