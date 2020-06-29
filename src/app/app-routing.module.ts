@@ -42,7 +42,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: "confirmacion",
+    path: "confirmacion/:id",
     component: ConfirmationComponent,
   },
   {
