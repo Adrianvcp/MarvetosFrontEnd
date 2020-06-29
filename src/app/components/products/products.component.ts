@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  //selecionar categoria y producto
+  //selecionar categoria y producto1+
   selectCat(id){
     //const params = this.activatedRoute.snapshot.params;
     //console.log(params)
@@ -87,6 +87,7 @@ export class ProductsComponent implements OnInit {
       );
     }
   }
+
 
   
 }
