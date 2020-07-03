@@ -38,7 +38,6 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/producto/${ids}`);
   }
 
-
   //Busqueda de producto
   getasc(name: string) {
     return this.http.get(`${this.API_URI}/producto/produc`);
@@ -70,5 +69,9 @@ export class ProductsService {
 
   getDistritos() {
     return this.http.get(`${this.API_URI}/ubicacion`);
+  }
+
+  getDescuentos() {
+    return this.http.get(`${this.API_URI}/detallecarrito/descuento`);
   }
 }

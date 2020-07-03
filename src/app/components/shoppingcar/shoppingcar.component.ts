@@ -25,6 +25,7 @@ export class ShoppingcarComponent implements OnInit {
 
   //Distritos
   getDistrito: any = [];
+  Distritos: any = [];
   //Comentario y Direccion
   direccion = "";
   comentario = "";
@@ -32,6 +33,16 @@ export class ShoppingcarComponent implements OnInit {
   //FormaPago
   pago: any = [];
   idPago = 0;
+
+  nameDistrito = "";
+  resultadoTotal: number = 0;
+
+  //Show CostDelivery
+  CostDelivery: boolean = false;
+  descuentoShow: boolean = false;
+  Descuento = "25%";
+  DeliveryPrecio: number = 0;
+  DescuentoTotal: number = 0;
 
   //Objetos DetalleCarrito y Orden
   Objdetallecarrito = {
@@ -129,7 +140,7 @@ export class ShoppingcarComponent implements OnInit {
     //Distritos
     this.productsService.getDistritos().subscribe(
       (res) => {
-        this.getDistrito = res;
+        this.Distritos = res;
       },
       (err) => {
         console.log(err);
@@ -140,6 +151,70 @@ export class ShoppingcarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  hayDescuento(p_list, dia, distrito) {
+    for (let i = 0; i < p_list.length; i++) {
+      if (p_list[i].name == dia) {
+        if (p_list[i].Distrito == distrito) {
+          return true;
+          break;
+        }
+      }
+    }
+    return false;
+  }
+
+  onEditClickDistrito(skill: any) {
+    this.CostDelivery = true;
+
+    this.nameDistrito = skill;
+
+    console.log(this.Distritos);
+    //Costo delivery
+    for (let i = 0; i < this.Distritos.length; i++) {
+      if (this.Distritos[i].Distrito == skill) {
+        this.DeliveryPrecio = this.Distritos[i].Precio;
+        console.log(this.DeliveryPrecio);
+      }
+    }
+    this.DescuentoTotal = this.DeliveryPrecio * 0.25;
+    //Distritos
+    this.productsService.getDescuentos().subscribe(
+      (res) => {
+        var diasSemana = [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+        ];
+        var f = new Date();
+        var b_Discount = this.hayDescuento(
+          res,
+          diasSemana[f.getDay()],
+          this.nameDistrito
+        );
+        console.log("Hay descuento?");
+        console.log(b_Discount);
+        b_Discount == true
+          ? (this.descuentoShow = true)
+          : (this.descuentoShow = false);
+
+        b_Discount == true
+          ? (this.resultadoTotal =
+              this.DeliveryPrecio -
+              this.DeliveryPrecio * 0.25 +
+              (this.suma + this.suma * 0.17))
+          : (this.resultadoTotal =
+              this.suma + this.suma * 0.17 + this.DeliveryPrecio).toFixed(2);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   setDataPago(d) {
     console.log("ad");
@@ -226,27 +301,28 @@ export class ShoppingcarComponent implements OnInit {
     this.reloadComponent();
   }
 
+  //Determinar aleatorio vendedor
+
   //Funcion Agregar orden y productos
   AgregarOrden() {
     //Deberia ser asincrona
     this.obj_or.idOrden = 1;
     this.obj_or.idEstado = 1;
-    this.obj_or.idConductor = 0;
-    this.obj_or.idVendedor = 1; //RANDOM VENDEDOR
+    this.obj_or.idConductor = null;
+    this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
     this.obj_or.idUser = 1; // LOGIN
-    this.obj_or.fechaOrden = "";
-    this.obj_or.fechaEntrega = "";
+    this.obj_or.fechaOrden = "2020-07-02 13:11:19";
+    this.obj_or.fechaEntrega = "2020-07-02 13:11:19";
     this.obj_or.Comentario = this.comentario;
     this.obj_or.Direccion = this.direccion;
-    this.obj_or.PrecioTotal = (this.suma + this.suma * 0.17).toFixed(2);
+    this.obj_or.PrecioTotal = this.resultadoTotal;
     this.obj_or.idPago = this.idPago;
     this.obj_or.idUbicacion = 1;
     this.obj_or.bDescuento = 0;
 
     delete this.obj_or.idOrden;
-    delete this.obj_or.fechaOrden;
-    delete this.obj_or.fechaEntrega;
-
+    console.log("OBJETO");
+    console.log(JSON.stringify(this.obj_or));
     //Orden
     this.productsService.postOrden(this.obj_or).subscribe(
       (res) => {

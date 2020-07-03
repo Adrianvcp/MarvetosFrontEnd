@@ -165,11 +165,19 @@
                   <h5>Informacion de Entrega</h5>
                   <br>
                   <!-- DISTRITOS -->
-                  <select class="shipping_select">
+                  <select class="shipping_select" (change)="onEditClickDistrito($event.target.value)">
                     <option>Selecciona un distrito</option>
 
-                    <option value="{{x}}" *ngFor="let x of distritos">{{x}}</option>
+                    <option [value]="x.Distrito" *ngFor="let x of Distritos">{{x.Distrito}}</option>
                   </select>
+
+                  <h5 *ngIf="CostDelivery" style="padding-bottom: 10px;">Costo Delivery:
+                    S/. {{DeliveryPrecio}}</h5>
+                  <h5 *ngIf="descuentoShow" style="padding-bottom: 10px;">Costo Delivery con descuento:
+                    {{DeliveryPrecio - DescuentoTotal}}</h5>
+
+                  <h5 *ngIf="CostDelivery" style="padding-bottom: 10px;">Costo Total:
+                    {{resultadoTotal.toFixed(2) }} </h5>
 
                   <!-- FORMA DE PAGO -->
                   <select class="shipping_select" (change)="onEditClick($event.target.value)">
