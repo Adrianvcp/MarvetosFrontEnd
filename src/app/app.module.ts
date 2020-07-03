@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 
+
 //Token Login
 import { CookieService } from "ngx-cookie-service";
 
@@ -24,6 +25,7 @@ import { HttpClient } from "@angular/common/http";
 import { Products } from "./model/products";
 //Servicios
 import { ProductsService } from "./services/products.service";
+import { OrdersSellerComponent } from './components/orders-seller/orders-seller.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ProductsService } from "./services/products.service";
     ConfirmationComponent,
     PaymentComponent,
     RegistroComponent,
+    OrdersSellerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ProductsService, CookieService],

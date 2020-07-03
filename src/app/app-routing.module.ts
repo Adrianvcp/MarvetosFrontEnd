@@ -10,6 +10,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { ConfirmationComponent } from "./components/confirmation/confirmation.component";
 import { PaymentComponent } from "./components/payment/payment.component";
 import { RegistroComponent } from "./components/registro/registro.component";
+import { OrdersSellerComponent } from './components/orders-seller/orders-seller.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
     path: "registro",
     component: RegistroComponent,
   },
+  {
+    path: "orden/vendedor/:id",
+    component: OrdersSellerComponent,
+  }
 ];
 
 @NgModule({
