@@ -10,7 +10,9 @@ import { LoginComponent } from "./components/login/login.component";
 import { ConfirmationComponent } from "./components/confirmation/confirmation.component";
 import { PaymentComponent } from "./components/payment/payment.component";
 import { RegistroComponent } from "./components/registro/registro.component";
-import {DetalleCComponent} from "./components/detalle-c/detalle-c.component"
+
+import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
+import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 
 const routes: Routes = [
   {
@@ -57,6 +59,10 @@ const routes: Routes = [
   {
     path: "detalleC",
     component: DetalleCComponent,
+  },
+  {
+    path: "orden/vendedor/:id",
+    component: OrdersSellerComponent,
   },
 ];
 

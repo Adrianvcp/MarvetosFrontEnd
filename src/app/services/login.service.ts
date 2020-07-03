@@ -27,4 +27,12 @@ export class LoginService {
       return "";
     }
   }
+
+  givemeData(tk: any) {
+    if (tk != "") {
+      var jwtData = tk.split(".")[1];
+      var dataUser = JSON.parse(window.atob(jwtData)); //Objeto JSon
+      return dataUser;
+    }
+  }
 }

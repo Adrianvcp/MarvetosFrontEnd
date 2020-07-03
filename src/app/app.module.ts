@@ -24,10 +24,10 @@ import { HttpClient } from "@angular/common/http";
 import { Products } from "./model/products";
 //Servicios
 import { ProductsService } from "./services/products.service";
-import { FilterPipe } from './pipes/filter.pipe';
-import { DetalleCComponent } from './components/detalle-c/detalle-c.component';
+import { FilterPipe } from "./pipes/filter.pipe";
+import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
-
+import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 
 @NgModule({
   declarations: [
@@ -45,11 +45,11 @@ import { DetalleCComponent } from './components/detalle-c/detalle-c.component';
     RegistroComponent,
     FilterPipe,
     DetalleCComponent,
-    
+
+    OrdersSellerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
- 
 })
 export class AppModule {}
