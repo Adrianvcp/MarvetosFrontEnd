@@ -27,9 +27,9 @@ export class DetalleCService {
 }
 
 //actualizarDato
- /*  updateEstado(id:string, updateEstado: Orden): Observable<Orden>{
+   updateEstado(id:string, updateEstado: Orden): Observable<any>{
     return this.http.put(`${this.API_URI}/orden/${id}`, updateEstado);
-  } */
+  } 
 
  
 }

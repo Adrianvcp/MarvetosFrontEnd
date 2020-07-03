@@ -311,8 +311,8 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idConductor = null;
     this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
     this.obj_or.idUser = 1; // LOGIN
-    this.obj_or.fechaOrden = "2020-07-02 13:11:19";
-    this.obj_or.fechaEntrega = "2020-07-02 13:11:19";
+    this.obj_or.fechaOrden = "";
+    this.obj_or.fechaEntrega = "";
     this.obj_or.Comentario = this.comentario;
     this.obj_or.Direccion = this.direccion;
     this.obj_or.PrecioTotal = this.resultadoTotal;
@@ -320,6 +320,8 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idUbicacion = 1;
     this.obj_or.bDescuento = 0;
 
+    delete this.obj_or.fechaEntrega;
+    delete this.obj_or.fechaOrden;
     delete this.obj_or.idOrden;
     console.log("OBJETO");
     console.log(JSON.stringify(this.obj_or));
