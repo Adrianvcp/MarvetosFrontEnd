@@ -26,4 +26,5 @@ export class RegistroService {
   getToken() {
     return this.cookies.get("token");
   }
+  
 }

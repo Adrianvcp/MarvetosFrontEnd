@@ -1,0 +1,238 @@
+
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <p>Detalle del Conductor a Entregar los Pedidos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+  
+  <!--================Cart Area =================-->
+  <section class="cart_area section_padding ">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+  
+          <table class="table">
+            <thead class="table-primary">
+              <tr>
+  
+                <th scope="col">N°Orden</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Conductor</th>
+                <th scope="col">Vendedor</th>
+                <th scope="col">Fecha Entrega</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Distrito</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Metodo de Pago</th>
+                <th scope="col">PrecioTotal</th>
+                <th scope="col">Ver Detalle</th>
+  
+              </tr>
+  
+  
+  
+            </thead>
+            <tbody *ngFor="let orden of orden">
+  
+              <tr>
+                <td>
+                 
+                      <p>M0{{orden.idOrden}}</p>
+                  
+                </td>
+                <td>
+                  <p>{{orden.nombreEstado}}</p>
+                </td>
+                <td>
+                 
+                    <p>{{orden.Cliente}}</p>
+                
+              </td>
+              <td>
+                 
+                <p>{{orden.Conductor}}</p>
+            
+          </td>
+          <td>
+                 
+            <p>{{orden.Vendedor}}</p>
+        
+      </td>
+                <td>
+                    <p>{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}}
+                    </p>
+                </td>
+
+                <td>
+                  <p>{{orden.Comentario}}</p>
+                </td>
+
+                <td>
+                    <p>{{orden.lugar}} </p>
+                  </td>
+
+                  <td>
+                    <p>{{orden.Direccion}} </p>
+                  </td>
+                  
+                  <td>
+                    <p>{{orden.metodoPago}} </p>
+                  </td>
+                  <td>
+                    <p>S/ {{orden.PrecioTotal}} </p>
+                  </td>
+                <td>
+                     
+                  <!-- <button class="btn btn-warning" >
+                    <i class="fas fa-info"></i>
+                  </button> -->
+                  
+                  
+                  <button type="button" class="btn btn-warning" (click)="buscarDetalle(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter"  >
+                    <i class="fas fa-info"></i>
+                  </button>
+                  <br>
+                  <br>
+                  <br>
+                
+                  <button type="button" class="btn btn-success" (click)="editEstado(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter1"  >
+                    <i class="fas fa-redo"></i>
+                  </button>
+
+                <!-- <ul class="list" *ngFor="let detallecarrito of detallecarrito">
+                  <li> <a class="pointer" (click)="buscarDetalle(detallecarrito.idOrden)" data-toggle="modal" data-target="#exampleModalCenter">{{categoria.name}}</a> </li>
+              </ul> -->
+                </td>
+              </tr>
+
+              
+  
+  
+            </tbody>
+  
+          </table>
+  
+         <!--  <div class="checkout_btn_inner float-right">
+            
+            <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Ver detalle Orden</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  <!--================End Cart Area =================-->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+
+  <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title center" id="exampleModalLongTitle">Detalle Carrito</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+        <thead class="thead-dark" >
+          <tr>
+
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+           
+
+          </tr>
+
+         
+
+        </thead>
+
+        <tbody *ngFor="let detalle of detalleCarrito">
+  
+          <tr>
+           
+              <td>
+                <p>{{detalle.Productos}} </p>
+              </td>
+              <td>
+                <p>{{detalle.cantProducto}} {{detalle.unidades}}</p>
+              </td>
+           
+          </tr>
+
+          
+
+
+        </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <script>
+  function rfesh(){
+    console.log("actualizando");
+  }
+</script> -->
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+
+  <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Estado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Estado</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Elige un estado</option>
+              <option>Pendiente</option>
+              <option>Confirmado</option>
+              <option>En camino</option>
+              <option>Entregado</option>
+            </select>
+           
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="edit ? updateEstado() : saveEstado" class="btn btn-primary">Listo</button>
+      </div>
+    </div>
+  </div>
+</div>

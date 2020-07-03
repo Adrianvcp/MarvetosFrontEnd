@@ -5,27 +5,45 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>Inicio / Productos </p>
+
+
+                        <div class="search_input" id="search_input_box" >
+                            <div class="container" >
+                                <form class="d-flex justify-content-between search-inner" >
+                                    <input type="text" class="form-control" id="search_input" name="filterPost" placeholder="Buscar producto" [(ngModel)]="filterPost" />
+                                   <!--  <button type="submit"  class="btn">Buscar</button> -->
+                                    <!-- <span class="ti-close" id="close_search" title="Close Search"></span> -->
+                                    
+                                </form>
+                            </div>
+                        </div> 
+
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+<!-- (click)="buscarProduc(producto.name) -->
 <!-- breadcrumb start-->
 
 <!--================Category Product Area =================-->
 <section class="cat_product_area section_padding border_top">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
                     <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
                         <div class="l_w_title">
                             <h3>Categorias</h3>
                         </div>
-                        <div class="widgets_inner">
-                            <ul class="list" *ngFor="let categoria of categoria">
+                        <div class="widgets_inner ">
+                            <ul class="list " *ngFor="let categoria of categoria">
                                 <li> <a class="pointer" (click)="selectCat(categoria.idCategoria)">{{categoria.name}}</a> </li>
                             </ul>
                         </div>
@@ -33,6 +51,9 @@
 
                 </div>
             </div>
+            
+
+
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-lg-12">
@@ -40,26 +61,30 @@
                             <div class="single_product_menu product_bar_item">
                                 <h2>Productos</h2>
                             </div>
-                            <!-- <div class="product_top_bar_iner product_bar_item d-flex">
-                                <div class="product_bar_single">
-                                    <select class="wide">
-                                        <option data-display="Default sorting">Default sorting</option>
-                                        <option value="1">Some option</option>
-                                        <option value="2">Another option</option>
-                                        <option value="3">Potato</option>
-                                    </select>
-                                </div>
-                                <div class="product_bar_single">
-                                    <select>
-                                        <option data-display="Show 12">Show 12</option>
-                                        <option value="1">Show 20</option>
-                                        <option value="2">Show 30</option>
-                                    </select>
-                                </div>
-                            </div> -->
+                            
+                                
+
+                               <!--  <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Filtros
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">A - Z </a>
+                                      <a class="dropdown-item" href="#">Mayor Precio</a>
+                                      <a class="dropdown-item" href="#">Menor Precio</a>
+                                      <a class="dropdown-item" href="#">Menor Stock</a>
+                                      <a class="dropdown-item" href="#">Menor Stock</a>
+                                    </div>
+                                  </div>   
+ -->
+
+
+
+
+                            
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products">
+                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | filter:filterPost">
                         <div class="single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">

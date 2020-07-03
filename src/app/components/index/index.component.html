@@ -1,23 +1,31 @@
-<section class="banner_part">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="banner_slider">
-                    <div class="single_banner_slider">
-                        <div class="banner_text">
-                            <div class="banner_text_iner">
-                                <h5>Asesoría-Catering-Restaurante</h5>
-                                <!-- <h1>Marveto's Products 2020</h1> -->
-                                <h1>Marveto's</h1>
-                                <a routerLink="/productos" class="btn_1">comprar ahora</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a [routerLink]="['/productos']"><img  class="d-block w-100" src="../../../assets/img/portadaMarveto/portada1.png" width="auto" height="auto" ></a>
+        <!-- <a routerLink="/productos" class="btn_1">comprar ahora</a> -->
+      </div>
+      <div class="carousel-item">
+        <a [routerLink]="['/productos']"><img  class="d-block w-100" src="../../../assets/img/portadaMarveto/portada2.png" width="auto" height="auto" ></a>
+      </div>
+      <div class="carousel-item">
+        <a [routerLink]="['/productos']"><img  class="d-block w-100" src="../../../assets/img/portadaMarveto/portada3.png" width="auto" height="auto" ></a>
+      </div>
     </div>
-</section>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
 <!-- banner part start-->
 
 <!-- feature_part start-->

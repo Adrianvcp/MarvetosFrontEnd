@@ -23,6 +23,12 @@ export class ProductsService {
   getThreeProducts() {
     return this.http.get(`${this.API_URI}/producto/lista`);
   }
+
+  //-------------------
+  getASC() {
+    return this.http.get(`${this.API_URI}/producto/produc/form/ASC`);
+  }
+  //-------------------
   getOneProduct(id: string) {
     return this.http.get(`${this.API_URI}/producto/detalle/${id}`);
   }
@@ -30,6 +36,12 @@ export class ProductsService {
   //mostrar la lista de los productos con su categoria seleccionada
   getSelecCat(ids: string) {
     return this.http.get(`${this.API_URI}/producto/${ids}`);
+  }
+
+
+  //Busqueda de producto
+  getasc(name: string) {
+    return this.http.get(`${this.API_URI}/producto/produc`);
   }
 
   //------------------------------------------------------

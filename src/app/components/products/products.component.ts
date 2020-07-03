@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./products.component.css"],
 })
 export class ProductsComponent implements OnInit {
+  filterPost = '';
   products: any = [];
   categoria: any = [];
 
@@ -84,4 +85,31 @@ export class ProductsComponent implements OnInit {
       );
     }
   }
+
+
+  //buscador de productos
+/*   buscarProduc(name){
+   
+    if (name) {
+      this.productsService.getBuscarProduc(name).subscribe(
+        (res) => {
+          
+          this.products = res;
+        },
+        
+        (err) => console.error(err)
+        
+      );
+    }
+  } */
+
+  producASC(){
+    this.productsService.getASC().subscribe(
+      (res) => {
+        this.categoria = res;
+      },
+      (err) => console.error(err)
+    );
+  }
+
 }
