@@ -217,7 +217,7 @@
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Estado</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select (change)="onclicEdit($event.target.value)" class="form-control" id="exampleFormControlSelect1 ">
               <option>Elige un estado</option>
               <option>Pendiente</option>
               <option>Confirmado</option>
@@ -231,7 +231,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" (click)="edit ? updateEstado() : saveEstado" class="btn btn-primary">Listo</button>
+        <button type="button" (click)="updateEstado()" class="btn btn-primary">Listo</button>
       </div>
     </div>
   </div>

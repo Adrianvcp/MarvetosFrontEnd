@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Orden } from "../model/orden";
 import { Observable } from 'rxjs';
-
+/* import { chownSync } from 'fs';
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class DetalleCService {
   API_URI = "http://localhost:5000/api";
+
   constructor(private http: HttpClient) { }
 
   getDetalle() {
@@ -27,9 +29,21 @@ export class DetalleCService {
 }
 
 //actualizarDato
-   updateEstado(id:string, updateEstado: Orden): Observable<any>{
+   updateEstado(id:string, updateEstado: any): Observable<any>{
+     console.log(id);
+     console.log(updateEstado);
     return this.http.put(`${this.API_URI}/orden/${id}`, updateEstado);
   } 
+  
+  getId(dato:string){
+   console.log(dato);
+    return this.http.get(`${this.API_URI}/orden/estado`);
 
+
+  }
+
+  getBusc(id: string) {
+    return this.http.get(`${this.API_URI}/orden/${id}`);
+  }
  
 }
