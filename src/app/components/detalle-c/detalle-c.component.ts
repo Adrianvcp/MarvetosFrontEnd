@@ -29,17 +29,7 @@ export class DetalleCComponent implements OnInit {
 
   ngOnInit() {
 //------------------------------------------------------
-console.log("--nombre--");
-    const params = this.activatedRoute.snapshot.params;
-   
-    if(params.id){
-      this.detalleCService.getBusc(params.id).subscribe(
-res =>{
-  console.log(res)
-},
-err =>console.log(err)
-      )
-    }
+
    
 //--------------------------------------------
 
@@ -80,7 +70,7 @@ err =>console.log(err)
 
   updateEstado(){
     Swal.fire({
-      title: 'Are you sure?',
+      title: 'Quieres actualizar el estado?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
