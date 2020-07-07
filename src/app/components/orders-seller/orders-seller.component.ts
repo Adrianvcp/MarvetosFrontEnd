@@ -41,7 +41,6 @@ export class OrdersSellerComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    console.log("asada");
     console.log(this.loginService.getToken());
     console.log(this.loginService.givemeData(this.loginService.getToken()));
   }

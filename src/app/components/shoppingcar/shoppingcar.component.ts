@@ -9,6 +9,9 @@ import { Distrito } from "../../model/distrito";
 import { Orden } from "../../model/orden";
 import { ThrowStmt } from "@angular/compiler";
 import { HeaderComponent } from "../header/header.component";
+//Alerta
+import Swal from "sweetalert2";
+
 @Component({
   selector: "app-shoppingcar",
   templateUrl: "./shoppingcar.component.html",
@@ -222,6 +225,7 @@ export class ShoppingcarComponent implements OnInit {
   }
 
   onEditClick(skill: any) {
+    console.log(this.idPago);
     console.log(skill[0]);
     console.log("skill name", skill);
     this.idPago = skill;
@@ -305,74 +309,117 @@ export class ShoppingcarComponent implements OnInit {
 
   //Funcion Agregar orden y productos
   AgregarOrden() {
-    //Deberia ser asincrona
-    this.obj_or.idOrden = 1;
-    this.obj_or.idEstado = 1;
-    this.obj_or.idConductor = null;
-    this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
-    this.obj_or.idUser = 1; // LOGIN
-    this.obj_or.fechaOrden = "";
-    this.obj_or.fechaEntrega = "";
-    this.obj_or.Comentario = this.comentario;
-    this.obj_or.Direccion = this.direccion;
-    this.obj_or.PrecioTotal = this.resultadoTotal;
-    this.obj_or.idPago = this.idPago;
-    this.obj_or.idUbicacion = 1;
-    this.obj_or.bDescuento = 0;
+    //Validaciones
+    console.log(this.nameDistrito);
+    console.log(this.idPago);
+    console.log(this.direccion);
+    console.log(this.comentario);
 
-    delete this.obj_or.fechaEntrega;
-    delete this.obj_or.fechaOrden;
-    delete this.obj_or.idOrden;
-    console.log("OBJETO");
-    console.log(JSON.stringify(this.obj_or));
-    //Orden
-    this.productsService.postOrden(this.obj_or).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-
-    //orden carrito
-
-    //id
-    this.productsService.getUltimoID().subscribe(
-      (res) => {
-        var idUltimo = res[0]["max(idOrden)"];
-
-        //bucle - producto
-        var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
-        for (let index = 0; index < this.cantProducto.length; index++) {
-          this.Objdetallecarrito.idDetalleCarrito = 1;
-          this.Objdetallecarrito.idOrden = idUltimo + 1;
-          this.Objdetallecarrito.idProducto = this.cantProducto[index][
-            "producto"
-          ].idProducto;
-          this.Objdetallecarrito.subTotal =
-            this.cantProducto[index]["producto"].precio *
-            this.cantProducto[index]["count"];
-          this.Objdetallecarrito.cantProducto = this.cantProducto[index][
-            "count"
-          ];
-
-          delete this.Objdetallecarrito.idDetalleCarrito;
-          this.productsService
-            .postDetalleCarrito(this.Objdetallecarrito)
-            .subscribe(
-              (res) => {
-                console.log(res);
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
+    if (this.nameDistrito == "" || this.idPago == 0) {
+      // no pasas
+      console.log("entro");
+      Swal.fire({
+        text: "Distrito y/o pago no seleccionado.",
+        title: "Lo sentimos",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Lo entiendo",
+      }).then((result) => {
+        if (result.value) {
         }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      });
+    } else if (this.comentario == "" || this.direccion == "") {
+      Swal.fire({
+        text: "Direccion y/o Comentario no seleccionado.",
+        title: "Lo sentimos",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Lo entiendo",
+      }).then((result) => {
+        if (result.value) {
+        }
+      });
+    } else if (this.resultadoTotal < 80.0) {
+      Swal.fire({
+        text: "Minimo de precio S/. 80.00",
+        title: "Lo sentimos",
+        icon: "warning",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Lo entiendo",
+      }).then((result) => {
+        if (result.value) {
+        }
+      });
+    } else {
+      //Deberia ser asincrona
+      this.obj_or.idOrden = 1;
+      this.obj_or.idEstado = 1;
+      this.obj_or.idConductor = null;
+      this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
+      this.obj_or.idUser = 1; // LOGIN
+      this.obj_or.fechaOrden = "";
+      this.obj_or.fechaEntrega = "";
+      this.obj_or.Comentario = this.comentario;
+      this.obj_or.Direccion = this.direccion;
+      this.obj_or.PrecioTotal = this.resultadoTotal;
+      this.obj_or.idPago = this.idPago;
+      this.obj_or.idUbicacion = 1;
+      this.obj_or.bDescuento = 0;
+
+      delete this.obj_or.fechaEntrega;
+      delete this.obj_or.fechaOrden;
+      delete this.obj_or.idOrden;
+      console.log("OBJETO");
+      console.log(JSON.stringify(this.obj_or));
+      //Orden
+      this.productsService.postOrden(this.obj_or).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
+      //orden carrito
+
+      //id
+      this.productsService.getUltimoID().subscribe(
+        (res) => {
+          var idUltimo = res[0]["max(idOrden)"];
+
+          //bucle - producto
+          var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
+          for (let index = 0; index < this.cantProducto.length; index++) {
+            this.Objdetallecarrito.idDetalleCarrito = 1;
+            this.Objdetallecarrito.idOrden = idUltimo + 1;
+            this.Objdetallecarrito.idProducto = this.cantProducto[index][
+              "producto"
+            ].idProducto;
+            this.Objdetallecarrito.subTotal =
+              this.cantProducto[index]["producto"].precio *
+              this.cantProducto[index]["count"];
+            this.Objdetallecarrito.cantProducto = this.cantProducto[index][
+              "count"
+            ];
+
+            delete this.Objdetallecarrito.idDetalleCarrito;
+            this.productsService
+              .postDetalleCarrito(this.Objdetallecarrito)
+              .subscribe(
+                (res) => {
+                  console.log(res);
+                },
+                (err) => {
+                  console.log(err);
+                }
+              );
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

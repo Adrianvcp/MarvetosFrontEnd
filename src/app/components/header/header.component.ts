@@ -7,18 +7,26 @@ import { LoginService } from "../../services/login.service";
 })
 export class HeaderComponent implements OnInit {
   public login: boolean = false;
+  idRol: number = 0;
   nombre: string = "Hola";
 
   constructor(private loginService: LoginService) {
-    var tk = loginService.getToken();
-    if (tk != "") {
-      var jwtData = tk.split(".")[1];
-      var dataUser = JSON.parse(window.atob(jwtData)); //Objeto JSon
-      this.login = true;
-      this.nombre = dataUser["nombre"] + " " + dataUser["apellido"];
-      console.log();
-    }
+    this.data();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data();
+  }
+
+  data() {
+    var tk = this.loginService.getToken();
+    if (tk != "") {
+      var dataUser = this.loginService.givemeData(tk);
+      this.login = true;
+      this.nombre = dataUser["nombre"] + " " + dataUser["apellido"];
+      this.idRol = dataUser["idRol"];
+      console.log("listo");
+      console.log(this.idRol);
+    }
+  }
 }
