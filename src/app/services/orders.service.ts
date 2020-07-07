@@ -10,7 +10,7 @@ export class OrdersService {
   API_URI = "http://localhost:5000/api";
   constructor(private http: HttpClient) {}
 
-  getOrdersxSeller(id: string) {
+  getOrdersxSeller(id: string|number) {
     return this.http.get(`${this.API_URI}/orden/vendedor/${id}`);
   }
 

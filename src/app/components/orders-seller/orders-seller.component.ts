@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
   styleUrls: ["./orders-seller.component.css"],
 })
 export class OrdersSellerComponent implements OnInit {
+  IsmodelShow = false;
+  idVendedor = 0;
   idcond = 0;
   ordencond = 0;
   conductores: any = [];
@@ -41,8 +43,8 @@ export class OrdersSellerComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    console.log(this.loginService.getToken());
-    console.log(this.loginService.givemeData(this.loginService.getToken()));
+     this.idVendedor = parseInt(JSON.stringify(this.loginService.givemeData(this.loginService.getToken()).id));
+    //  console.log(parseInt(JSON.stringify(this.loginService.givemeData(this.loginService.getToken()).id))); 
   }
 
   ngOnInit() {
@@ -50,12 +52,13 @@ export class OrdersSellerComponent implements OnInit {
   }
 
   getOrderxSeller() {
-    const params = this.activatedRoute.snapshot.params;
-    if (params.id) {
-      this.ordersService.getOrdersxSeller(params.id).subscribe(
+    let id = this.idVendedor;
+    // console.log(id);
+    if (id) {
+      this.ordersService.getOrdersxSeller(id).subscribe(
         (res) => {
           this.ordenes = res;
-          console.log(res);
+          
         },
         (err) => console.error(err)
       );
@@ -102,6 +105,7 @@ export class OrdersSellerComponent implements OnInit {
         this.ordersService.putOrdenStatus(id, this.objorden).subscribe(
           (res) => {
             console.log(res);
+            this.getOrderxSeller();
           },
           (err) => console.error(err)
         );
@@ -143,7 +147,9 @@ export class OrdersSellerComponent implements OnInit {
       if (result.value) {
         this.ordersService.putOrdenStatus(id, this.objorden).subscribe(
           (res) => {
-            console.log(res);
+            
+            this.getOrderxSeller();
+            // this.close();
           },
           (err) => console.error(err)
         );
@@ -165,4 +171,10 @@ export class OrdersSellerComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+//   cerrar() {
+//       $('#modal').modal(toggle)
+// };
+  
+ 
 }
