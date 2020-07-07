@@ -29,6 +29,8 @@ import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 
+import { ChatBot } from "angular-ai-chat-bot";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,6 @@ import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.
     RegistroComponent,
     FilterPipe,
     DetalleCComponent,
-
     OrdersSellerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

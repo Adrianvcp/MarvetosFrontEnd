@@ -19,10 +19,10 @@
   <section class="cart_area section_padding ">
     <div class="container">
       <div class="cart_inner">
-        <div class="table-responsive">
+        <div class="table-responsive-xl">
   
-          <table class="table">
-            <thead class="table-primary">
+          <table class="table table-hover">
+            <thead class="table">
               <tr>
   
                 <th scope="col">N°Orden</th>
@@ -30,26 +30,26 @@
                 <th scope="col">Cliente</th>
                 <th scope="col">Conductor</th>
                 <th scope="col">Vendedor</th>
+                <th scope="col">Fecha Orden</th>
                 <th scope="col">Fecha Entrega</th>
-                <th scope="col">Comentario</th>
+                <th scope="col">Comentario Cliente</th>
                 <th scope="col">Distrito</th>
                 <th scope="col">Direccion</th>
                 <th scope="col">Metodo de Pago</th>
                 <th scope="col">PrecioTotal</th>
+               <!--  <th scope="col">Comentario Conductor</th> -->
                 <th scope="col">Ver Detalle</th>
   
               </tr>
   
   
-  
+              
             </thead>
             <tbody *ngFor="let orden of orden">
   
               <tr>
                 <td>
-                 
                       <p>M0{{orden.idOrden}}</p>
-                  
                 </td>
                 <td>
                   <p>{{orden.nombreEstado}}</p>
@@ -68,9 +68,14 @@
                  
             <p>{{orden.Vendedor}}</p>
         
-      </td>
+          </td>
+          <td>
+            <p>{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}}
+            </p>
+        </td>
+
                 <td>
-                    <p>{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}}
+                    <p>{{orden.fechaEntrega | date:'yyyy-MM-dd HH:mm:ss'}}
                     </p>
                 </td>
 
@@ -92,6 +97,10 @@
                   <td>
                     <p>S/ {{orden.PrecioTotal}} </p>
                   </td>
+
+                 <!--  <td>
+                    <p>{{orden.comentarioConductor}} </p>
+                  </td> -->
                 <td>
                      
                   <!-- <button class="btn btn-warning" >
@@ -219,19 +228,23 @@
             <label for="exampleInputEmail1">Estado</label>
             <select (change)="onclicEdit($event.target.value)" class="form-control" id="exampleFormControlSelect1 ">
               <option>Elige un estado</option>
-              <option>Pendiente</option>
-              <option>Confirmado</option>
+             <!--  <option>Pendiente</option>
+              <option>Confirmado</option> -->
               <option>En camino</option>
               <option>Entregado</option>
+            <!--   <option>Promovido</option> -->
             </select>
-           
           </div>
+          <!-- <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Comentario del Conductor:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div> -->
          
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" (click)="updateEstado()" class="btn btn-primary">Listo</button>
+        <button [routerLink]="['/detalleC']" type="button" (click)="updateEstado()" class="btn btn-primary" data-dismiss="modal">Listo</button>
       </div>
     </div>
   </div>
