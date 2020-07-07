@@ -44,10 +44,42 @@
                             <h3>Categorias</h3>
                         </div>
                         <div class="widgets_inner ">
-                            <ul class="list " *ngFor="let categoria of categoria">
-                                <li> <i class="fas fa-shipping-fast"></i>
-                                    <a class="pointer" (click)="selectCat(categoria.idCategoria)">{{categoria.name}}</a>
-                                </li>
+                            <ul class="list" id="util" *ngFor="let categoria of categoria">
+                                <ng-container [ngSwitch]="categoria.name">
+                                    <ng-container *ngSwitchCase="'Verduras'">
+                                        <li> <i class="fas fa-seedling"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Frutas'">
+                                        <li> <i class="fas fa-apple-alt"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Pollo'">
+                                        <li> <i class="fas fa-drumstick-bite"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Hogar'">
+                                        <li> <i class="fas fa-home"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngSwitchDefault>
+                                        <li> <i class="fas fa-shipping-fast"></i>
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria)">{{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+
+
+
+                                </ng-container>
                             </ul>
                         </div>
                     </aside>

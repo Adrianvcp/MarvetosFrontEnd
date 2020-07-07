@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { LoginService } from "../../services/login.service";
 import { User } from "../../model/user";
 import { Router, ActivatedRoute } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-login",
@@ -37,15 +38,36 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    var lg = false;
     this.loginService.login(this.userM).subscribe((data) => {
       console.log("RESPUESTA");
+      console.log(data);
       if (data["code"] == 0) {
-        console.log("No registrado");
-      } else {
+        Swal.fire({
+          title: "Datos Incorrectos",
+          text: "Email y/o contraseña incorrecta, lo sentimos!",
+          icon: "warning",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar!",
+        }).then((result) => {
+          if (result.value) {
+          }
+        });
+      } else if (data["code"] == 1) {
+        Swal.fire({
+          icon: "success",
+          title: "Inicio Satisfactorio",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then((result) => {
+          this.refresh();
+        });
+
+        lg = true;
         console.log(data);
         this.loginService.setToken(data["token"]);
-        this.router.navigateByUrl("/");
-        this.refresh();
+
+        this.router.navigateByUrl("/index");
       }
     });
   }
