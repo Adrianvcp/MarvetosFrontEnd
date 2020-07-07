@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 
 import {Orden} from "../../model/orden";
 import {DetalleCarrito} from "../../model/detallecarrito"
+import {LoginService} from "../../services/login.service";
 
 //importar categoria datos
 import { ActivatedRoute, Router } from "@angular/router";
@@ -18,14 +19,22 @@ export class DetalleCComponent implements OnInit {
   orden: any = [];
   detalleCarrito: any =[];
   idEstado= 0;
+  
   estad:string="";
   idOrden = 0;
+  id=0;
+  comentarioConductor="";
 
   edit:boolean = false;
   constructor(private detalleCService:DetalleCService,
      private router:Router,
-      private  activatedRoute:ActivatedRoute
-    ) { }
+      private  activatedRoute:ActivatedRoute,
+      private loginService:LoginService
+    ) { 
+     var data = this.loginService.givemeData(this.loginService.getToken());
+     console.log(data.id);
+     this.id=data.id;
+    }
 
   ngOnInit() {
 //------------------------------------------------------
@@ -33,14 +42,14 @@ export class DetalleCComponent implements OnInit {
    
 //--------------------------------------------
 
-
-    this.getDetalleC();
-   
+    
+    this.getDetalleC(this.id);
+  
 
   }
 
-  getDetalleC(){
-    this.detalleCService.getDetalle().subscribe(
+  getDetalleC(id){
+    this.detalleCService.getDetalle(id).subscribe(
       (res) => {
         this.orden = res;
       },
@@ -54,6 +63,7 @@ export class DetalleCComponent implements OnInit {
       res =>{
         console.log(res);
         this.router.navigate([]);
+        //this.getDetalleC();
       },
       err =>console.error(err)
     )
@@ -71,33 +81,38 @@ export class DetalleCComponent implements OnInit {
   updateEstado(){
     Swal.fire({
       title: 'Quieres actualizar el estado?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+     /*  text: "You won't be able to revert this!", */
+      icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Si, por favor!!'
     }).then((result) => {
       
       if (result.value) {
         console.log(this.idEstado);
       console.log(this.idOrden);
+
       var obj ={"idEstado":0}
       obj.idEstado=this.idEstado;
       console.log(obj);
       console.log("------------")
      this.detalleCService.updateEstado(String(this.idOrden),obj).subscribe(
       (res) => {
+        this.getDetalleC(this.id);
+        
         console.log(res);
       },
       (err) => console.error(err)
      );
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Estado Actualizado!',
+          'El estado fue Actualizado satisfactoriamente',
           'success'
         )
+        this.getDetalleC(this.id);
       }
+      
     })
 
 
@@ -158,6 +173,9 @@ export class DetalleCComponent implements OnInit {
         break;
       case "Entregado":
         this.idEstado = 4
+        break;
+        case "Promovido":
+        this.idEstado = 5
         break;
     }
 

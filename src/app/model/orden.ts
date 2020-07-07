@@ -12,4 +12,5 @@ export interface Orden {
   idPago: number;
   idUbicacion: number;
   bDescuento: number;
+  //comentarioConductor: string;
 }

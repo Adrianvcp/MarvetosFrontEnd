@@ -12,8 +12,8 @@ export class DetalleCService {
 
   constructor(private http: HttpClient) { }
 
-  getDetalle() {
-    return this.http.get(`${this.API_URI}/orden`);
+  getDetalle(id: string) {
+    return this.http.get(`${this.API_URI}/orden/${id}`);
   }
 
   //busqueda de detallecarrito de los producto

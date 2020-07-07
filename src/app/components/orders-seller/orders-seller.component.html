@@ -21,7 +21,7 @@
             <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}" (click)="estado = 'Confirmado'">Confirmados</a>
             <a class="nav-item nav-link" [ngClass]="{'active': estado === 'En camino'}" (click)="estado = 'En camino'">En camino</a>
             <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Entregado'}" (click)="estado = 'Entregado'">Entregado</a>
-                      
+            <!-- <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Rechazado'}" (click)="estado = 'Rechazado'">Rechazado</a>   -->          
         </nav>
         <table class="table">
             <thead class="thead-dark">
@@ -51,8 +51,8 @@
                             <td class="text-center">{{orden.distrito}}</td>
                             <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getOneBuy(orden.idOrden)"><i class="fas fa-info-circle"></i></button></td>
                             <td class="text-center" *ngIf="estado == 'Pendiente'"><button type="button" class="btn btn-success" (click)="putOrdenStatus(orden.idOrden)"><i class="fas fa-clipboard-check"></i></button></td>
-                            <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor == 0 "><button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="getConductor(); ordencond = orden.idOrden" ><i class="fas fa-truck"></i></button></td>
-                            <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor != 0">Asignado</td>                   
+                            <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor == '' "><button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="getConductor(); ordencond = orden.idOrden" ><i class="fas fa-truck"></i></button></td>
+                            <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor != ''">Asignado</td>                   
                         </tr> 
                 
                 </ng-container>              
