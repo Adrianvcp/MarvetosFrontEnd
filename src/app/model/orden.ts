@@ -12,5 +12,6 @@ export interface Orden {
   idPago: number;
   idUbicacion: number;
   bDescuento: number;
-  //comentarioConductor: string;
+  comentarioConductor?: string;
+  Tproblema?: string;
 }
