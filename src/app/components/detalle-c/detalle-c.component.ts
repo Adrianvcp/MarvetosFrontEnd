@@ -83,7 +83,7 @@ export class DetalleCComponent implements OnInit {
     console.log("DATA-----")
     console.log(this.comentarioConductor)
     Swal.fire({
-      title: 'Quieres actualizar el estado?',
+      title: 'Estad seguro que deseas actualizar los datos?',
      /*  text: "You won't be able to revert this!", */
       icon: 'info',
       showCancelButton: true,
@@ -144,8 +144,8 @@ export class DetalleCComponent implements OnInit {
      
 
         Swal.fire(
-          'Estado Actualizado!',
-          'El estado fue Actualizado satisfactoriamente',
+          'Datos Actualizados!',
+          'Los datos fueron Actualizados satisfactoriamente',
           'success'
         )
         this.getDetalleC(this.id);

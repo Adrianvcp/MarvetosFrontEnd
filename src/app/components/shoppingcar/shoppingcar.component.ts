@@ -329,6 +329,7 @@ export class ShoppingcarComponent implements OnInit {
         }
       });
     } else if (this.comentario == "" || this.direccion == "") {
+      console.log("entroN")
       Swal.fire({
         text: "Direccion y/o Comentario no seleccionado.",
         title: "Lo sentimos",
@@ -340,7 +341,9 @@ export class ShoppingcarComponent implements OnInit {
         }
       });
     } else if (this.resultadoTotal < 80.0) {
+      console.log("MN")
       Swal.fire({
+        
         text: "Minimo de precio S/. 80.00",
         title: "Lo sentimos",
         icon: "warning",
@@ -384,10 +387,13 @@ export class ShoppingcarComponent implements OnInit {
       //orden carrito
 
       //id
+      
       this.productsService.getUltimoID().subscribe(
         (res) => {
+          console.log("EntroXd")
           var idUltimo = res[0]["max(idOrden)"];
 
+          console.log(idUltimo)
           //bucle - producto
           var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
           for (let index = 0; index < this.cantProducto.length; index++) {
