@@ -12,11 +12,14 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./products.component.css"],
 })
 export class ProductsComponent implements OnInit {
-  filterPost = '';
+  filterPost = "";
   products: any = [];
   categoria: any = [];
 
   carrito: any = [];
+
+  order = "0";
+  reverse = false;
 
   constructor(
     private productsService: ProductsService,
@@ -24,7 +27,12 @@ export class ProductsComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
+  ngOnChanges() {
+    console.log("se cambio");
+  }
+
   ngOnInit() {
+    console.log("se ejecuta");
     this.productsService.getCategoria().subscribe(
       (res) => {
         this.categoria = res;
@@ -40,21 +48,24 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  getProducts() {}
+  onclickFilter(skill: any) {
+    switch (this.order) {
+      case "1":
+        this.order = "name";
+        this.reverse = false;
+        break;
+      case "2":
+        this.order = "precio";
+        this.reverse = true;
+        break;
+      case "3":
+        this.order = "precio";
+        this.reverse = false;
+        break;
+    }
+  }
 
   localsito(pr: Products) {
-    /*     this.carrito.push(pr);
-    let carrito = [];
-    if (localStorage.getItem("carrito") === null) {
-      carrito = [];
-      carrito.push(pr);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-    } else {
-      carrito = JSON.parse(localStorage.getItem("carrito"));
-      carrito.push(pr);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-    } */
-
     this.carrito.push(pr);
     let carrito = [];
     if (localStorage.getItem("carrito") === null) {
@@ -85,31 +96,4 @@ export class ProductsComponent implements OnInit {
       );
     }
   }
-
-
-  //buscador de productos
-/*   buscarProduc(name){
-   
-    if (name) {
-      this.productsService.getBuscarProduc(name).subscribe(
-        (res) => {
-          
-          this.products = res;
-        },
-        
-        (err) => console.error(err)
-        
-      );
-    }
-  } */
-
-  producASC(){
-    this.productsService.getASC().subscribe(
-      (res) => {
-        this.categoria = res;
-      },
-      (err) => console.error(err)
-    );
-  }
-
 }

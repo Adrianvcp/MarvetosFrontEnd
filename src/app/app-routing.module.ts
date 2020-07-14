@@ -13,6 +13,7 @@ import { RegistroComponent } from "./components/registro/registro.component";
 
 import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
+import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: "orden/vendedor",
     component: OrdersSellerComponent,
+  },
+  {
+    path: "comprar/pasos",
+    component: StepBystepComponent,
   },
 ];
 
