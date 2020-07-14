@@ -29,7 +29,9 @@ import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 
-//import { ChatBot } from "angular-ai-chat-bot";
+//Para ordenar productos
+import { OrderModule } from "ngx-order-pipe";
+import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
 
 @NgModule({
   declarations: [
@@ -48,8 +50,15 @@ import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.
     FilterPipe,
     DetalleCComponent,
     OrdersSellerComponent,
+    StepBystepComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    OrderModule,
+  ],
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
 })

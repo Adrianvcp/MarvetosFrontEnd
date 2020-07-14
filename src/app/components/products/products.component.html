@@ -96,35 +96,42 @@
                             <div class="single_product_menu product_bar_item">
                                 <h2>Productos</h2>
                             </div>
+                            <div class="product_top_bar_iner product_bar_item d-flex">
+                                <div class="product_bar_single">
+                                    <select class="wide" (change)=onclickFilter($event.target.value)
+                                        [(ngModel)]="order">
+                                        <option value="0">Selecciona un filtro</option>
+                                        <option value="1">Ordenar por nombre</option>
+                                        <option value="2">Ordenar por mayor precio</option>
+                                        <option value="3">Ordenar por menor precio</option>
+                                    </select>
+                                </div>
 
+                            </div>
 
-
-                            <!--  <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Filtros
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">A - Z </a>
-                                      <a class="dropdown-item" href="#">Mayor Precio</a>
-                                      <a class="dropdown-item" href="#">Menor Precio</a>
-                                      <a class="dropdown-item" href="#">Menor Stock</a>
-                                      <a class="dropdown-item" href="#">Menor Stock</a>
-                                    </div>
-                                  </div>   
- -->
-
-
-
+                            <!--                             <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Filtros
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item">A - Z </a>
+                                    <a class="dropdown-item">Mayor
+                                        Precio</a>
+                                    <a class="dropdown-item">Menor Precio</a>
+                                    <a class="dropdown-item">Menor Stock</a>
+                                    <a class="dropdown-item">Menor Stock</a>
+                                </div>
+                            </div> -->
 
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | filter:filterPost">
-                        <div class="single_category_product">
+                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse">
+                        <div class=" single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">
                                     <img src="{{producto.image}}" alt="" height="200" width="100">
-
                                 </a>
                                 <div class="category_social_icon">
                                     <ul>
@@ -143,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- <div class="col-lg-4 col-sm-6">
                         <div class="single_category_product">
                             <div class="single_category_img">
@@ -338,6 +346,7 @@
         </div>
     </div>
 </section>
+
 <style>
     .pointer {
         cursor: pointer;
