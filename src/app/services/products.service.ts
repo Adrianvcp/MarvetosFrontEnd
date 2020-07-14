@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Products } from "../model/products";
+import { Products } from '../model/products';
 import { Categoria } from "../model/categoria";
 import { Orden } from "../model/orden";
 import { DetalleCarrito } from "../model/detallecarrito";
@@ -14,6 +14,10 @@ export class ProductsService {
 
   getProducts() {
     return this.http.get(`${this.API_URI}/producto`);
+  }
+
+  putProducts(id: string|number, product :any){
+    return this.http.put(`${this.API_URI}/producto/${id}`,product);
   }
 
   getCategoria() {

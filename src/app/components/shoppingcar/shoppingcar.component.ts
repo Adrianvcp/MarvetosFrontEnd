@@ -386,6 +386,8 @@ export class ShoppingcarComponent implements OnInit {
       //id
       this.productsService.getUltimoID().subscribe(
         (res) => {
+          console.log("ultimo");
+          console.log(res);
           var idUltimo = res[0]["max(idOrden)"];
 
           //bucle - producto
@@ -408,6 +410,7 @@ export class ShoppingcarComponent implements OnInit {
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
                 (res) => {
+                  this.router.navigateByUrl(`/confirmacion/${this.Objdetallecarrito.idOrden}`);
                   console.log(res);
                 },
                 (err) => {

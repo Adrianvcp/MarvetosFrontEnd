@@ -13,6 +13,8 @@ import { RegistroComponent } from "./components/registro/registro.component";
 
 import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
+import { OrdersUserComponent } from './components/orders-user/orders-user.component';
+import { EditstockComponent } from './components/editstock/editstock.component';
 
 const routes: Routes = [
   {
@@ -64,6 +66,14 @@ const routes: Routes = [
     path: "orden/vendedor",
     component: OrdersSellerComponent,
   },
+  {
+    path: "orden/usuario",
+    component: OrdersUserComponent
+  },
+  {
+    path: "editar",
+    component: EditstockComponent
+  }
 ];
 
 @NgModule({

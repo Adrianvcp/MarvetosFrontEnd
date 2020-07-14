@@ -28,8 +28,10 @@ import { FilterPipe } from "./pipes/filter.pipe";
 import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
+import { OrdersUserComponent } from './components/orders-user/orders-user.component';
+import { EditstockComponent } from './components/editstock/editstock.component';
 
-import { ChatBot } from "angular-ai-chat-bot";
+// import { ChatBot } from "angular-ai-chat-bot";
 
 @NgModule({
   declarations: [
@@ -48,6 +50,9 @@ import { ChatBot } from "angular-ai-chat-bot";
     FilterPipe,
     DetalleCComponent,
     OrdersSellerComponent,
+    OrdersUserComponent,
+    EditstockComponent,
+    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ProductsService, CookieService],

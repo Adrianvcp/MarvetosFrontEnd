@@ -1,0 +1,190 @@
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <p>Home / Historial del usuario</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+      <!--================Cart Area =================-->
+      <section class="cart_area padding-space ">
+        <div class="container">
+         
+          <div class="cart_inner">
+            <div class="table-responsive">
+      
+              <table class="table">
+                <thead class="table-primary">
+                  <tr>
+      
+                    <th scope="col" class="text-center">Cliente/Empresa</th>
+                    <th scope="col" class="text-center">Método de pago</th>
+                    <th scope="col" class="text-center">Precio total</th>
+                    <th scope="col" class="text-center">Fecha del pedido</th>
+                    <th scope="col" class="text-center">Dirección</th>
+                    <th scope="col" class="text-center">Distrito</th>
+                    <th scope="col" class="text-center">Comentario</th>
+                    <th scope="col" class="text-center">Detalles del pedido</th>                                
+                    <th scope="col" class="text-center">Estado</th>
+                  </tr>
+      
+      
+      
+                </thead>
+                <tbody >
+      
+                  <ng-container *ngFor="let orden of ordenes">
+                    <tr>                    
+                        
+                        <td style="font-weight:bold"  *ngIf="orden.nombresComprador != '' && orden.nombresVendedor != ''" scope="row" class="text-center">{{orden.nombresComprador}} {{orden.apellidosComprador}}</td>
+                        <td style="font-weight:bold" *ngIf="orden.nombreEmpresa != ''" scope="row" class="text-center">{{orden.nombreEmpresa}}</td>
+                        
+                        <td class="text-center">{{orden.metodoPago}}</td>
+                        <td class="text-center">S/. {{orden.PrecioTotal}}</td>
+                        <td class="text-center">{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}} </td>
+                        <td class="text-center">{{orden.direccion}}</td>
+                        <td class="text-center">{{orden.distrito}}</td>
+                        <td class="text-center">{{orden.comentario}}</td>
+                        <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getOneBuy(orden.idOrden)"><i class="fas fa-info-circle"></i></button></td>
+                        <td *ngIf="orden.idEstado <= 3 " class="text-center"><button type="button" class="btn btn-info" style="background-color: #0da9ef;" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="getOneOrder(orden)">Tracking</button></td>
+                        <td *ngIf="orden.idEstado == 4 " class="text-center">Entregado</td>
+                        
+                    </tr> 
+            
+            </ng-container>  
+    
+                </tbody>
+      
+              </table>
+      
+          
+            </div>
+          </div>
+        </div>
+
+   
+      
+        <!--MODAL DE PRODUCTOS-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalles de la orden </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead class="thead-dark">
+                  <!--Tabla de los productos mas condicional Pendiente-->
+                  <tr>
+                    <th scope="col" class="text-center">Producto</th>
+                    <th scope="col" class="text-center">Cantidad</th>
+                    
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  <ng-container>
+                          <tr *ngFor="let detalle of detalles">                    
+                              <th scope="row" class="text-center">{{detalle.nombreProducto}}</th>
+                              <th scope="row" class="text-center">{{detalle.cantProducto}}</th>
+                              <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
+                          </tr>  
+                  </ng-container>              
+                  
+              </tbody>
+              <!-- <button type="button" class="btn btn-primary">cerrar</button> -->
+              </table>
+            </div>
+   
+  
+          </div>
+        </div>
+      </div>
+  
+         <!--FIN DE MODAL DE PRODUCTOS-->
+  
+  
+        <!--INICIO DE MODAL DE TRACKING-->
+        
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Proceso de la orden</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                     <!-- TRACKING -->
+                    <div class="container padding-bottom-3x mb-1" >
+                        <div class="card mb-3">
+                        <ng-container>
+                        <div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Tracking Order No - </span><span class="text-medium">{{detalles.idOrden}}</span></div>
+                        <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+                            
+                            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Conductor:</span> </div>
+                            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Estado:</span> {{detalles.Estado}}</div>
+                            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Fecha:</span> {{ detalles.fechaOrden}}</div>
+                              
+                        </div>
+                        </ng-container>
+                        <div class="card-body" >
+                            <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                                <div class="step completed" >
+                                    <div class="step-icon-wrap" >
+                                    <div class="step-icon"><i class="pe-7s-config"></i></div>
+                                    </div>
+                                    <h4 class="step-title">Orden Solicitada</h4>
+                                </div>
+
+                                <div class="step" [ngClass]="{'completed': detalles.idEstado >= 2}">
+                                <div class="step-icon-wrap">
+                                <div class="step-icon"><i class="pe-7s-cart"></i></div>
+                                </div>
+                                <h4 class="step-title">Orden Confirmada</h4>
+                            </div>
+                            
+                            <div class="step" [ngClass]="{'completed': detalles.idEstado >= 3}">
+                                <div class="step-icon-wrap">
+                                <div class="step-icon"><i class="pe-7s-car"></i></div>
+                                </div>
+                                <h4 class="step-title">Orden en camino</h4>
+                            </div>
+                            <div class="step" [ngClass]="{'completed': detalles.idEstado == 4}">
+                                <div class="step-icon-wrap">
+                                <div class="step-icon"><i class="pe-7s-home"></i></div>
+                                </div>
+                                <h4 class="step-title">Orden entregada</h4>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+                        <div class="custom-control custom-checkbox mr-3">
+                            <input class="custom-control-input" type="checkbox" id="notify_me" checked="">
+                            <label class="custom-control-label" for="notify_me">Notify me when order is delivered</label>
+                        </div>
+                        <div class="text-left text-sm-right"><a class="btn btn-outline-primary btn-rounded btn-sm" href="orderDetails" data-toggle="modal" data-target="#orderDetails">View Order Details</a></div>
+                        </div> -->
+                    </div>
+              </div>  
+              </div>
+            </div>
+          </div>
+          <!--FIN DE MODAL DE TRACKING--> 
+    
+      </section>
+      
+      <!--================End Cart Area =================-->

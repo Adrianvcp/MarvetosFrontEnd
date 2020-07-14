@@ -14,6 +14,10 @@ export class OrdersService {
     return this.http.get(`${this.API_URI}/orden/vendedor/${id}`);
   }
 
+  getOrdersxUser(id: string|number) {
+    return this.http.get(`${this.API_URI}/orden/usuario/${id}`);
+  }
+
   putOrdenStatus(id: string|number, updatedOrden: Orden) {
     return this.http.put(`${this.API_URI}/orden/${id}`, updatedOrden);
   }
