@@ -22,6 +22,7 @@ import { AuthGuardService } from "./services/auth-guard.service";
 
 //reparar
 const routes: Routes = [
+  //ahora si porfa
   {
     path: "",
     redirectTo: "/index",
