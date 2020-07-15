@@ -52,7 +52,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: "confirmacion/:id",
+    path: "orden/confirmacion/:id",
     component: ConfirmationComponent,
     canActivate: [AuthGuardService],
   },

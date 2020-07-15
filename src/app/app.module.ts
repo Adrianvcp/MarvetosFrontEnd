@@ -54,24 +54,19 @@ import { OrderquestionComponent } from './components/orderquestion/orderquestion
     FilterPipe,
     DetalleCComponent,
     OrdersSellerComponent,
-<<<<<<< HEAD
     OrdersUserComponent,
     EditarproductosComponent,
-    
-  ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgxPaginationModule],
-=======
     StepBystepComponent,
     OrderquestionComponent,
-  ],
+  ], 
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     OrderModule,
+    NgxPaginationModule
   ],
->>>>>>> 634cfe43993003aec97a84d306dde641a476c1be
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
 })
