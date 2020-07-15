@@ -58,7 +58,7 @@ export class ProductsService {
   }
 
   getUltimoID() {
-    return this.http.get(`${this.API_URI}/orden/gid`);
+    return this.http.get(`${this.API_URI}/orden/gID/giveme`);
   }
 
   postDetalleCarrito(detalleCarrito: DetalleCarrito) {

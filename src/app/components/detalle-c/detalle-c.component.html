@@ -16,13 +16,13 @@
   <!-- breadcrumb start-->
   
   <!--================Cart Area =================-->
-  <section class="cart_area section_padding ">
+  <section class="cart_area padding-space ">
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive-xl">
   
-          <table class="table table-hover">
-            <thead class="table">
+          <table class="table  table-hover">
+            <thead class="table table-primary">
               <tr>
   
                 <th scope="col">N°Orden</th>
@@ -37,7 +37,7 @@
                 <th scope="col">Direccion</th>
                 <th scope="col">Metodo de Pago</th>
                 <th scope="col">PrecioTotal</th>
-               <!--  <th scope="col">Comentario Conductor</th> -->
+                <th scope="col">Comentario Conductor</th>
                 <th scope="col">Ver Detalle</th>
   
               </tr>
@@ -70,12 +70,12 @@
         
           </td>
           <td>
-            <p>{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}}
+            <p>{{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}}
             </p>
         </td>
 
                 <td>
-                    <p>{{orden.fechaEntrega | date:'yyyy-MM-dd HH:mm:ss'}}
+                    <p>{{orden.fechaEntrega | date:'dd-MM-yyyy HH:mm:ss'}}
                     </p>
                 </td>
 
@@ -98,9 +98,9 @@
                     <p>S/ {{orden.PrecioTotal}} </p>
                   </td>
 
-                 <!--  <td>
+                  <td>
                     <p>{{orden.comentarioConductor}} </p>
-                  </td> -->
+                  </td>
                 <td>
                      
                   <!-- <button class="btn btn-warning" >
@@ -235,10 +235,10 @@
             <!--   <option>Promovido</option> -->
             </select>
           </div>
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="recipient-name" class="col-form-label">Comentario del Conductor:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div> -->
+            <input  type="text" class="form-control" id="recipient-name" (change)="onclicEditComentario($event.target.value)">
+          </div>
          
         </form>
       </div>
@@ -249,3 +249,11 @@
     </div>
   </div>
 </div>
+
+
+<script>
+   $("#exampleModalCenter1").on('hide', function () {
+           window.location.reload();
+       })
+       
+</script>

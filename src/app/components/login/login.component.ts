@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     Nombres: "",
     idRol: 0,
     NombreEmpresa: "",
-    telefono: 1234567,
+    telefono: "",
+    Rpass: "",
   };
 
   constructor(

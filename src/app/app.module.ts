@@ -32,6 +32,10 @@ import { OrdersUserComponent } from './components/orders-user/orders-user.compon
 import { EditarproductosComponent } from './components/editarproductos/editarproductos.component';
 
 // import { ChatBot } from "angular-ai-chat-bot";
+//Para ordenar productos
+import { OrderModule } from "ngx-order-pipe";
+import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
+import { OrderquestionComponent } from './components/orderquestion/orderquestion.component';
 
 @NgModule({
   declarations: [
@@ -50,11 +54,24 @@ import { EditarproductosComponent } from './components/editarproductos/editarpro
     FilterPipe,
     DetalleCComponent,
     OrdersSellerComponent,
+<<<<<<< HEAD
     OrdersUserComponent,
     EditarproductosComponent,
     
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgxPaginationModule],
+=======
+    StepBystepComponent,
+    OrderquestionComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    OrderModule,
+  ],
+>>>>>>> 634cfe43993003aec97a84d306dde641a476c1be
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
 })

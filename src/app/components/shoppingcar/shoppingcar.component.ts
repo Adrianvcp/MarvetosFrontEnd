@@ -1,15 +1,23 @@
 import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+
+//Services
 import { ProductsService } from "../../services/products.service";
+import { LoginService } from "../../services/login.service";
+import { LocalstorageService } from "../../services/localstorage.service";
+
+//Componentes
+import { HeaderComponent } from "../header/header.component";
+import { EmailConfirmationService } from "../../services/email-confirmation.service";
+
+//Models
 import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
-import { Router, ActivatedRoute } from "@angular/router";
-import { DetalleCarrito } from "../../model/detallecarrito";
 import { Distrito } from "../../model/distrito";
-
+import { DetalleCarrito } from "../../model/detallecarrito";
 import { Orden } from "../../model/orden";
-import { ThrowStmt } from "@angular/compiler";
-import { HeaderComponent } from "../header/header.component";
-//Alerta
+
+//Alert's - Notifications
 import Swal from "sweetalert2";
 
 @Component({
@@ -18,17 +26,17 @@ import Swal from "sweetalert2";
   styleUrls: ["./shoppingcar.component.css"],
 })
 export class ShoppingcarComponent implements OnInit {
+  //Carrito
   carrito: any = [];
-
   cantProducto: any = [];
-
   suma: any = 0;
-
-  distritos: any = ["San Miguel", "Comas", "Callao", "Chorillos"];
+  resultadoTotal: number = 0;
 
   //Distritos
   getDistrito: any = [];
   Distritos: any = [];
+  nameDistrito = "";
+
   //Comentario y Direccion
   direccion = "";
   comentario = "";
@@ -37,10 +45,7 @@ export class ShoppingcarComponent implements OnInit {
   pago: any = [];
   idPago = 0;
 
-  nameDistrito = "";
-  resultadoTotal: number = 0;
-
-  //Show CostDelivery
+  //Delivery
   CostDelivery: boolean = false;
   descuentoShow: boolean = false;
   Descuento = "25%";
@@ -83,7 +88,6 @@ export class ShoppingcarComponent implements OnInit {
         }
       }
     };
-    //Fin del constructor
 
     /* Arreglo carrito con contador */
     const group = (arr) => {
@@ -105,22 +109,16 @@ export class ShoppingcarComponent implements OnInit {
     (this.cantProducto = grouped), null, 4;
   }
 
-  //metodo auxiliar para obtener cantidad del objeto
-  aux_getCantObj_Pro(Obj: Products) {
-    for (let i = 0; i < this.cantProducto.length; i++) {
-      if (this.cantProducto[i]["producto"].idProducto == Obj.idProducto) {
-        return this.cantProducto[i]["count"];
-        break;
-      }
-    }
-  }
-
   //Inicio del constructor
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    private activtedRoute: ActivatedRoute
+    private activtedRoute: ActivatedRoute,
+    private loginservice: LoginService,
+    private emailservice: EmailConfirmationService,
+    private localstorageservice: LocalstorageService
   ) {
+    //Get products from localstorage
     this.getCantxProducto();
 
     //getSubtotal
@@ -130,7 +128,7 @@ export class ShoppingcarComponent implements OnInit {
         this.cantProducto[i].producto.precio * this.cantProducto[i].count;
     }
 
-    //Foma de pago
+    //Get data "Forma de Pago"
     this.productsService.getFormaPago().subscribe(
       (res) => {
         this.pago = res;
@@ -140,7 +138,7 @@ export class ShoppingcarComponent implements OnInit {
       }
     );
 
-    //Distritos
+    //Get data "Distritos"
     this.productsService.getDistritos().subscribe(
       (res) => {
         this.Distritos = res;
@@ -149,8 +147,6 @@ export class ShoppingcarComponent implements OnInit {
         console.log(err);
       }
     );
-
-    console.log(this.getDistrito);
   }
 
   ngOnInit() {}
@@ -209,19 +205,14 @@ export class ShoppingcarComponent implements OnInit {
           ? (this.resultadoTotal =
               this.DeliveryPrecio -
               this.DeliveryPrecio * 0.25 +
-              (this.suma + this.suma * 0.17))
+              (this.suma + this.suma * 0.18))
           : (this.resultadoTotal =
-              this.suma + this.suma * 0.17 + this.DeliveryPrecio).toFixed(2);
+              this.suma + this.suma * 0.18 + this.DeliveryPrecio).toFixed(2);
       },
       (err) => {
         console.log(err);
       }
     );
-  }
-
-  setDataPago(d) {
-    console.log("ad");
-    console.log(d);
   }
 
   onEditClick(skill: any) {
@@ -238,163 +229,137 @@ export class ShoppingcarComponent implements OnInit {
     this.router.navigate(["/carrito"]);
   }
 
-  //Limpiar carrito del local Storage
+  //CRUD Products on LocalStorage
   limpiarCarrito() {
-    localStorage.removeItem("carrito");
+    
+    Swal.fire({
+      title: 'Estas seguro que quieres vaciar los producto del carrito?',
+      
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro'
+    }).then((result) => {
+      if (result.value) {
+        this.localstorageservice.limpiarCarrito();
     this.reloadComponent();
+    this.router.navigateByUrl("/productos");
+        Swal.fire(
+          'Carrito Eliminado',
+          '',
+          'success',
+        )
+      }
+    })
   }
-
-  //Eliminar carrito del local Storage
   eliminarProducto(id: number) {
-    var carritoTemp = [];
-    var result = [];
-    carritoTemp = JSON.parse(localStorage.getItem("carrito"));
-    //quitar id producto
-    for (let i = 0; i < carritoTemp.length; i++) {
-      if (carritoTemp[i].idProducto != id) {
-        result.push(carritoTemp[i]);
-      } else {
-        continue;
-      }
-    }
-
-    //elimino el localst
-    localStorage.removeItem("carrito");
-    localStorage.setItem("carrito", JSON.stringify(result));
-
+    this.localstorageservice.eliminarProducto(id);
     this.reloadComponent();
   }
-
   disminuirCant(id: number) {
-    var carritoTemp = [];
-    carritoTemp = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carritoTemp);
-    //quitar id producto
-    for (let i = 0; i < carritoTemp.length; i++) {
-      if (carritoTemp[i].idProducto == id) {
-        carritoTemp.splice(i, 1);
-        break;
-      }
-    }
-
-    //elimino el localst
-    localStorage.removeItem("carrito");
-    localStorage.setItem("carrito", JSON.stringify(carritoTemp));
-
+    this.localstorageservice.disminuirCant(id);
     this.reloadComponent();
   }
-
   AumentarCant(id: number) {
-    var carritoTemp = [];
-    var Obj = {};
-
-    carritoTemp = JSON.parse(localStorage.getItem("carrito"));
-    //quitar id producto
-    for (let i = 0; i < carritoTemp.length; i++) {
-      if (carritoTemp[i].idProducto == id) {
-        Obj = carritoTemp[i];
-        break;
-      }
-    }
-    carritoTemp.push(Obj);
-
-    //elimino el localst
-    localStorage.removeItem("carrito");
-    localStorage.setItem("carrito", JSON.stringify(carritoTemp));
-
+    this.localstorageservice.AumentarCant(id);
     this.reloadComponent();
   }
 
   //Determinar aleatorio vendedor
 
-  //Funcion Agregar orden y productos
-  AgregarOrden() {
+  //Alert's
+  alertContinue(pText, pTitle) {
+    Swal.fire({
+      text: pText,
+      title: pTitle,
+      icon: "warning",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Lo entiendo",
+    }).then((result) => {
+      if (result.value) {
+      }
+    });
+  }
+  async alertConfirmBuy() {
+    var respuesta = "";
+    await Swal.fire({
+      title: "¿Deseas confirmar la comprar?",
+      text: "Estas a un paso de tu proxima compra!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si,Comprar!",
+    }).then((result) => {
+      console.log("en el metodo");
+      console.log(result.value);
+      respuesta = String(result.value);
+      console.log("respuesta en el metodo");
+      console.log(respuesta);
+    });
+    await console.log("respuesta fuera del metodo");
+    await console.log(respuesta);
+    return respuesta;
+  }
+
+  //Send Email
+  Mailto(pEmail: string, idOrder: number) {
+    //Objet with address and district
+    var ObjEmail = {
+      email: pEmail,
+      direccion: this.direccion,
+      distrito: this.nameDistrito,
+      Orden: idOrder,
+    };
+    this.emailservice.sendEmailConfirmation(ObjEmail).subscribe(
+      (res) => {
+        console.log("Resultado email confirmacion");
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  //Save Orden and DetailOrder
+  async AgregarOrden() {
     //Validaciones
-    console.log(this.nameDistrito);
-    console.log(this.idPago);
-    console.log(this.direccion);
-    console.log(this.comentario);
-
     if (this.nameDistrito == "" || this.idPago == 0) {
-      // no pasas
-      console.log("entro");
-      Swal.fire({
-        text: "Distrito y/o pago no seleccionado.",
-        title: "Lo sentimos",
-        icon: "warning",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Lo entiendo",
-      }).then((result) => {
-        if (result.value) {
-        }
-      });
+      this.alertContinue("Distrito y/o pago no seleccionado.", "Lo sentimos");
     } else if (this.comentario == "" || this.direccion == "") {
-      Swal.fire({
-        text: "Direccion y/o Comentario no seleccionado.",
-        title: "Lo sentimos",
-        icon: "warning",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Lo entiendo",
-      }).then((result) => {
-        if (result.value) {
-        }
-      });
-    } else if (this.resultadoTotal < 80.0) {
-      Swal.fire({
-        text: "Minimo de precio S/. 80.00",
-        title: "Lo sentimos",
-        icon: "warning",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Lo entiendo",
-      }).then((result) => {
-        if (result.value) {
-        }
-      });
-    } else {
-      //Deberia ser asincrona
-      this.obj_or.idOrden = 1;
-      this.obj_or.idEstado = 1;
-      this.obj_or.idConductor = null;
-      this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
-      this.obj_or.idUser = 1; // LOGIN
-      this.obj_or.fechaOrden = "";
-      this.obj_or.fechaEntrega = "";
-      this.obj_or.Comentario = this.comentario;
-      this.obj_or.Direccion = this.direccion;
-      this.obj_or.PrecioTotal = this.resultadoTotal;
-      this.obj_or.idPago = this.idPago;
-      this.obj_or.idUbicacion = 1;
-      this.obj_or.bDescuento = 0;
-
-      delete this.obj_or.fechaEntrega;
-      delete this.obj_or.fechaOrden;
-      delete this.obj_or.idOrden;
-      console.log("OBJETO");
-      console.log(JSON.stringify(this.obj_or));
-      //Orden
-      this.productsService.postOrden(this.obj_or).subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.log(err);
-        }
+      this.alertContinue(
+        "Direccion y/o Comentario no ingresados.",
+        "Lo sentimos"
       );
+    } else if (this.resultadoTotal < 80.0) {
+      this.alertContinue("Minimo de precio S/. 80.00", "Lo sentimos");
+    } else {
+      //Logued ?
+      if (this.loginservice.getToken() != "") {
+        //Get Data Login
+        var dataLoginToken = await this.loginservice.givemeData(
+          this.loginservice.getToken()
+        );
+        console.log("EMAIL");
+        console.log(dataLoginToken);
+        //wait for response (true buy or undefined)
+        var data = "";
+        data = await this.alertConfirmBuy();
 
-      //orden carrito
+        //True Buy -> Confirm order
+        if (data == "true") {
+          //Save order
+          await this.SaveOrder(dataLoginToken);
 
-      //id
-      this.productsService.getUltimoID().subscribe(
-        (res) => {
-          console.log("ultimo");
-          console.log(res);
-          var idUltimo = res[0]["max(idOrden)"];
+          //Get Last ID
+          var lastid = await this.lastIDOrder();
 
-          //bucle - producto
-          var datosCarrito = JSON.parse(localStorage.getItem("carrito"));
+          //Save Details order
           for (let index = 0; index < this.cantProducto.length; index++) {
             this.Objdetallecarrito.idDetalleCarrito = 1;
-            this.Objdetallecarrito.idOrden = idUltimo + 1;
+            this.Objdetallecarrito.idOrden = lastid + 1;
             this.Objdetallecarrito.idProducto = this.cantProducto[index][
               "producto"
             ].idProducto;
@@ -406,6 +371,8 @@ export class ShoppingcarComponent implements OnInit {
             ];
 
             delete this.Objdetallecarrito.idDetalleCarrito;
+
+            //Save DetailsProducts on DB
             this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
@@ -418,11 +385,67 @@ export class ShoppingcarComponent implements OnInit {
                 }
               );
           }
-        },
-        (err) => {
-          console.log(err);
+
+          //Send Email
+          console.log("EMAIL");
+          console.log(dataLoginToken.email);
+          this.Mailto(dataLoginToken.email, lastid + 1);
+          Swal.fire(
+            "Comprado!",
+            "En unos minutos te llegara la confirmacion a tu correo.",
+            "success"
+          );
         }
-      );
+      } else {
+        this.alertContinue("Debes ingresar con una cuenta!", "Lo sentimos");
+      }
     }
+  }
+
+  async SaveOrder(pdataLoginToken) {
+    this.obj_or.idOrden = 1;
+    this.obj_or.idEstado = 1;
+    this.obj_or.idConductor = null;
+    this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
+    this.obj_or.idUser = parseInt(pdataLoginToken.id);
+    this.obj_or.fechaOrden = "";
+    this.obj_or.fechaEntrega = "";
+    this.obj_or.Comentario = this.comentario;
+    this.obj_or.Direccion = this.direccion;
+    this.obj_or.PrecioTotal = this.resultadoTotal;
+    this.obj_or.idPago = this.idPago;
+    this.obj_or.idUbicacion = 1;
+    this.obj_or.bDescuento = 0;
+
+    delete this.obj_or.fechaEntrega;
+    delete this.obj_or.fechaOrden;
+    delete this.obj_or.idOrden;
+
+    //Save Order on DB
+    var rsp = await this.productsService.postOrden(this.obj_or).toPromise();
+    /* this.productsService.postOrden(this.obj_or).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    ); */
+    console.log(rsp);
+  }
+
+  async lastIDOrder() {
+    var data = await this.productsService.getUltimoID().toPromise();
+    /* var data = await this.productsService.getUltimoID().subscribe(
+      (res) => {
+        id = res[0]["max(idOrden)"];
+        console.log("data id en el metodo");
+        console.log(id);
+      },
+      (err) => {
+        console.log(err);
+      }
+    ); */
+    return data[0]["max(idOrden)"];
   }
 }

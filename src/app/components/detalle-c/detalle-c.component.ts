@@ -25,6 +25,7 @@ export class DetalleCComponent implements OnInit {
   id=0;
   comentarioConductor="";
 
+
   edit:boolean = false;
   constructor(private detalleCService:DetalleCService,
      private router:Router,
@@ -79,8 +80,10 @@ export class DetalleCComponent implements OnInit {
 
 
   updateEstado(){
+    console.log("DATA-----")
+    console.log(this.comentarioConductor)
     Swal.fire({
-      title: 'Quieres actualizar el estado?',
+      title: 'Estad seguro que deseas actualizar los datos?',
      /*  text: "You won't be able to revert this!", */
       icon: 'info',
       showCancelButton: true,
@@ -94,20 +97,55 @@ export class DetalleCComponent implements OnInit {
       console.log(this.idOrden);
 
       var obj ={"idEstado":0}
+
       obj.idEstado=this.idEstado;
-      console.log(obj);
-      console.log("------------")
-     this.detalleCService.updateEstado(String(this.idOrden),obj).subscribe(
-      (res) => {
-        this.getDetalleC(this.id);
+
+      var comen ={"comentarioConductor":""}
+      
+      //obj.idEstado=this.idEstado;
+      comen.comentarioConductor=this.comentarioConductor;
+      
+      if(this.comentarioConductor != "" && this.idEstado != 0 ){
+       
+        var u = Object.assign(obj,comen);
+        console.log(u);
+        this.detalleCService.updateEstado(String(this.idOrden),u).subscribe(
+          (res) => {
+            this.getDetalleC(this.id);
+            
+            console.log(res);
+          },
+          (err) => console.error(err)
+         );
+
+      }else if (this.comentarioConductor != "" ){
+        comen.comentarioConductor = this.comentarioConductor;
+        this.detalleCService.updateEstado(String(this.idOrden),comen).subscribe(
+          (res) => {
+            this.getDetalleC(this.id);
+            
+            console.log(res);
+          },
+          (err) => console.error(err)
+         );
         
-        console.log(res);
-      },
-      (err) => console.error(err)
-     );
+      }else{        this.detalleCService.updateEstado(String(this.idOrden),obj).subscribe(
+          (res) => {
+            this.getDetalleC(this.id);
+            
+            console.log(res);
+          },
+          (err) => console.error(err)
+         );
+      }
+     // console.log(obj);
+      console.log("------------")
+
+     
+
         Swal.fire(
-          'Estado Actualizado!',
-          'El estado fue Actualizado satisfactoriamente',
+          'Datos Actualizados!',
+          'Los datos fueron Actualizados satisfactoriamente',
           'success'
         )
         this.getDetalleC(this.id);
@@ -156,7 +194,9 @@ export class DetalleCComponent implements OnInit {
     console.log("Funciono")
   }
 
-
+  onclicEditComentario(skill:any){
+    this.comentarioConductor = skill;
+  }
   onclicEdit(skill: any){
     console.log(skill);
     this.estad=skill;

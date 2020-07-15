@@ -15,7 +15,12 @@ import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 import { OrdersUserComponent } from './components/orders-user/orders-user.component';
 import { EditarproductosComponent } from './components/editarproductos/editarproductos.component';
+import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
+import { OrderquestionComponent } from "./components/orderquestion/orderquestion.component";
 
+import { AuthGuardService } from "./services/auth-guard.service";
+
+//reparar
 const routes: Routes = [
   {
     path: "",
@@ -49,8 +54,10 @@ const routes: Routes = [
   {
     path: "confirmacion/:id",
     component: ConfirmationComponent,
+    canActivate: [AuthGuardService],
   },
   {
+    //YA NO DEBERIA ESTAR
     path: "pagar",
     component: PaymentComponent,
   },
@@ -61,10 +68,20 @@ const routes: Routes = [
   {
     path: "detalleC",
     component: DetalleCComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: "orden/vendedor",
     component: OrdersSellerComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: "comprar/pasos",
+    component: StepBystepComponent,
+  },
+  {
+    path: "ticket",
+    component: OrderquestionComponent,
   },
   {
     path: "orden/usuario",

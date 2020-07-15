@@ -6,20 +6,20 @@
             <div class="heigh">
                 <div class="row">
                     <!-- REGISTER PERSON -->
-                    <div class="order_box col-lg-8">
+                    <div class="order_box col-lg-6">
                         <h3>Registrate para comprar</h3>
                         <form class="row contact_form" action="#" method="post" novalidate="novalidate">
 
                             <div class="col-md-6 form-group p_star">
 
                                 <input type="text" class="form-control" [(ngModel)]="userM.Nombres" id="nombres"
-                                    name="Nombres" value="" placeholder="Nombres">
+                                    name="Nombres" value="" placeholder="Nombres"  (keypress) ="soloLetras($event)">
                             </div>
 
                             <div class="col-md-6 form-group p_star">
 
                                 <input type="text" class="form-control" [(ngModel)]="userM.Apellidos" id="aellidos"
-                                    name="Apellidos" value="" placeholder="Apellidos">
+                                    name="Apellidos" value="" placeholder="Apellidos"  (keypress) ="soloLetras($event)">
                             </div>
                             <!--                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" id="company" name="company"
@@ -29,7 +29,8 @@
 
 
                                 <input type="text" class="form-control" [(ngModel)]="userM.telefono" id="movil"
-                                    name="telefono" value="" placeholder="telefono">
+                                    name="telefono" value="" placeholder="telefono" (keypress) ="ValidaSoloNumeros($event)"
+                                     onpaste="return false" MaxLength="9" >
                             </div>
 
 
@@ -37,7 +38,7 @@
 
 
                                 <input type="text" class="form-control" [(ngModel)]="userM.DNI" id="dni" name="dni"
-                                    value="" placeholder="D.N.I">
+                                    value="" placeholder="D.N.I" MaxLength="8" (keypress) ="ValidaSoloNumeros($event)" onpaste="return false">
                             </div>
 
                             <div class="col-md-12 form-group p_star">
@@ -56,7 +57,7 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
 
-                                <input type="password" class="form-control" id="r_pass" name="r_pass" value=""
+                                <input type="password" class="form-control" id="r_pass" name="r_pass" [(ngModel)]="userM.Rpass" value=""
                                     placeholder="Repetir Contraseña">
                             </div>
                             <div class="col-md-12 form-group">
@@ -91,116 +92,145 @@
                                     <label for="f-option2">Recuerdame</label>
                                 </div>
                             </div>
-
-                        </form>
+                    </form>
                     </div>
+
+
+
+                    
                     <!-- REGISTER COMPANY -->
-                    <div class="col-lg-4" style="padding: 30px;padding-top:10px;">
+                    <div class="order_box col-lg-5 "  style="margin-left: auto;"  >
                         <h3>¿Eres empresa, No te preocupues REGISTRATE AQUI?</h3>
-                        <div class="billing_details">
-                            <div class="heigh">
-                                <div class="row">
-                                    <div>
-                                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="#" method="post" novalidate="novalidate" >
 
 
-                                            <div class="col-md-12 form-group p_star">
-
-
-
-
-                                                <input type="text" class="form-control" id="nameCompany"
-                                                    [(ngModel)]="userE.NombreEmpresa" name="nameCompany"
-                                                    placeholder="Nombre Empresa" />
-
-                                            </div>
-
-
-                                            <div class="col-md-6 form-group p_star">
-
-                                                <input type="text" class="form-control" [(ngModel)]="userE.RUC" id="ruc"
-                                                    name="RUC" placeholder="RUC" />
-
-                                            </div>
-                                            <div class="col-md-6 form-group p_star">
-
-                                                <input type="text" class="form-control" [(ngModel)]="userE.telefono"
-                                                    id="telefono" name="telefono" placeholder="Celular" />
-
-
-                                            </div>
-
-
-                                            <div class="col-md-12 form-group p_star">
-
-                                                <input type="text" class="form-control" [(ngModel)]="userE.email"
-                                                    id="email" name="email" placeholder="Correo electronico" />
-
-                                            </div>
-
-                                            <div class="col-md-12 form-group p_star">
-
-                                                <input type="password" class="form-control" [(ngModel)]="userE.pass"
-                                                    id="pass" name="pass" placeholder="Contraseña" />
-
-                                            </div>
-                                            <div class="col-md-12 form-group p_star">
-                                                <input type="password" class="form-control" id="r_pass" name="r_pass"
-                                                    placeholder="Repetir Contraseña" />
-
-
-                                            </div>
-
-                                            <div class="col-md-12 form-group">
-                                                <div class="creat_account">
-                                                    <div class="row">
-                                                        <div class="col-sm">
-                                                            <input type="checkbox" id="f-option3" name="selector" />
-                                                            <label for="f-option3" style="font-size: 10px;">Al hacer
-                                                                clic en
-                                                                Registrarte, aceptas
-                                                                los Términos y Condiciones
-                                                                de Uso de Marvetos.Para obtener más información acerca
-                                                                de
-                                                                cómo
-                                                                Spotify recopila,
-                                                                utiliza, comparte y
-                                                                protege tus datos personales, consulta la Política de
-                                                                Privacidad
-                                                                de
-                                                                Marvetos.</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="d-md-flex justify-content-center">
-                                                    <button type="submit" style="align-items: center;" value="submit"
-                                                        class="btn_3" (click)="saveNewUserEmpresa()">
-                                                        REGISTRATE
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                            <br>
-                                            <div class="col-md-12">
-
-                                                <div class="d-md-flex justify-content-center creat_account">
-                                                    <input type="checkbox" id="f-option4" name="selector" />
-                                                    <label for="f-option4">Recuerdame</label>
-                                                </div>
-                                            </div>
-
-                                        </form>
+                            <div class="col-md-12 form-group p_star">
+    
+    
+                                <input type="text" class="form-control" id="nameCompany"
+                                    [(ngModel)]="userE.NombreEmpresa" name="nameCompany"
+                                    placeholder="Nombre Empresa" />
+    
+                            </div>
+    
+    
+                            <div class="col-md-6 form-group p_star">
+    
+                                <input type="text" class="form-control" [(ngModel)]="userE.RUC" id="ruc"
+                                    name="RUC" placeholder="RUC" (keypress) ="ValidaSoloNumeros($event)"
+                                    onpaste="return false" MaxLength="13"/>
+    
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+    
+                                <input type="text" class="form-control" [(ngModel)]="userE.telefono"
+                                    id="telefono" name="telefono" placeholder="Celular" (keypress) ="ValidaSoloNumeros($event)"
+                                    onpaste="return false" MaxLength="9"/>
+    
+    
+                            </div>
+    
+    
+                            <div class="col-md-12 form-group p_star">
+    
+                                <input type="email" class="form-control" [(ngModel)]="userE.email"
+                                    id="email" name="email" placeholder="Correo electronico" />
+    
+                            </div>
+    
+                            <div class="col-md-12 form-group p_star">
+    
+                                <input type="password" class="form-control" [(ngModel)]="userE.pass"
+                                    id="pass" name="pass" placeholder="Contraseña" />
+    
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="password" class="form-control" id="r_pass" name="r_pass" [(ngModel)]="userE.Rpass"
+                                    placeholder="Repetir Contraseña" />
+    
+    
+                            </div>
+    
+                            <div class="col-md-12 form-group ">
+                                <div class="creat_account">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <input type="checkbox" id="f-option3" name="selector" />
+                                            <label for="f-option3" style="font-size: 10px;">Al hacer
+                                                clic en
+                                                Registrarte, aceptas
+                                                los Términos y Condiciones
+                                                de Uso de Marvetos.Para obtener más información acerca
+                                                de
+                                                cómo
+                                                Spotify recopila,
+                                                utiliza, comparte y
+                                                protege tus datos personales, consulta la Política de
+                                                Privacidad
+                                                de
+                                                Marvetos.</label>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+    
+                            <div class="col-md-12 ">
+                                <div class="d-md-flex justify-content-center">
+                                    <button type="submit" style="align-items: center;" value="submit"
+                                        class="btn_3" (click)="saveNewUserEmpresa()">
+                                        REGISTRATE
+                                    </button>
+                                </div>
+    
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+    
+                                <div class="d-md-flex justify-content-center creat_account">
+                                    <input type="checkbox" id="f-option4" name="selector" />
+                                    <label for="f-option4">Recuerdame</label>
+                                </div>
+                            </div>
+    
+                        </form>
                     </div>
+
+
+
+
+ <!-- Finish -->
+
+
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    function ValidaSoloNumeros() {
+   if ((event.keyCode < 48) || (event.keyCode > 57)) 
+    event.returnValue = false;
+  }
+  
+  function soloLetras(e) {
+              key = e.keyCode || e.which;
+              tecla = String.fromCharCode(key).toLowerCase();
+              letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+              especiales = "8-37-39-46";
+  
+              tecla_especial = false
+              for (var i in especiales) {
+                  if (key == especiales[i]) {
+                      tecla_especial = true;
+                      break;
+                  }
+              }
+  
+              if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                  return false;
+              }
+          }
+  </script>
+
