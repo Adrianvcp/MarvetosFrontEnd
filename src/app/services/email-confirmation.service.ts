@@ -5,12 +5,17 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class EmailConfirmationService {
-  API_URI = "http://localhost:5000/api";
+  API_URI = "http://localhost:5000/api/email";
 
   constructor(private http: HttpClient) {}
 
-  sentEmailConfirmation(data: any) {
+  sendEmailConfirmation(data: any) {
     console.log(data);
-    return this.http.post(`${this.API_URI}/email`, data);
+    return this.http.post(`${this.API_URI}/`, data);
+  }
+
+  sendticket(data: any) {
+    console.log(data);
+    return this.http.post(`${this.API_URI}/ticket`, data);
   }
 }
