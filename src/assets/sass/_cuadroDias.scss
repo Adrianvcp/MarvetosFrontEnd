@@ -1,17 +1,16 @@
-/************* instagram photo css *************/
-.instagram_photo{
+.cuadroDias{
     background-color: $white_color;
     .col-lg-12{
         padding: 0;
     }
-    .instagram_photo_iner{
+    .cuadroDias_del{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         @media #{$small_mobile}{
             justify-content: space-around;
         }
-        .single_instgram_photo{
+        .single_cuadroDias_del{
             flex: 19.5% 0 0;
             position: relative;
             z-index: 1;
@@ -28,7 +27,7 @@
                 height: 100%;
                 left: 0;
                 top: 0;
-               // background-color: #2f7dfc08;
+               // background-color: $warning-color;
                 opacity: 0;
                 visibility: hidden;
                 z-index: 1;

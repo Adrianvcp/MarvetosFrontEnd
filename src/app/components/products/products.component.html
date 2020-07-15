@@ -127,7 +127,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse">
+                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse | filter:filterPost">
                         <div class=" single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">

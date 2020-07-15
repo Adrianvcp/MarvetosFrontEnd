@@ -231,8 +231,27 @@ export class ShoppingcarComponent implements OnInit {
 
   //CRUD Products on LocalStorage
   limpiarCarrito() {
-    this.localstorageservice.limpiarCarrito();
+    
+    Swal.fire({
+      title: 'Estas seguro que quieres vaciar los producto del carrito?',
+      
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro'
+    }).then((result) => {
+      if (result.value) {
+        this.localstorageservice.limpiarCarrito();
     this.reloadComponent();
+    this.router.navigateByUrl("/productos");
+        Swal.fire(
+          'Carrito Eliminado',
+          '',
+          'success',
+        )
+      }
+    })
   }
   eliminarProducto(id: number) {
     this.localstorageservice.eliminarProducto(id);

@@ -64,7 +64,7 @@ createFormGroup(){
   }
   validatingForm: FormGroup;
   ngOnInit() {
-    this.getUsers();
+   this.getUsers();
     this.validatingForm = new FormGroup({
       text: new FormControl(null, [Validators.required, Validators.email])
     });
@@ -79,7 +79,8 @@ createFormGroup(){
       (err) => console.log(err)
     );
   }
-
+ 
+ 
   esEmailValido(email: string):boolean {
     let mailValido = false;
       'use strict';
@@ -98,6 +99,7 @@ createFormGroup(){
 
   saveNewUserPersona() {
     //var pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2-3}$"
+   
     let esValido:boolean = true;
     console.log(this.userM)
     console.log(this.userM.telefono.length);
@@ -119,18 +121,18 @@ createFormGroup(){
       timer: 2000,
     }).then((result) => {
     });
-   }else if(!this.esEmailValido(this.userM.email)){
-    Swal.fire({
-      icon: "warning",
-      title: "Correo incorrecto, vuelve intentarlo nuevamente",
-      showConfirmButton: false,
-      timer: 2000,
-    }).then((result) => {
-    });
    }else if(this.userM.DNI.length<8){
     Swal.fire({
       icon: "warning",
       title: "DNI incorrecto, vuelve a ponerlo nuevamente",
+      showConfirmButton: false,
+      timer: 2000,
+    }).then((result) => {
+    });
+   }else if(!this.esEmailValido(this.userM.email)){
+    Swal.fire({
+      icon: "warning",
+      title: "Correo incorrecto, vuelve intentarlo nuevamente",
       showConfirmButton: false,
       timer: 2000,
     }).then((result) => {
@@ -143,6 +145,14 @@ createFormGroup(){
       timer: 2000,
     }).then((result) => {
     });
+   }else if(!this.userM.email){
+    Swal.fire({
+      icon: "warning",
+      title: "Correo existente, vuelve a intentarlo",
+      showConfirmButton: false,
+      timer: 2000,
+    }).then((result) => {
+    });
    }else{
     delete this.userM.idUser;
     this.userM.idRol = 2;
@@ -151,12 +161,19 @@ createFormGroup(){
         console.log(res);
         /*         this.registroService.setToken(res["token"]);
          */ this.router.navigate(["/registro"]);
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/ingresar");
       },
       (err) => {
         console.log(err);
       }
     );
+    Swal.fire({
+      icon: "success",
+      title: "Cliente Registrado",
+      showConfirmButton: false,
+      timer: 2000,
+    }).then((result) => {
+    });
     return this.registroService;
    
   }
@@ -224,13 +241,21 @@ createFormGroup(){
           console.log(res);
           /*         this.registroService.setToken(res["token"]);
            */ this.router.navigate(["/registro"]);
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl("/ingresar");
         },
         (err) => {
           console.log(err);
         }
       );
+      Swal.fire({
+        icon: "success",
+        title: "Empresa Registrado",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then((result) => {
+      });
       return this.registroService;
+      
      }
 
 
