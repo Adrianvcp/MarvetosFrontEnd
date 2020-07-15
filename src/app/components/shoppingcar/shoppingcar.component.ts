@@ -205,9 +205,9 @@ export class ShoppingcarComponent implements OnInit {
           ? (this.resultadoTotal =
               this.DeliveryPrecio -
               this.DeliveryPrecio * 0.25 +
-              (this.suma + this.suma * 0.17))
+              (this.suma + this.suma * 0.18))
           : (this.resultadoTotal =
-              this.suma + this.suma * 0.17 + this.DeliveryPrecio).toFixed(2);
+              this.suma + this.suma * 0.18 + this.DeliveryPrecio).toFixed(2);
       },
       (err) => {
         console.log(err);
