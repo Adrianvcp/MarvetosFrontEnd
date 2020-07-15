@@ -288,12 +288,12 @@ export class ShoppingcarComponent implements OnInit {
   Mailto(pEmail: string, idOrder: number) {
     //Objet with address and district
     var ObjEmail = {
-      email: "pedro.velacc@gmail.com",
+      email: pEmail,
       direccion: this.direccion,
       distrito: this.nameDistrito,
       Orden: idOrder,
     };
-    this.emailservice.sentEmailConfirmation(ObjEmail).subscribe(
+    this.emailservice.sendEmailConfirmation(ObjEmail).subscribe(
       (res) => {
         console.log("Resultado email confirmacion");
         console.log(res);
@@ -319,17 +319,18 @@ export class ShoppingcarComponent implements OnInit {
     } else {
       //Logued ?
       if (this.loginservice.getToken() != "") {
+        //Get Data Login
+        var dataLoginToken = await this.loginservice.givemeData(
+          this.loginservice.getToken()
+        );
+        console.log("EMAIL");
+        console.log(dataLoginToken);
         //wait for response (true buy or undefined)
         var data = "";
         data = await this.alertConfirmBuy();
 
         //True Buy -> Confirm order
         if (data == "true") {
-          //Get Data Login
-          var dataLoginToken = this.loginservice.givemeData(
-            this.loginservice.getToken()
-          );
-
           //Save order
           await this.SaveOrder(dataLoginToken);
 
@@ -366,6 +367,8 @@ export class ShoppingcarComponent implements OnInit {
           }
 
           //Send Email
+          console.log("EMAIL");
+          console.log(dataLoginToken.email);
           this.Mailto(dataLoginToken.email, lastid + 1);
           Swal.fire(
             "Comprado!",

@@ -32,6 +32,7 @@ import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.
 //Para ordenar productos
 import { OrderModule } from "ngx-order-pipe";
 import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
+import { OrderquestionComponent } from './components/orderquestion/orderquestion.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { StepBystepComponent } from "./components/step-bystep/step-bystep.compon
     DetalleCComponent,
     OrdersSellerComponent,
     StepBystepComponent,
+    OrderquestionComponent,
   ],
   imports: [
     BrowserModule,
