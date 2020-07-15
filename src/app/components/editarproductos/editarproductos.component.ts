@@ -3,13 +3,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { ProductsService } from '../../services/products.service';
 import { Products } from '../../model/products';
-// import {FormsModule} from '@angular/forms';
 @Component({
-  selector: 'app-editstock',
-  templateUrl: './editstock.component.html',
-  styleUrls: ['./editstock.component.css']
+  selector: 'app-editarproductos',
+  templateUrl: './editarproductos.component.html',
+  styleUrls: ['./editarproductos.component.css']
 })
-export class EditstockComponent implements OnInit {
+export class EditarproductosComponent implements OnInit {
   products: Products = {
     idProducto : 0,
     idCategoria : 0,
@@ -18,7 +17,9 @@ export class EditstockComponent implements OnInit {
     precio: 0,
     stock: 0
   }
+  paginaActual : 1;
   productos: any = [];
+
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -78,5 +79,6 @@ export class EditstockComponent implements OnInit {
     });
     
   }
+
 
 }

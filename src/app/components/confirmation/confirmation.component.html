@@ -20,8 +20,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="confirmation_tittle">
-          <span>Gracias. Tu pedido ha sido completado correctamente.</span>
+        <div class="confirmation_tittle tamaño">
+          <span>Gracias. Tu pedido ha sido completado correctamente.</span> 
+        </div>
+        <div class="confirmation_tittle ">
+          <button type="button" class="btn btn-primary ml-5" [routerLink]="['/productos']">Ver productos</button> <button type="button" class="btn btn-primary ml-5" [routerLink]="['/orden/usuario']">Ver estado del pedido</button> 
         </div>
       </div>
       <div class="col-lg-6 col-lx-4">
@@ -33,7 +36,7 @@
                 <p>Número de Orden</p><span>: {{orden.idOrden}}</span>
               </li>
               <li>
-                <p>Fecha</p><span>: {{orden.fechaOrden}}</span>
+                <p>Fecha</p><span>: {{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}}</span>
               </li>
               <li>
                 <p>Total</p><span>: S/. {{orden.PrecioTotal}}</span>
@@ -106,11 +109,10 @@
                 <th>{{orden.cantProducto}}</th>
                 <th> <span>S/. {{orden.subTotal}}</span></th>
               </tr>
-
           
               <tr>
                 <th colspan="3">IG.V.</th>
-                <th><span>X</span></th>
+                <th><span>S/. {{igv}}</span></th>
               </tr>
             </tbody>
             <tfoot>

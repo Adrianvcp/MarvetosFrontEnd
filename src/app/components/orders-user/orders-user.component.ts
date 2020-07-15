@@ -21,6 +21,7 @@ export class OrdersUserComponent implements OnInit {
     fechaOrden: "",
     idEstado: 0,
   };
+  paginaActual: 1;
   constructor(
     private ordersService: OrdersService,
     private loginService: LoginService,

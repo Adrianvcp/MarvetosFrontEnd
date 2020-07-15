@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { ProductsComponent } from "./components/products/products.component";
+import { ProductsComponent } from './components/products/products.component';
 import { IndexComponent } from "./components/index/index.component";
 import { DetailsproductComponent } from "./components/detailsproduct/detailsproduct.component";
 import { ContactComponent } from "./components/contact/contact.component";
@@ -14,7 +14,7 @@ import { RegistroComponent } from "./components/registro/registro.component";
 import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 import { OrdersUserComponent } from './components/orders-user/orders-user.component';
-import { EditstockComponent } from './components/editstock/editstock.component';
+import { EditarproductosComponent } from './components/editarproductos/editarproductos.component';
 
 const routes: Routes = [
   {
@@ -71,8 +71,8 @@ const routes: Routes = [
     component: OrdersUserComponent
   },
   {
-    path: "editar",
-    component: EditstockComponent
+    path: "productos/editar",
+    component: EditarproductosComponent
   }
 ];
 

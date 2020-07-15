@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class ConfirmationComponent implements OnInit {
   
   ordenes: any = [];
-
+  igv = 0;
+  suma = 0;
   constructor(
     private allService: AllService,
     private router: Router,
@@ -18,12 +19,23 @@ export class ConfirmationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mostrarProducto();
+  }
+
+  mostrarProducto(){
     const params = this.activatedRoute.snapshot.params;
     if (params.id) {
       this.allService.getOneBuy(params.id).subscribe(
         (res) => {
           this.ordenes = res;
-          console.log(res)
+          console.log(this.ordenes);
+          let cantidad = this.ordenes.length;
+          for(let i=0; i < cantidad; i++){
+            this.suma = this.suma + this.ordenes[i].subTotal;
+          }
+          console.log(this.suma);
+          this.igv = parseFloat((0.18*this.suma).toFixed(2));
+          console.log(this.igv);
         },
         (err) => console.error(err)
       );

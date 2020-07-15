@@ -15,7 +15,7 @@ export class ProductsService {
   getProducts() {
     return this.http.get(`${this.API_URI}/producto`);
   }
-
+  //actualizar
   putProducts(id: string|number, product :any){
     return this.http.put(`${this.API_URI}/producto/${id}`,product);
   }

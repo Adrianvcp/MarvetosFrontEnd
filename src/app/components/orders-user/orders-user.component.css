@@ -2,6 +2,10 @@
     padding: 60px 0px;
 }
 
+.altura-contenido{
+    min-height: 71rem;
+}
+
 /*Tracking*/
 
 body{margin-top:20px;}

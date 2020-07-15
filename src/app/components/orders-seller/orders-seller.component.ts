@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
   styleUrls: ["./orders-seller.component.css"],
 })
 export class OrdersSellerComponent implements OnInit {
+  paginaActual = 1;
   IsmodelShow = false;
   idVendedor = 0;
   idcond = 0;

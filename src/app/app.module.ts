@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
-
+import {NgxPaginationModule} from 'ngx-pagination';
 //Token Login
 import { CookieService } from "ngx-cookie-service";
 
@@ -29,7 +29,7 @@ import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
 import { OrdersUserComponent } from './components/orders-user/orders-user.component';
-import { EditstockComponent } from './components/editstock/editstock.component';
+import { EditarproductosComponent } from './components/editarproductos/editarproductos.component';
 
 // import { ChatBot } from "angular-ai-chat-bot";
 
@@ -51,10 +51,10 @@ import { EditstockComponent } from './components/editstock/editstock.component';
     DetalleCComponent,
     OrdersSellerComponent,
     OrdersUserComponent,
-    EditstockComponent,
+    EditarproductosComponent,
     
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgxPaginationModule],
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
 })

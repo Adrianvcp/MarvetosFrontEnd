@@ -14,13 +14,13 @@
   <!-- breadcrumb start-->
 
       <!--================Cart Area =================-->
-      <section class="cart_area padding-space ">
+      <section class="cart_area padding-space altura-contenido">
         <div class="container">
          
           <div class="cart_inner">
             <div class="table-responsive">
       
-              <table class="table">
+              <table class="table table-hover">
                 <thead class="table-primary">
                   <tr>
       
@@ -40,7 +40,7 @@
                 </thead>
                 <tbody >
       
-                  <ng-container *ngFor="let orden of ordenes">
+                  <ng-container *ngFor="let orden of ordenes | paginate: { itemsPerPage: 8, currentPage: paginaActual }">
                     <tr>                    
                         
                         <td style="font-weight:bold"  *ngIf="orden.nombresComprador != '' && orden.nombresVendedor != ''" scope="row" class="text-center">{{orden.nombresComprador}} {{orden.apellidosComprador}}</td>
@@ -48,7 +48,7 @@
                         
                         <td class="text-center">{{orden.metodoPago}}</td>
                         <td class="text-center">S/. {{orden.PrecioTotal}}</td>
-                        <td class="text-center">{{orden.fechaOrden | date:'yyyy-MM-dd HH:mm:ss'}} </td>
+                        <td class="text-center">{{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}} </td>
                         <td class="text-center">{{orden.direccion}}</td>
                         <td class="text-center">{{orden.distrito}}</td>
                         <td class="text-center">{{orden.comentario}}</td>
@@ -63,6 +63,8 @@
                 </tbody>
       
               </table>
+              <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+         
       
           
             </div>
