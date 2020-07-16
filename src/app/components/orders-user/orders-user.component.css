@@ -3,7 +3,13 @@
 }
 
 .altura-contenido{
-    min-height: 71rem;
+    min-height: 45rem;
+}
+
+.tamaño{
+    font-size: 1.5rem;
+    margin-left: auto;
+  margin-right: auto;
 }
 
 /*Tracking*/

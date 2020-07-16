@@ -12,4 +12,9 @@ export class AllService {
   getOneBuy(id: string) {
     return this.http.get(`${this.API_URI}/todo/${id}`);
   }
+
+  //obtener vendedores
+  getSellers() {
+    return this.http.get(`${this.API_URI}/user/vendedor`);
+  }
 }

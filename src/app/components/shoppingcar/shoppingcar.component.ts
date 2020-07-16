@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ProductsService } from "../../services/products.service";
 import { LoginService } from "../../services/login.service";
 import { LocalstorageService } from "../../services/localstorage.service";
+import { AllService } from "../../services/all.service";
 
 //Componentes
 import { HeaderComponent } from "../header/header.component";
@@ -448,4 +449,5 @@ export class ShoppingcarComponent implements OnInit {
     ); */
     return data[0]["max(idOrden)"];
   }
+  
 }

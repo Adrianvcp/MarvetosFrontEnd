@@ -20,6 +20,9 @@ export class OrdersUserComponent implements OnInit {
     idOrden: 0,
     fechaOrden: "",
     idEstado: 0,
+    Estado: "",
+    nombresVendedor: "",
+    apellidosVendedor: "",
   };
   paginaActual: 1;
   constructor(
@@ -62,9 +65,11 @@ export class OrdersUserComponent implements OnInit {
 
   getOneOrder(data){
     this.detalles.idOrden = JSON.stringify(data.idOrden);
-    this.detalles.fechaOrden = JSON.stringify(data.fechaOrden);
+    this.detalles.fechaOrden = data.fechaOrden;
     this.detalles.idEstado = parseInt(JSON.stringify(data.idEstado));
     this.detalles.Estado = JSON.stringify(data.Estado);
-    console.log(data);
+    this.detalles.nombresVendedor = data.nombresVendedor;
+    this.detalles.apellidosVendedor = data.apellidosVendedor;
+   
   }
 }
