@@ -174,8 +174,7 @@ export class ShoppingcarComponent implements OnInit {
     var min = 0;
     var max = JSON.parse(JSON.stringify(dataD)).length - 1;
     var random = Math.floor(Math.random() * (+max + 1 - +min)) + +min;
-    console.log(this.vendedores[random].idVendedor);
-    this.idVendG = random;
+    this.idVendG = this.vendedores[random].idVendedor;
   }
 
   ngOnInit() {}
@@ -450,6 +449,7 @@ export class ShoppingcarComponent implements OnInit {
     delete this.obj_or.idOrden;
 
     //Save Order on DB
+    console.log(this.obj_or);
     var rsp = await this.productsService.postOrden(this.obj_or).toPromise();
     /* this.productsService.postOrden(this.obj_or).subscribe(
       (res) => {
