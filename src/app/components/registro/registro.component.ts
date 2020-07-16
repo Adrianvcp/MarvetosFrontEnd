@@ -50,6 +50,7 @@ createFormGroup(){
     Rpass: "",
   };
 
+  respuesta:any;
 
   //Listar Usuarios
   user: any = [];
@@ -95,11 +96,23 @@ createFormGroup(){
 
   
 
+  async emailRepetido(emailR){
+    var data = await this.registroService.emailRepetido(emailR).toPromise()
+  if (data[0] == undefined){return "false";
+  }else{
+    return "true";
+  }
+  
+  }
 
 
-  saveNewUserPersona() {
+  async saveNewUserPersona() {
     //var pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2-3}$"
    
+    var emailR={
+      email:this.userM.email
+    };
+    console.log(emailR);
     let esValido:boolean = true;
     console.log(this.userM)
     console.log(this.userM.telefono.length);
@@ -145,7 +158,7 @@ createFormGroup(){
       timer: 2000,
     }).then((result) => {
     });
-   }else if(!this.userM.email){
+   }else if( await this.emailRepetido(emailR) =="true"){
     Swal.fire({
       icon: "warning",
       title: "Correo existente, vuelve a intentarlo",
@@ -186,7 +199,11 @@ createFormGroup(){
 
 
 
-  saveNewUserEmpresa() {
+ async saveNewUserEmpresa() {
+
+    var emailR={
+      email:this.userE.email
+    };
     console.log(this.userE)
      
     
@@ -233,6 +250,14 @@ createFormGroup(){
         timer: 2000,
       }).then((result) => {
       });
+     }else if( await this.emailRepetido(emailR) =="true"){
+      Swal.fire({
+        icon: "warning",
+        title: "Correo existente, vuelve a intentarlo",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then((result) => {
+      });
      }else{
       delete this.userE.idUser;
       this.userE.idRol = 1;
@@ -273,7 +298,7 @@ createFormGroup(){
           //No esta permitido - eliminar 
   }
 
-  soloLetras(skill:any) {
+  soloLetraAs(skill:any) {
    
    
     console.log(skill.charCode)
@@ -284,5 +309,13 @@ createFormGroup(){
           //No esta permitido - eliminar 
   }
   
+   soloLetras(e:any) {
+    var key = e.keyCode || e.which;
+    var tecla = String.fromCharCode(key).toLowerCase();
+    var letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+   
 
+    if(letras.indexOf(tecla) == -1 )
+        return false;
+}
 }

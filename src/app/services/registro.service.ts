@@ -26,5 +26,11 @@ export class RegistroService {
   getToken() {
     return this.cookies.get("token");
   }
+
+  emailRepetido(obj: any) {
+    console.log("data service");
+    console.log(obj)
+    return this.http.post(`${this.API_URI}/user/email`,obj);
+  }
   
 }
