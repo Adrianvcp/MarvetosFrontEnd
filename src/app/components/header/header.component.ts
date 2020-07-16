@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.router.onSameUrlNavigation = "reload";
-    this.router.navigate(["/index"]);
+    this.router.navigate(["/ingresar"]);
   }
 
   cerrarSesion() {
