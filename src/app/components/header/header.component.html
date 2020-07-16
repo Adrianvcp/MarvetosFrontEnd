@@ -65,10 +65,9 @@
                                             <a class="dropdown-item" routerLink="/ingresar">
                                                 Ingresar
                                             </a>
-                                            <a class="dropdown-item" routerLink="/orden/usuario">Historial de mis órdenes</a>
+                                            <a class="dropdown-item" routerLink="/orden/usuario">Historial de mis
+                                                órdenes</a>
                                             <a class="dropdown-item" routerLink="/carrito">Carrito de compras</a>
-                                            <a class="dropdown-item" routerLink="/pagar">Pagar</a>
-                                            <a class="dropdown-item" routerLink="/confirmacion">confirmation</a>
 
                                         </div>
                                     </li>
@@ -95,8 +94,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="single_product">
-                                    <a class="dropdown-item" href="ingresar">Inicar Sesion</a>
-                                    <a class="dropdown-item" href="registro">Registrate</a>
+                                    <a class="dropdown-item" *ngIf="!login" href="ingresar">Inicar Sesion</a>
+                                    <a class="dropdown-item" *ngIf="!login" href="registro">Registrate</a>
+                                    <a class="dropdown-item" *ngIf="login" (click)=cerrarSesion()>Cerrar Sesion</a>
 
                                 </div>
                             </div>
