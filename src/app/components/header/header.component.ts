@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion() {
     this.cookies.delete("token");
+    this.router.navigateByUrl("/ingresar");
     window.location.reload();
   }
 
