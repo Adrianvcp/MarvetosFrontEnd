@@ -13,8 +13,7 @@ export class AllService {
     return this.http.get(`${this.API_URI}/todo/${id}`);
   }
 
-  //obtener vendedores
-  getSellers() {
-    return this.http.get(`${this.API_URI}/user/vendedor`);
+  getVendedores() {
+    return this.http.get(`${this.API_URI}/user/sellers/`);
   }
 }

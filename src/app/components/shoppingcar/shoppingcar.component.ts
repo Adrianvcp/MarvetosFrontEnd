@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ProductsService } from "../../services/products.service";
 import { LoginService } from "../../services/login.service";
 import { LocalstorageService } from "../../services/localstorage.service";
-import { AllService } from "../../services/all.service";
+import {AllService} from "../../services/all.service";
 
 //Componentes
 import { HeaderComponent } from "../header/header.component";
@@ -45,6 +45,10 @@ export class ShoppingcarComponent implements OnInit {
   //FormaPago
   pago: any = [];
   idPago = 0;
+
+  //Vendedores
+  vendedores: any = [];
+  idVendG = 0;
 
   //Delivery
   CostDelivery: boolean = false;
@@ -117,7 +121,8 @@ export class ShoppingcarComponent implements OnInit {
     private activtedRoute: ActivatedRoute,
     private loginservice: LoginService,
     private emailservice: EmailConfirmationService,
-    private localstorageservice: LocalstorageService
+    private localstorageservice: LocalstorageService,
+    private allService: AllService
   ) {
     //Get products from localstorage
     this.getCantxProducto();
@@ -148,6 +153,28 @@ export class ShoppingcarComponent implements OnInit {
         console.log(err);
       }
     );
+
+    //Get Vendores
+    this.allService.getVendedores().subscribe(
+      (res) => {
+        this.vendedores = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    //Promesa
+    this.Vendedores();
+
+    console.log(this.idVendG);
+  }
+
+  async Vendedores() {
+    var dataD = await this.allService.getVendedores().toPromise();
+    var min = 0;
+    var max = JSON.parse(JSON.stringify(dataD)).length - 1;
+    var random = Math.floor(Math.random() * (+max + 1 - +min)) + +min;
+    this.idVendG = this.vendedores[random].idVendedor;
   }
 
   ngOnInit() {}
@@ -232,27 +259,22 @@ export class ShoppingcarComponent implements OnInit {
 
   //CRUD Products on LocalStorage
   limpiarCarrito() {
-    
     Swal.fire({
-      title: 'Estas seguro que quieres vaciar los producto del carrito?',
-      
-      icon: 'warning',
+      title: "Estas seguro que quieres vaciar los producto del carrito?",
+
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, estoy seguro'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, estoy seguro",
     }).then((result) => {
       if (result.value) {
         this.localstorageservice.limpiarCarrito();
-    this.reloadComponent();
-    this.router.navigateByUrl("/productos");
-        Swal.fire(
-          'Carrito Eliminado',
-          '',
-          'success',
-        )
+        this.reloadComponent();
+        this.router.navigateByUrl("/productos");
+        Swal.fire("Carrito Eliminado", "", "success");
       }
-    })
+    });
   }
   eliminarProducto(id: number) {
     this.localstorageservice.eliminarProducto(id);
@@ -378,7 +400,9 @@ export class ShoppingcarComponent implements OnInit {
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
                 (res) => {
-                  this.router.navigateByUrl(`/confirmacion/${this.Objdetallecarrito.idOrden}`);
+                  this.router.navigateByUrl(
+                    `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
+                  );
                   console.log(res);
                 },
                 (err) => {
@@ -386,6 +410,8 @@ export class ShoppingcarComponent implements OnInit {
                 }
               );
           }
+          //Eliminar carrito del localstorage
+          this.localstorageservice.limpiarCarrito();
 
           //Send Email
           console.log("EMAIL");
@@ -407,7 +433,7 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idOrden = 1;
     this.obj_or.idEstado = 1;
     this.obj_or.idConductor = null;
-    this.obj_or.idVendedor = 3; //RANDOM VENDEDOR
+    this.obj_or.idVendedor = this.idVendG;
     this.obj_or.idUser = parseInt(pdataLoginToken.id);
     this.obj_or.fechaOrden = "";
     this.obj_or.fechaEntrega = "";
@@ -423,6 +449,7 @@ export class ShoppingcarComponent implements OnInit {
     delete this.obj_or.idOrden;
 
     //Save Order on DB
+    console.log(this.obj_or);
     var rsp = await this.productsService.postOrden(this.obj_or).toPromise();
     /* this.productsService.postOrden(this.obj_or).subscribe(
       (res) => {
