@@ -65,7 +65,7 @@
                                             <a class="dropdown-item" routerLink="/ingresar">
                                                 Ingresar
                                             </a>
-                                            <a class="dropdown-item" routerLink="/orden/usuario">Mis pedidos</a>
+                                            <a class="dropdown-item" routerLink="/orden/usuario" *ngIf=login>Mis pedidos</a>
                                             <a class="dropdown-item" routerLink="/carrito">Carrito de compras</a>
 
                                         </div>
@@ -119,7 +119,7 @@
 
                         </div>
 
-                        <div class="dropdown">
+                        <div class="dropdown" *ngIf=login>
                             <a class="dropdown-toggle" href="#" id="navbarDropdown4" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
