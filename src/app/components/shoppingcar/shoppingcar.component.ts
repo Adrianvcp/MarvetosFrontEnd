@@ -396,7 +396,7 @@ export class ShoppingcarComponent implements OnInit {
             delete this.Objdetallecarrito.idDetalleCarrito;
 
             //Save DetailsProducts on DB
-            this.productsService
+          /*   this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
                 (res) => {
@@ -408,8 +408,17 @@ export class ShoppingcarComponent implements OnInit {
                 (err) => {
                   console.log(err);
                 }
+              ); */
+              var saveDetalle = await this.productsService
+              .postDetalleCarrito(this.Objdetallecarrito)
+              .toPromise();
+              this.router.navigateByUrl(
+                `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
               );
           }
+          this.router.navigateByUrl(
+            `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
+          );
           //Eliminar carrito del localstorage
           this.localstorageservice.limpiarCarrito();
 
