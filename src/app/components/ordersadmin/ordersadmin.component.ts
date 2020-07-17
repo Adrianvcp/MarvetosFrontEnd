@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 })
 export class OrdersadminComponent implements OnInit {
   detalles: any = [];
+  paginaActual = 1;
   ordenes: any = [];
   estado: any = "Pendiente";
   constructor(
