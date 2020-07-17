@@ -18,10 +18,10 @@
   <section class="cart_area padding-space altura-contenido">
     <div class="container">
       <nav class="nav nav-pills nav-justified p-4">
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Pendiente'}" (click)="estado = 'Pendiente'; paginaActual = 1">Pendientes</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}" (click)="estado = 'Confirmado'; paginaActual = 1">Confirmados</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'En camino'}" (click)="estado = 'En camino'; paginaActual = 1">En camino</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Entregado'}" (click)="estado = 'Entregado'; paginaActual = 1">Entregado</a>
+        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Pendiente'}" (click)="estado = 'Pendiente'">Pendientes</a>
+        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}" (click)="estado = 'Confirmado'">Confirmados</a>
+        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'En camino'}" (click)="estado = 'En camino'">En camino</a>
+        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Entregado'}" (click)="estado = 'Entregado'">Entregado</a>
                   
     </nav>
       <div class="cart_inner">
@@ -49,7 +49,8 @@
             </thead>
             <tbody >
   
-              <ng-container *ngFor="let orden of ordenes | paginate: { itemsPerPage: 8, currentPage: paginaActual }">
+              <ng-container *ngFor="let orden of ordenes ">
+                <!-- | paginate: { itemsPerPage: 8, currentPage: paginaActual } -->
                 <tr *ngIf="orden.estado == estado">                    
                     
                     <td style="font-weight:bold"  *ngIf="orden.nombresComprador != '' && orden.nombresVendedor != ''" scope="row" class="text-center">{{orden.nombresComprador}} {{orden.apellidosComprador}}</td>
@@ -76,7 +77,7 @@
             </tbody>
   
           </table>
-          <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+          <!-- <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls> -->
          <!--  <div class="checkout_btn_inner float-right">
             
             <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Ver detalle Orden</a>
@@ -115,7 +116,7 @@
                 <ng-container>
                         <tr *ngFor="let detalle of detalles">                    
                             <th scope="row" class="text-center">{{detalle.nombreProducto}}</th>
-                            <th scope="row" class="text-center">{{detalle.cantProducto}}</th>
+                            <th scope="row" class="text-center">{{detalle.cantProducto}} {{detalle.unidades}}</th>
                             <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
                         </tr>  
                 </ng-container>              

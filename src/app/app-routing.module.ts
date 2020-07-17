@@ -19,6 +19,7 @@ import { StepBystepComponent } from "./components/step-bystep/step-bystep.compon
 import { OrderquestionComponent } from "./components/orderquestion/orderquestion.component";
 
 import { AuthGuardService } from "./services/auth-guard.service";
+import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
 
 //reparar
 const routes: Routes = [
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: "productos/editar",
     component: EditarproductosComponent
+  },
+  {
+    path: "orden/administrador",
+    component: OrdersadminComponent
   }
 ];
 
