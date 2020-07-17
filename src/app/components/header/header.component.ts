@@ -35,14 +35,17 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.router.onSameUrlNavigation = "reload";
-    this.router.navigate(["/index"]);
+    this.router.navigateByUrl("/ingresar");
   }
 
   cerrarSesion() {
     this.cookies.delete("token");
+    
+   
+    this.router.navigateByUrl("/ingresar");
     window.location.reload();
   }
-
+  
   data() {
     var tk = this.loginService.getToken();
     if (tk != "") {

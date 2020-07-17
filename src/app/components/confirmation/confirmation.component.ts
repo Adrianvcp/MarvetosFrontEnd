@@ -16,15 +16,21 @@ export class ConfirmationComponent implements OnInit {
     private allService: AllService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) { 
+    //window.location.reload();
+  }
 
   ngOnInit() {
     this.mostrarProducto();
+    console.log("llego");
+    
+    
   }
 
   mostrarProducto(){
     const params = this.activatedRoute.snapshot.params;
     if (params.id) {
+      
       this.allService.getOneBuy(params.id).subscribe(
         (res) => {
           this.ordenes = res;
@@ -36,10 +42,13 @@ export class ConfirmationComponent implements OnInit {
           console.log(this.suma);
           this.igv = parseFloat((0.18*this.suma).toFixed(2));
           console.log(this.igv);
+         
         },
         (err) => console.error(err)
       );
     }
+   
   }
+  
 
 }

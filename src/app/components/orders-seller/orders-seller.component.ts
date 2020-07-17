@@ -160,8 +160,10 @@ export class OrdersSellerComponent implements OnInit {
           "La asignación ha sido confirmada",
           "success"
         );
+        this.getOrderxSeller();
       }
     });
+   
   }
 
   getConductor() {
