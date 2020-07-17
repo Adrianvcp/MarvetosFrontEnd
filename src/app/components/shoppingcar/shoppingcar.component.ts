@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ProductsService } from "../../services/products.service";
 import { LoginService } from "../../services/login.service";
 import { LocalstorageService } from "../../services/localstorage.service";
-import {AllService} from "../../services/all.service";
+import { AllService } from "../../services/all.service";
 
 //Componentes
 import { HeaderComponent } from "../header/header.component";
@@ -396,7 +396,7 @@ export class ShoppingcarComponent implements OnInit {
             delete this.Objdetallecarrito.idDetalleCarrito;
 
             //Save DetailsProducts on DB
-          /*   this.productsService
+            /*   this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
                 (res) => {
@@ -409,12 +409,12 @@ export class ShoppingcarComponent implements OnInit {
                   console.log(err);
                 }
               ); */
-              var saveDetalle = await this.productsService
+            var saveDetalle = await this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .toPromise();
-              this.router.navigateByUrl(
-                `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
-              );
+            this.router.navigateByUrl(
+              `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
+            );
           }
           this.router.navigateByUrl(
             `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
@@ -485,5 +485,4 @@ export class ShoppingcarComponent implements OnInit {
     ); */
     return data[0]["max(idOrden)"];
   }
-  
 }
