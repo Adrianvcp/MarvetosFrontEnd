@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   filterPost = "";
   products: any = [];
   categoria: any = [];
-
+  paginaActual = 1;
   carrito: any = [];
 
   order = "0";

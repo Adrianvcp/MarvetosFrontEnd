@@ -36,6 +36,7 @@ import { EditarproductosComponent } from './components/editarproductos/editarpro
 import { OrderModule } from "ngx-order-pipe";
 import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
 import { OrderquestionComponent } from './components/orderquestion/orderquestion.component';
+import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { OrderquestionComponent } from './components/orderquestion/orderquestion
     EditarproductosComponent,
     StepBystepComponent,
     OrderquestionComponent,
+    OrdersadminComponent,
   ], 
   imports: [
     BrowserModule,

@@ -18,6 +18,10 @@ export class OrdersService {
     return this.http.get(`${this.API_URI}/orden/usuario/${id}`);
   }
 
+  getOrdersxAdmin() {
+    return this.http.get(`${this.API_URI}/orden/`);
+  }
+
   putOrdenStatus(id: string|number, updatedOrden: Orden) {
     return this.http.put(`${this.API_URI}/orden/${id}`, updatedOrden);
   }

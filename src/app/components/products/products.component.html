@@ -141,7 +141,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse | filter:filterPost">
+                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse | filter:filterPost | paginate: { itemsPerPage: 6, currentPage: paginaActual }">
                         <div class=" single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
                     <!-- <div class="col-lg-4 col-sm-6">
                         <div class="single_category_product">
                             <div class="single_category_img">

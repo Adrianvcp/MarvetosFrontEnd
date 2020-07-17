@@ -57,10 +57,10 @@
             <ng-container *ngIf="isFirst">
               <ul>
                 <li>
-                  <p>Nombres</p><span>: {{orden.nombresVendedor}} </span>
+                  <p>Nombres</p><span>: {{orden.nombresVendedor}}</span>
                 </li>
                 <li>
-                  <p>Apellidos</p><span>: {{orden.apellidosVendedor}} </span>
+                  <p>Apellidos</p><span>: {{orden.apellidosVendedor}}</span>
                 </li>
                 <li>
                   <p>Celular</p><span>: {{orden.celularVendedor}}</span>
@@ -108,7 +108,7 @@
 
               <tr *ngFor="let orden of ordenes">
                 <th colspan="2"><span>{{orden.nombreProducto}}</span></th>
-                <th>{{orden.cantProducto}}</th>
+                <th>{{orden.cantProducto}} {{orden.unidades}}</th>
                 <th> <span>S/. {{orden.subTotal}}</span></th>
               </tr>
 
@@ -116,6 +116,19 @@
                 <th colspan="3">IG.V.</th>
                 <th><span>S/. {{igv}}</span></th>
               </tr>
+
+              <tr *ngFor="let orden of ordenes; first as isFirst">
+                <ng-container *ngIf="isFirst">
+                  <th colspan="3">Delivery</th>
+                  <ng-container *ngIf="orden.descuento == 0">
+                    <th><span>S/. {{orden.precioDelivery}}</span></th>
+                  </ng-container>
+                  <ng-container *ngIf="orden.descuento == 1">
+                    <th><span>S/. {{orden.precioDelivery * 0.75}}</span></th>
+                  </ng-container>
+                </ng-container>
+              </tr>
+
             </tbody>
             <tfoot>
               <tr>

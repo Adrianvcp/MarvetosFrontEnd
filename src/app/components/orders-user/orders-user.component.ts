@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 })
 export class OrdersUserComponent implements OnInit {
   ordenes: any = [];
-  // detalles: any = [];
+  details: any = [];
   idUser = 0;
   tracking: any = [];
   detalles: any = {
@@ -56,7 +56,7 @@ export class OrdersUserComponent implements OnInit {
   getOneBuy(id) {
     this.allService.getOneBuy(id).subscribe(
       (res) => {
-        this.detalles = res;
+        this.details = res;
         this.getOrderxUser();
       },
       (err) => console.error(err)
