@@ -24,6 +24,7 @@ export class DetalleCComponent implements OnInit {
   idOrden = 0;
   id=0;
   comentarioConductor="";
+  paginaActual = 1;
 
 
   edit:boolean = false;

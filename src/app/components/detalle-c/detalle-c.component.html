@@ -9,7 +9,7 @@
   <!-- breadcrumb start-->
   
   <!--================Cart Area =================-->
-  <section class="cart_area padding-space ">
+  <section class="cart_area padding-space  ">
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive-xl">
@@ -38,7 +38,7 @@
   
               
             </thead>
-            <tbody *ngFor="let orden of orden">
+            <tbody *ngFor="let orden of orden | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
   
               <tr>
                 <td>
@@ -122,7 +122,7 @@
   
   
             </tbody>
-  
+            <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
           </table>
   
          <!--  <div class="checkout_btn_inner float-right">
