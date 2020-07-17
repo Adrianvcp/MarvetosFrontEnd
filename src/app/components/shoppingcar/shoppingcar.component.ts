@@ -379,10 +379,12 @@ export class ShoppingcarComponent implements OnInit {
           //Get Last ID
           var lastid = await this.lastIDOrder();
 
+          console.log("ID ULTIMO:" + lastid);
+          console.log("ID PARA GUARDAR :" + parseInt(lastid + 1));
           //Save Details order
           for (let index = 0; index < this.cantProducto.length; index++) {
             this.Objdetallecarrito.idDetalleCarrito = 1;
-            this.Objdetallecarrito.idOrden = lastid + 1;
+            this.Objdetallecarrito.idOrden = parseInt(lastid);
             this.Objdetallecarrito.idProducto = this.cantProducto[index][
               "producto"
             ].idProducto;
@@ -394,42 +396,39 @@ export class ShoppingcarComponent implements OnInit {
             ];
 
             delete this.Objdetallecarrito.idDetalleCarrito;
-
+            console.log("DATO A ENVIAR");
+            console.log(this.Objdetallecarrito);
             //Save DetailsProducts on DB
-            /*   this.productsService
+
+            await this.productsService
+              .postDetalleCarrito(this.Objdetallecarrito)
+              .toPromise();
+            /* this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .subscribe(
                 (res) => {
-                  this.router.navigateByUrl(
-                    `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
-                  );
                   console.log(res);
                 },
                 (err) => {
                   console.log(err);
                 }
               ); */
-            var saveDetalle = await this.productsService
-              .postDetalleCarrito(this.Objdetallecarrito)
-              .toPromise();
-            this.router.navigateByUrl(
-              `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
-            );
           }
-          this.router.navigateByUrl(
-            `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
-          );
+
           //Eliminar carrito del localstorage
           this.localstorageservice.limpiarCarrito();
 
           //Send Email
-          console.log("EMAIL");
-          console.log(dataLoginToken.email);
           this.Mailto(dataLoginToken.email, lastid + 1);
           Swal.fire(
             "Comprado!",
             "En unos minutos te llegara la confirmacion a tu correo.",
             "success"
+          );
+
+          //Redirecting
+          this.router.navigateByUrl(
+            `/orden/confirmacion/${this.Objdetallecarrito.idOrden}`
           );
         }
       } else {
@@ -444,7 +443,7 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idConductor = null;
     this.obj_or.idVendedor = this.idVendG;
     this.obj_or.idUser = parseInt(pdataLoginToken.id);
-    this.obj_or.fechaOrden = "";
+    this.obj_or.fechaOrden = String(new Date());
     this.obj_or.fechaEntrega = "";
     this.obj_or.Comentario = this.comentario;
     this.obj_or.Direccion = this.direccion;
@@ -454,20 +453,13 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.bDescuento = 0;
 
     delete this.obj_or.fechaEntrega;
-    delete this.obj_or.fechaOrden;
+
     delete this.obj_or.idOrden;
 
     //Save Order on DB
     console.log(this.obj_or);
     var rsp = await this.productsService.postOrden(this.obj_or).toPromise();
-    /* this.productsService.postOrden(this.obj_or).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    ); */
+
     console.log(rsp);
   }
 

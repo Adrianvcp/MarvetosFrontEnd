@@ -40,12 +40,9 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion() {
     this.cookies.delete("token");
-    
-   
-    this.router.navigateByUrl("/ingresar");
     window.location.reload();
   }
-  
+
   data() {
     var tk = this.loginService.getToken();
     if (tk != "") {
