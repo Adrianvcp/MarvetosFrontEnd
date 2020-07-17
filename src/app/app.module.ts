@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from "ngx-pagination";
 //Token Login
 import { CookieService } from "ngx-cookie-service";
 
@@ -20,23 +20,26 @@ import { LoginComponent } from "./components/login/login.component";
 import { ConfirmationComponent } from "./components/confirmation/confirmation.component";
 import { PaymentComponent } from "./components/payment/payment.component";
 import { RegistroComponent } from "./components/registro/registro.component";
+import { EmailconfirmationComponent } from "./components/emailconfirmation/emailconfirmation.component";
+
 import { HttpClient } from "@angular/common/http";
 import { Products } from "./model/products";
+
 //Servicios
 import { ProductsService } from "./services/products.service";
 import { FilterPipe } from "./pipes/filter.pipe";
 import { DetalleCComponent } from "./components/detalle-c/detalle-c.component";
 
 import { OrdersSellerComponent } from "./components/orders-seller/orders-seller.component";
-import { OrdersUserComponent } from './components/orders-user/orders-user.component';
-import { EditarproductosComponent } from './components/editarproductos/editarproductos.component';
+import { OrdersUserComponent } from "./components/orders-user/orders-user.component";
+import { EditarproductosComponent } from "./components/editarproductos/editarproductos.component";
 
 // import { ChatBot } from "angular-ai-chat-bot";
 //Para ordenar productos
 import { OrderModule } from "ngx-order-pipe";
 import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
-import { OrderquestionComponent } from './components/orderquestion/orderquestion.component';
-import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
+import { OrderquestionComponent } from "./components/orderquestion/orderquestion.component";
+import { OrdersadminComponent } from "./components/ordersadmin/ordersadmin.component";
 
 @NgModule({
   declarations: [
@@ -60,14 +63,15 @@ import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.compo
     StepBystepComponent,
     OrderquestionComponent,
     OrdersadminComponent,
-  ], 
+    EmailconfirmationComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],
