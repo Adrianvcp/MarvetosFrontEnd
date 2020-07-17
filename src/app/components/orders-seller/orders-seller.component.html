@@ -2,180 +2,195 @@
   <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Detalle de los Pedidos
   </h3>
 </div>
-  <!-- breadcrumb start-->
+<!-- breadcrumb start-->
 
 
-    <!--================Cart Area =================-->
-  <section class="cart_area  altura-contenido">
-    <div class="container">
-      <nav class="nav nav-pills nav-justified p-4">
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Pendiente'}" (click)="estado = 'Pendiente'">Pendientes</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}" (click)="estado = 'Confirmado'">Confirmados</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'En camino'}" (click)="estado = 'En camino'">En camino</a>
-        <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Entregado'}" (click)="estado = 'Entregado'">Entregado</a>
-                  
+<!--================Cart Area =================-->
+<section class="cart_area  altura-contenido">
+  <div class="container">
+    <nav class="nav nav-pills nav-justified p-4">
+      <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Pendiente'}"
+        (click)="estado = 'Pendiente'">Pendientes</a>
+      <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}"
+        (click)="estado = 'Confirmado'">Confirmados</a>
+      <a class="nav-item nav-link" [ngClass]="{'active': estado === 'En camino'}" (click)="estado = 'En camino'">En
+        camino</a>
+      <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Entregado'}"
+        (click)="estado = 'Entregado'">Entregado</a>
+
     </nav>
-      <div class="cart_inner">
-        <div class="table-responsive">
-  
-          <table class="table table-hover">
-            <thead class="table-primary">
-              <tr>
-  
-                <th scope="col" class="text-center">Cliente/Empresa</th>
-                <th scope="col" class="text-center">Método de pago</th>
-                <th scope="col" class="text-center">Precio total</th>
-                <th scope="col" class="text-center">Fecha del pedido</th>
-                <th scope="col" class="text-center">Dirección</th>
-                <th scope="col" class="text-center">Distrito</th>
-                <th scope="col" class="text-center">Comentario</th>
-                <th scope="col" class="text-center">Detalles del pedido</th>                                
-                <th *ngIf="estado == 'Pendiente'" scope="col" class="text-center">Aceptar pedido</th>
-                <th *ngIf="estado == 'Confirmado'" scope="col" class="text-center">Asignar conductor</th>
-  
-              </tr>
-  
-  
-  
-            </thead>
-            <tbody >
-  
-              <ng-container *ngFor="let orden of ordenes ">
-                <!-- | paginate: { itemsPerPage: 8, currentPage: paginaActual } -->
-                <tr *ngIf="orden.estado == estado">                    
-                    
-                    <td style="font-weight:bold"  *ngIf="orden.nombresComprador != '' && orden.nombresVendedor != ''" scope="row" class="text-center">{{orden.nombresComprador}} {{orden.apellidosComprador}}</td>
-                    <td style="font-weight:bold" *ngIf="orden.nombreEmpresa != ''" scope="row" class="text-center">{{orden.nombreEmpresa}}</td>
-                    
-                    <td class="text-center">{{orden.metodoPago}}</td>
-                    <td class="text-center">S/. {{orden.PrecioTotal}}</td>
-                    <td class="text-center">{{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}} </td>
-                    <td class="text-center">{{orden.direccion}}</td>
-                    <td class="text-center">{{orden.distrito}}</td>
-                    <td class="text-center">{{orden.comentario}}</td>
-                    <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getOneBuy(orden.idOrden)"><i class="fas fa-info-circle"></i></button></td>
-                    <td class="text-center" *ngIf="estado == 'Pendiente'"><button type="button" class="btn btn-success" (click)="putOrdenStatus(orden.idOrden)"><i class="fas fa-clipboard-check"></i></button></td>
-                    <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor == NULL "><button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" (click)="getConductor(); ordencond = orden.idOrden" ><i class="fas fa-truck"></i></button></td>
-                    <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor != NULL">Asignado</td>                   
-                </tr> 
-        
-        </ng-container>  
-             
+    <div class="cart_inner">
+      <div class="table-responsive">
 
-              
-  
-  
-            </tbody>
-  
-          </table>
-          <!-- <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls> -->
-         <!--  <div class="checkout_btn_inner float-right">
+        <table class="table table-hover">
+          <thead class="table-primary">
+            <tr>
+
+              <th scope="col" class="text-center">Cliente/Empresa</th>
+              <th scope="col" class="text-center">Método de pago</th>
+              <th scope="col" class="text-center">Precio total</th>
+              <th scope="col" class="text-center">Fecha del pedido</th>
+              <th scope="col" class="text-center">Dirección</th>
+              <th scope="col" class="text-center">Distrito</th>
+              <th scope="col" class="text-center">Comentario</th>
+              <th scope="col" class="text-center">Detalles del pedido</th>
+              <th *ngIf="estado == 'Pendiente'" scope="col" class="text-center">Aceptar pedido</th>
+              <th *ngIf="estado == 'Confirmado'" scope="col" class="text-center">Asignar conductor</th>
+
+            </tr>
+
+
+
+          </thead>
+          <tbody>
+
+            <ng-container *ngFor="let orden of ordenes ">
+              <!-- | paginate: { itemsPerPage: 8, currentPage: paginaActual } -->
+              <tr *ngIf="orden.estado == estado">
+
+                <td style="font-weight:bold" *ngIf="orden.nombresComprador != '' && orden.nombresVendedor != ''"
+                  scope="row" class="text-center">{{orden.nombresComprador}} {{orden.apellidosComprador}}</td>
+                <td style="font-weight:bold" *ngIf="orden.nombreEmpresa != ''" scope="row" class="text-center">
+                  {{orden.nombreEmpresa}}</td>
+
+                <td class="text-center">{{orden.metodoPago}}</td>
+                <td class="text-center">S/. {{orden.PrecioTotal}}</td>
+                <td class="text-center">{{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}} </td>
+                <td class="text-center">{{orden.direccion}}</td>
+                <td class="text-center">{{orden.distrito}}</td>
+                <td class="text-center">{{orden.comentario}}</td>
+                <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#exampleModal" (click)="getOneBuy(orden.idOrden)"><i
+                      class="fas fa-info-circle"></i></button></td>
+                <td class="text-center" *ngIf="estado == 'Pendiente'"><button type="button" class="btn btn-success"
+                    (click)="putOrdenStatus(orden.idOrden)"><i class="fas fa-clipboard-check"></i></button></td>
+                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor is null"><button
+                    type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"
+                    (click)="getConductor(); ordencond = orden.idOrden"><i class="fas fa-truck"></i></button></td>
+                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor is not null ">Asignado</td>
+              </tr>
+
+            </ng-container>
+
+
+
+
+
+          </tbody>
+
+        </table>
+        <!-- <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls> -->
+        <!--  <div class="checkout_btn_inner float-right">
             
             <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Ver detalle Orden</a>
           </div> -->
-        </div>
       </div>
     </div>
-  
+  </div>
 
-  </section>
-  
-  <!--================End Cart Area =================-->
 
-    <!--MODAL DE PRODUCTOS-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Detalles de la orden </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <table class="table">
-              <thead class="thead-dark">
-                <!--Tabla de los productos mas condicional Pendiente-->
-                <tr>
-                  <th scope="col" class="text-center">Producto</th>
-                  <th scope="col" class="text-center">Cantidad</th>
-                  
-                </tr>
-                
-              </thead>
-              <tbody>
-                <ng-container>
-                        <tr *ngFor="let detalle of detalles">                    
-                            <th scope="row" class="text-center">{{detalle.nombreProducto}}</th>
-                            <th scope="row" class="text-center">{{detalle.cantProducto}} {{detalle.unidades}}</th>
-                            <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
-                        </tr>  
-                </ng-container>              
-                
-            </tbody>
-            <!-- <button type="button" class="btn btn-primary">cerrar</button> -->
-            </table>
-          </div>
- 
+</section>
 
-        </div>
+<!--================End Cart Area =================-->
+
+<!--MODAL DE PRODUCTOS-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de la orden </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <!--Tabla de los productos mas condicional Pendiente-->
+            <tr>
+              <th scope="col" class="text-center">Producto</th>
+              <th scope="col" class="text-center">Cantidad</th>
+
+            </tr>
+
+          </thead>
+          <tbody>
+            <ng-container>
+              <tr *ngFor="let detalle of detalles">
+                <th scope="row" class="text-center">{{detalle.nombreProducto}}</th>
+                <th scope="row" class="text-center">{{detalle.cantProducto}} {{detalle.unidades}}</th>
+                <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
+              </tr>
+            </ng-container>
+
+          </tbody>
+          <!-- <button type="button" class="btn btn-primary">cerrar</button> -->
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!--FIN DE MODAL DE PRODUCTOS-->
+
+
+<!--INICIO DE MODAL DE CONDUCTORES-->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asignar conductor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-dark">
+
+            <!--Tabla de los conductores con condicional Confirmado-->
+            <tr>
+              <th scope="col" class="text-center">Nombres</th>
+              <th scope="col" class="text-center">Apellidos</th>
+              <th scope="col" class="text-center">DNI</th>
+              <th scope="col" class="text-center">Teléfono</th>
+              <th scope="col" class="text-center">Asignar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container>
+              <tr *ngFor="let conductor of conductores">
+                <th scope="row" class="text-center">{{conductor.Nombres}}</th>
+                <th scope="row" class="text-center">{{conductor.Apellidos}}</th>
+                <th scope="row" class="text-center">{{conductor.DNI}}</th>
+                <th scope="row" class="text-center">{{conductor.telefono}}</th>
+
+                <th scope="row" class="text-center"><button type="button" class="btn btn-success"
+                    (click)="putConductorinOrden(ordencond,conductor.idConductor)" data-dismiss="modal"><i
+                      class="fas fa-check"></i></button></th>
+
+                <!-- <th scope="row" class="text-center">{{conductor.email}}</th> -->
+
+                <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
+<!--FIN DE MODAL DE CONDUCTORES-->
 
-       <!--FIN DE MODAL DE PRODUCTOS-->
 
 
-        <!--INICIO DE MODAL DE CONDUCTORES-->
-        
-
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Asignar conductor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-              <table class="table">
-                <thead class="thead-dark">
-                  
-                  <!--Tabla de los conductores con condicional Confirmado-->
-                  <tr>
-                    <th scope="col" class="text-center">Nombres</th>
-                    <th scope="col" class="text-center">Apellidos</th>
-                    <th scope="col" class="text-center">DNI</th>
-                    <th scope="col" class="text-center">Teléfono</th>
-                    <th scope="col" class="text-center">Asignar</th>
-                  </tr>
-                </thead>
-                <tbody>             
-                  <ng-container >
-                    <tr *ngFor="let conductor of conductores">                    
-                        <th scope="row" class="text-center">{{conductor.Nombres}}</th>
-                        <th scope="row" class="text-center">{{conductor.Apellidos}}</th>
-                        <th scope="row" class="text-center">{{conductor.DNI}}</th>
-                        <th scope="row" class="text-center">{{conductor.telefono}}</th>
-                        
-                        <th scope="row" class="text-center"><button type="button" class="btn btn-success" (click)="putConductorinOrden(ordencond,conductor.idConductor)" data-dismiss="modal"><i class="fas fa-check"></i></button></th>
-                        
-                        <!-- <th scope="row" class="text-center">{{conductor.email}}</th> -->
-                        
-                        <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
-                    </tr>  
-                </ng-container>
-              </tbody>
-              </table>
-            </div>  
-            </div>
-          </div>
-        </div>
-        <!--FIN DE MODAL DE CONDUCTORES--> 
-
-   
-
-   <!-- <div class="container">
+<!-- <div class="container">
     <nav class="nav nav-pills nav-justified p-4">
         <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Pendiente'}" (click)="estado = 'Pendiente'">Pendientes</a>
         <a class="nav-item nav-link" [ngClass]="{'active': estado === 'Confirmado'}" (click)="estado = 'Confirmado'">Confirmados</a>
