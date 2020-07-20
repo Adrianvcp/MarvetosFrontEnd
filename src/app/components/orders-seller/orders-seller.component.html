@@ -64,10 +64,10 @@
                       class="fas fa-info-circle"></i></button></td>
                 <td class="text-center" *ngIf="estado == 'Pendiente'"><button type="button" class="btn btn-success"
                     (click)="putOrdenStatus(orden.idOrden)"><i class="fas fa-clipboard-check"></i></button></td>
-                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor == ''"><button type="button"
+                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor == idNull"><button type="button"
                     class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"
                     (click)="getConductor(); ordencond = orden.idOrden"><i class="fas fa-truck"></i></button></td>
-                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor != '' ">Asignado</td>
+                <td class="text-center" *ngIf="estado == 'Confirmado' && orden.idConductor != idNull">Asignado</td>
               </tr>
 
             </ng-container>
