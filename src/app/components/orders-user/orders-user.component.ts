@@ -39,12 +39,13 @@ export class OrdersUserComponent implements OnInit {
   }
 
   getOrderxUser() {
+    
      let id = this.idUser;
     // console.log(id);
     if (id) {
       this.ordersService.getOrdersxUser(id).subscribe(
         (res) => {
-          console.log(res);
+          
           this.ordenes = res;
           
         },
@@ -54,9 +55,11 @@ export class OrdersUserComponent implements OnInit {
   }
 
   getOneBuy(id) {
+    
     this.allService.getOneBuy(id).subscribe(
       (res) => {
         this.details = res;
+
         this.getOrderxUser();
       },
       (err) => console.error(err)
