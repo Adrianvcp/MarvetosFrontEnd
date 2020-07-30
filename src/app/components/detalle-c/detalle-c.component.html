@@ -38,7 +38,7 @@
   
               
             </thead>
-            <tbody *ngFor="let orden of orden">
+            <tbody *ngFor="let orden of orden | paginate: { itemsPerPage: 4, currentPage: paginaActual }" >
   
               <tr>
                 <td>
@@ -96,25 +96,18 @@
                   </td>
                 <td>
                      
-                  <!-- <button class="btn btn-warning" >
-                    <i class="fas fa-info"></i>
-                  </button> -->
-                  
+                
                   
                   <button type="button" class="btn btn-warning" (click)="buscarDetalle(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter"  >
                     <i class="fas fa-info"></i>
                   </button>
                   <br>
                   <br>
-                  <br>
-                
                   <button type="button" class="btn btn-success" (click)="editEstado(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter1"  >
                     <i class="fas fa-redo"></i>
                   </button>
 
-                <!-- <ul class="list" *ngFor="let detallecarrito of detallecarrito">
-                  <li> <a class="pointer" (click)="buscarDetalle(detallecarrito.idOrden)" data-toggle="modal" data-target="#exampleModalCenter">{{categoria.name}}</a> </li>
-              </ul> -->
+               
                 </td>
               </tr>
 
@@ -122,13 +115,10 @@
   
   
             </tbody>
-  
+          
           </table>
-  
-         <!--  <div class="checkout_btn_inner float-right">
-            
-            <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Ver detalle Orden</a>
-          </div> -->
+          <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+        
         </div>
       </div>
     </div>

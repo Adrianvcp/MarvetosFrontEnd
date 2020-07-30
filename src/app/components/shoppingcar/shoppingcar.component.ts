@@ -45,7 +45,8 @@ export class ShoppingcarComponent implements OnInit {
   //FormaPago
   pago: any = [];
   idPago = 0;
-
+  idUbicacion = 0;
+  
   //Vendedores
   vendedores: any = [];
   idVendG = 0;
@@ -248,6 +249,7 @@ export class ShoppingcarComponent implements OnInit {
     console.log(skill[0]);
     console.log("skill name", skill);
     this.idPago = skill;
+    this.idUbicacion = skill;
   }
 
   //Recargar componente
@@ -437,6 +439,10 @@ export class ShoppingcarComponent implements OnInit {
     }
   }
 
+  comprarProducto(){
+    this.router.navigateByUrl("/productos");
+  }
+
   async SaveOrder(pdataLoginToken) {
     this.obj_or.idOrden = 1;
     this.obj_or.idEstado = 1;
@@ -444,12 +450,12 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idVendedor = this.idVendG;
     this.obj_or.idUser = parseInt(pdataLoginToken.id);
     this.obj_or.fechaOrden = String(new Date());
-    this.obj_or.fechaEntrega = "";
+    this.obj_or.fechaEntrega ="";
     this.obj_or.Comentario = this.comentario;
     this.obj_or.Direccion = this.direccion;
     this.obj_or.PrecioTotal = this.resultadoTotal;
     this.obj_or.idPago = this.idPago;
-    this.obj_or.idUbicacion = 1;
+    this.obj_or.idUbicacion = this.idUbicacion;
     this.obj_or.bDescuento = 0;
 
     delete this.obj_or.fechaEntrega;
@@ -477,4 +483,5 @@ export class ShoppingcarComponent implements OnInit {
     ); */
     return data[0]["max(idOrden)"];
   }
+
 }

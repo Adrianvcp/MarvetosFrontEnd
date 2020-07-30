@@ -1,39 +1,11 @@
-<!-- breadcrumb start-->
-<!-- <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="breadcrumb_iner">
-                    <div class="breadcrumb_iner_item">
 
-
-                        <div class="search_input" id="search_input_box">
-                            <div class="container">
-                                <form class="d-flex justify-content-between search-inner">
-                                    <input type="text" class="form-control" id="search_input" name="filterPost"
-                                        placeholder="Buscar producto" [(ngModel)]="filterPost" />
-                                  
-
-                                </form>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
- -->
 <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
     <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;"><div class="search_input" id="search_input_box">
         <div class="container">
             <form class="d-flex justify-content-between search-inner">
                 <input type="text" class="form-control" id="search_input" name="filterPost"
                     placeholder="Buscar producto" [(ngModel)]="filterPost" />
-                <!--  <button type="submit"  class="btn">Buscar</button> -->
-                <!-- <span class="ti-close" id="close_search" title="Close Search"></span> -->
+               
 
             </form>
         </div>
@@ -61,7 +33,7 @@
                             <ul class="list" id="util" *ngFor="let categoria of categoria">
                                 <ng-container [ngSwitch]="categoria.name">
                                     <ng-container *ngSwitchCase="'Verduras'">
-                                        <li> <i class="fas fa-seedling"></i>
+                                        <li> <i class="fas fa-carrot"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria)">
                                                 {{categoria.name}}</a>
                                         </li>
@@ -84,15 +56,27 @@
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
-                                    <ng-container *ngSwitchDefault>
-                                        <li> <i class="fas fa-shipping-fast"></i>
-                                            <a class="pointer"
-                                                (click)="selectCat(categoria.idCategoria)">{{categoria.name}}</a>
+                                
+                                    <ng-container *ngSwitchCase="'Cereales'">
+                                        <li> <i class="fas fa-cookie"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Abarrotes'">
+                                        <li> <i class="fas fa-cheese"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
 
-
-
+                                    <ng-container *ngSwitchCase="'Tubérculos'">
+                                        <li> <i class="fas fa-lemon"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria)">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+                                    
                                 </ng-container>
                             </ul>
                         </div>
@@ -141,220 +125,35 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse | filter:filterPost | paginate: { itemsPerPage: 6, currentPage: paginaActual }">
+                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse | filter:filterPost | paginate: { itemsPerPage: 9, currentPage: paginaActual }">
                         <div class=" single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">
-                                    <img src="{{producto.image}}" alt="" height="200" width="100">
+                                    <img src="{{producto.image}}" alt="" height="200px"  >
                                 </a>
-                                <div class="category_social_icon">
+                                <!-- <div class="category_social_icon">
                                     <ul>
                                         <li><a [routerLink]="['/detallesproducto',producto.idProducto]"><i
                                                     class="fas fa-info"></i></a></li>
                                         <li><a (click)="localsito(producto)"><i class="ti-bag"></i></a></li>
 
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="category_product_text">
 
                                     <p>{{producto.name}}</p>
 
                                     <p>S/ {{(producto.precio).toFixed(2)}}</p>
+
+                                    <button class="btn " (click)="localsito(producto)" type="submit">Agregar Carrito</button>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
-                    <!-- <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_2.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_3.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_4.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_5.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_6.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><a href="single-product.html"><h5>Long Sleeve TShirt</h5></a></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_7.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_8.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_9.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_10.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_11.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="assets/img-template/category/category_12.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!--  <div class="col-lg-12 text-center">
-                        <a href="#" class="btn_2">More Items</a>
-                    </div> -->
                 </div>
             </div>
         </div>

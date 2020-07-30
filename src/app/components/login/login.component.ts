@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   //Recargar componente
   refresh(): void {
     window.location.reload();
+    this.router.navigateByUrl("/index");
   }
 
   login() {

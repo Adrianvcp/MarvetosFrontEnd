@@ -19,12 +19,17 @@ export class DetalleCComponent implements OnInit {
   orden: any = [];
   detalleCarrito: any =[];
   idEstado= 0;
-  
+  paginaActual = 1;
   estad:string="";
   idOrden = 0;
   id=0;
   comentarioConductor="";
-
+  fechaEntrega="";
+ /*  obj_or = {
+   
+    fechaEntrega: ""
+ 
+  }; */
 
   edit:boolean = false;
   constructor(private detalleCService:DetalleCService,
@@ -97,9 +102,12 @@ export class DetalleCComponent implements OnInit {
       console.log(this.idOrden);
 
       var obj ={"idEstado":0}
-
+      var fec ={"fechaEntrega":""}
       obj.idEstado=this.idEstado;
-
+      console.log("llego la hora")
+      /* this.fechaEntrega=String(new Date()); */
+      fec.fechaEntrega =this.fechaEntrega=String(new Date());
+      console.log(this.fechaEntrega);
       var comen ={"comentarioConductor":""}
       
       //obj.idEstado=this.idEstado;
@@ -107,7 +115,7 @@ export class DetalleCComponent implements OnInit {
       
       if(this.comentarioConductor != "" && this.idEstado != 0 ){
        
-        var u = Object.assign(obj,comen);
+        var u = Object.assign(obj,comen,fec);
         console.log(u);
         this.detalleCService.updateEstado(String(this.idOrden),u).subscribe(
           (res) => {
@@ -200,7 +208,7 @@ export class DetalleCComponent implements OnInit {
   onclicEdit(skill: any){
     console.log(skill);
     this.estad=skill;
-    
+    this.fechaEntrega=skill;
     switch (skill) {
       case "Pendiente":
         this.idEstado = 1
