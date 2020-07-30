@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   categoria: any = [];
   paginaActual = 1;
   carrito: any = [];
-
+  prodElegido = "";
   order = "0";
   reverse = false;
 
