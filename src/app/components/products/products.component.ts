@@ -17,8 +17,8 @@ export class ProductsComponent implements OnInit {
   categoria: any = [];
   paginaActual = 1;
   carrito: any = [];
-  prodElegido = "";
-  marca: any = [];
+  prodElegido = false;
+  marcas: any = [];
   order = "0";
   reverse = false;
 
@@ -37,17 +37,12 @@ export class ProductsComponent implements OnInit {
     this.productsService.getCategoria().subscribe(
       (res) => {
         this.categoria = res;
-      },
-      (err) => console.error(err)
-    );
-
-    this.productsService.getMarca().subscribe(
-      (res) => {
-        this.categoria = res;
         console.log(res);
       },
       (err) => console.error(err)
     );
+
+    
 
     
     this.productsService.getProducts().subscribe(
@@ -107,5 +102,16 @@ export class ProductsComponent implements OnInit {
         (err) => console.error(err)
       );
     }
+  }
+
+  filtroMarca(id){
+    this.prodElegido = true;
+    this.productsService.getMarca(id).subscribe(
+      (res) => {
+        this.marcas = res;
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
   }
 }

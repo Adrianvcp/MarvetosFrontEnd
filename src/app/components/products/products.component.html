@@ -34,7 +34,7 @@
                                 <ng-container [ngSwitch]="categoria.name">
                                     <ng-container *ngSwitchCase="'Verduras'">
                                         <li> <i class="fas fa-carrot"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                         <!-- <div class="widgets_inner">
@@ -48,39 +48,39 @@
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Frutas'">
                                         <li> <i class="fas fa-apple-alt"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Pollo'">
                                         <li> <i class="fas fa-drumstick-bite"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Hogar'">
                                         <li> <i class="fas fa-home"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
                                 
                                     <ng-container *ngSwitchCase="'Cereales'">
                                         <li> <i class="fas fa-cookie"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Abarrotes'">
                                         <li> <i class="fas fa-cheese"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
 
                                     <ng-container *ngSwitchCase="'Tubérculos'">
                                         <li> <i class="fas fa-lemon"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); prodElegido = categoria.name">
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
@@ -89,43 +89,29 @@
                             </ul>
                         </div>
                     </aside>
-                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow" *ngIf="prodElegido != ''">
+
+                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow" *ngIf="prodElegido == true">
                         <div class="l_w_title">
                             <h3>Marcas</h3>
                         </div>
                         <div class="widgets_inner">
-                            <ul class="list">
-                                <!-- <p>Marcas</p> -->
-                                <li>
-                                    <input type="radio" name="marca" aria-label="Radio button for following text input">
+                            <ul class="list" *ngFor="let m of marcas">
+                                <!-- <li>
+                                    <input type="radio" name="marca" aria-label="Radio button for following text input" (click)="">
                                     <a href="#">Todos</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <input type="radio" name="marca" aria-label="Radio button for following text input">
-                                    <a href="#">La Calera</a>
+                                    <a href="#">{{m.marca}}</a>
                                 </li>
-                                <li>
-                                    <input type="radio" name="marca" aria-label="Radio button for following text input">
-                                    <a href="#">Sapolio</a>
-                                </li>
-                                <li class="active">
-                                    <input type="radio" name="marca" aria-label="Radio button for following text input">
-                                    <a href="#">Bells</a>
-                                </li>
-                                <li>
-                                    <input type="radio" name="marca" aria-label="Radio button for following text input">
-                                    <a href="#">Gloria</a>
-                                </li>
-                                <li>
-                                    <input type="radio" name="marca" aria-label="Radio button for following text input">
-                                    <a href="#">Clorox</a>
-                                </li>
+                                
                             </ul>
                             
                         </div>
                     </aside>
-
                 </div>
+
+                
             </div>
 
 
@@ -194,11 +180,11 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+                  
                 </div>
+                <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
             </div>
+            
         </div>
     </div>
 </section>

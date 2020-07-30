@@ -81,7 +81,7 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/detallecarrito/descuento`);
   }
   
-  getMarca() {
-    return this.http.get(`${this.API_URI}/marca`);
+  getMarca(id: number|string) {
+    return this.http.get(`${this.API_URI}/marca/filtro/${id}`);
   }
 }
