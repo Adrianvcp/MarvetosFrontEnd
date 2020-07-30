@@ -7,13 +7,18 @@
                     <a class="navbar-brand" routerLink="/">
                         <img src="assets/img/marvetos.png" alt="logo" width="100" height="60" />
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                    </button>
+                    </button> -->
+                    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                      </button>
+                    
 
-                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
                         <ul class="navbar-nav">
                             <ng-container [ngSwitch]=idRol>
                                 <!-- VENDEDOR -->
@@ -49,38 +54,39 @@
                                 </ng-container>
                                 <!-- EMPRESA :1, PERSONA NATURAL:2 ! -->
                                 <ng-container *ngSwitchDefault>
+                                    <li class="nav-item view-name-mobile">
+                                        <a class="nav-link name-mobile" *ngIf="login">Hola, {{nombre}}</a>
+                                    </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="">Inicio</a>
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="">Inicio</a>
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
+                                        <a class="nav-link " href="blog.html" role="button" (click)="isCollapsed = true" routerLink="/productos" aria-expanded="false">
                                             Productos
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                            <a class="dropdown-item" routerLink="/productos">
+                                        <!-- <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/productos" >
                                                 Productos</a>
-                                            <!-- <a class="dropdown-item" routerLink="/detallesproducto">Detalles del producto</a> -->
-                                        </div>
+                                           
+                                        </div> -->
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" id="navbarDropdown_3" role="button"
+                                    <li class="nav-item dropdown" (mouseover)="isCollapsed2=false" (mouseout)="isCollapsed2=true" >
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown_2" role="button" (click)="isCollapsed2 = !isCollapsed2"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Páginas
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                            <a class="dropdown-item" routerLink="/ingresar">
+                                        <div class="dropdown-menu-m" aria-labelledby="navbarDropdown_2"  [ngbCollapse]="isCollapsed2">
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/ingresar">
                                                 Ingresar
                                             </a>
-                                            <a class="dropdown-item" routerLink="/orden/usuario" *ngIf=login>Mis pedidos</a>
-                                            <a class="dropdown-item" routerLink="/carrito">Carrito de compras</a>
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/orden/usuario" *ngIf=login>Mis pedidos</a>
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/carrito">Carrito de compras</a>
 
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="/contacto">Contacto</a>
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/contacto">Contacto</a>
                                     </li>
                                 </ng-container>
 
@@ -89,7 +95,7 @@
                         </ul>
                     </div>
                     <!-- Card and search -->
-                    <div style="padding-top: 15px;">
+                    <div class="view-name" style="padding-top: 15px;">
                         <p *ngIf="login">Hola, {{nombre}}</p>
                     </div>
                     <div class="hearer_icon d-flex">

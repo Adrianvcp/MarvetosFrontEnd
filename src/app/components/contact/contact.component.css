@@ -1,1 +1,18 @@
 
+@media only screen and (min-width: 558px) {
+    .gmaps2{
+        display: none;
+    }
+} 
+
+@media (max-width: 557px) {
+    .gmaps1{
+        display: none;
+    }
+
+    .gmaps2{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+}

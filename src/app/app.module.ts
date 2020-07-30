@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { NgxPaginationModule } from "ngx-pagination";
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 //Token Login
 import { CookieService } from "ngx-cookie-service";
 
@@ -72,6 +73,7 @@ import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.compo
     FormsModule,
     OrderModule,
     NgxPaginationModule,
+    NgbCollapseModule,
   ],
   providers: [ProductsService, CookieService],
   bootstrap: [AppComponent],

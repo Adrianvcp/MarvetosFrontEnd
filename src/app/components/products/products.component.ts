@@ -77,6 +77,7 @@ export class ProductsComponent implements OnInit {
       carrito.push(pr);
       localStorage.setItem("carrito", JSON.stringify(carrito));
     }
+    console.log(carrito.length);
   }
 
   getCantidad() {

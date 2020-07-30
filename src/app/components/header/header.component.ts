@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "../../services/login.service";
-
+// import * as jQuery from 'jquery';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { CookieService } from "ngx-cookie-service";
-
+import { CookieService } from "ngx-cookie-service"
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -13,7 +12,8 @@ export class HeaderComponent implements OnInit {
   public login: boolean = false;
   idRol: number = 0;
   nombre: string = "Hola";
-
+  public isCollapsed = true;
+  public isCollapsed2 = true;
   constructor(
     private loginService: LoginService,
     private router: Router,
