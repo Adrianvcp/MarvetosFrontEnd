@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   categoria: any = [];
   paginaActual = 1;
   carrito: any = [];
+  prodElegido = "";
   marca: any = [];
   order = "0";
   reverse = false;
@@ -42,7 +43,7 @@ export class ProductsComponent implements OnInit {
 
     this.productsService.getMarca().subscribe(
       (res) => {
-        this.categoria = res;
+        this.marca = res;
         console.log(res);
       },
       (err) => console.error(err)
