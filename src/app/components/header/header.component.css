@@ -27,6 +27,9 @@
     color: whitesmoke!important;
 }
 @media (max-width: 991px) {
+    .navbar-brand img{
+        top: -19px!important;
+    }
     .view-name{
         display: none;
     }
