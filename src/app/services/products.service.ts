@@ -80,4 +80,8 @@ export class ProductsService {
   getDescuentos() {
     return this.http.get(`${this.API_URI}/detallecarrito/descuento`);
   }
+  
+  getMarca() {
+    return this.http.get(`${this.API_URI}/marca`);
+  }
 }
