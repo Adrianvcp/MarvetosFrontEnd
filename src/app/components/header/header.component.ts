@@ -26,26 +26,26 @@ export class HeaderComponent implements OnInit {
     this.data();
   }
 
-  reloadComponent() {
+  async reloadComponent() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.events.subscribe((evt) => {
+    await this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.router.navigated = false;
         window.scrollTo(0, 0);
       }
     });
     this.router.onSameUrlNavigation = "reload";
-    this.router.navigateByUrl("/ingresar");
+    this.router.navigateByUrl("/index");
+    this.router.navigateByUrl("productos");
   }
 
-  cerrarSesion() {
-    this.cookies.delete("token");
-    
-   
-    this.router.navigateByUrl("/ingresar");
-    window.location.reload();
+  async cerrarSesion() {
+    await this.cookies.delete("token");
+    await this.reloadComponent();
+
+    this.reloadComponent();
   }
-  
+
   data() {
     var tk = this.loginService.getToken();
     if (tk != "") {
