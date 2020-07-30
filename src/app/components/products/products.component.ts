@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   paginaActual = 1;
   carrito: any = [];
   prodElegido = "";
+  marca: any = [];
   order = "0";
   reverse = false;
 
@@ -40,6 +41,15 @@ export class ProductsComponent implements OnInit {
       (err) => console.error(err)
     );
 
+    this.productsService.getMarca().subscribe(
+      (res) => {
+        this.categoria = res;
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
+
+    
     this.productsService.getProducts().subscribe(
       (res) => {
         this.products = res;
@@ -47,6 +57,7 @@ export class ProductsComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+  
 
   onclickFilter(skill: any) {
     switch (this.order) {
