@@ -39,11 +39,12 @@ export class HeaderComponent implements OnInit {
   }
 
   cerrarSesion() {
+    window.location.reload();
     this.cookies.delete("token");
     
    
     this.router.navigateByUrl("/ingresar");
-    window.location.reload();
+   
   }
   
   data() {
