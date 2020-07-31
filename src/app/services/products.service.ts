@@ -34,6 +34,7 @@ export class ProductsService {
   getASC() {
     return this.http.get(`${this.API_URI}/producto/produc/form/ASC`);
   }
+  
   //-------------------
   getOneProduct(id: string) {
     return this.http.get(`${this.API_URI}/producto/detalle/${id}`);

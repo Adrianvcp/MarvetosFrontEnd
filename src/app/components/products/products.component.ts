@@ -72,6 +72,7 @@ export class ProductsComponent implements OnInit {
   }
 
   localsito(pr: Products) {
+    console.log(pr);
     this.carrito.push(pr);
     let carrito = [];
     if (localStorage.getItem("carrito") === null) {
