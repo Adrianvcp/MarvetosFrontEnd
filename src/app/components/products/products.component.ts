@@ -17,11 +17,12 @@ export class ProductsComponent implements OnInit {
   categoria: any = [];
   paginaActual = 1;
   carrito: any = [];
-  prodElegido = false;
+  prodElegido = 0;
   marcas: any = [];
   order = "0";
   reverse = false;
-
+  count = 0;
+  prueba = "";
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -92,12 +93,15 @@ export class ProductsComponent implements OnInit {
 
   //selecionar categoria y producto1+
   selectCat(id) {
-    //const params = this.activatedRoute.snapshot.params;
-    //console.log(params)
+    
     if (id) {
       this.productsService.getSelecCat(id).subscribe(
         (res) => {
+          
           this.products = res;
+          console.log(res);
+          
+          this.prodElegido= this.products[0].idCategoria;
         },
         (err) => console.error(err)
       );
@@ -105,7 +109,6 @@ export class ProductsComponent implements OnInit {
   }
 
   filtroMarca(id){
-    this.prodElegido = true;
     this.productsService.getMarca(id).subscribe(
       (res) => {
         this.marcas = res;
@@ -114,4 +117,58 @@ export class ProductsComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+  getProductsxMarca(marca){
+    console.log(this.prodElegido);
+    console.log(marca);  
+    this.prueba = "";
+    this.productsService.getProductsxMarca(marca,this.prodElegido).subscribe(
+      (res) => {
+        //  this.products = [];  
+        this.products = res;
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  getBusqueda(event: any){
+    
+      this.prueba = event;
+      if(event == "" && this.prodElegido == 0){
+        console.log("entro");
+        this.productsService.getProducts().subscribe(
+        (res) => {
+          this.products = res;
+        },
+        (err) => console.error(err)
+        );
+      } else if(event == "" && this.prodElegido != 0){
+        this.productsService.getSelecCat(this.prodElegido).subscribe(
+          (res) => {
+            this.products = res;
+          },
+          (err) => console.error(err)
+        );
+      } else if (event != "" && this.prodElegido == 0){
+        this.productsService.getProductsxBuscador(event).subscribe(
+          (res) => {
+            console.log(res);
+            this.products = res;
+          },
+          (err) => console.error(err)
+        );
+      } else if (event != "" && this.prodElegido != 0) {
+        this.productsService.getProductsxBuscadorCategoria(event,this.prodElegido).subscribe(
+          (res) => {
+            console.log(res);
+            this.products = res;
+          },
+          (err) => console.error(err)
+        );
+      }
+ 
+  } 
+
+
 }
