@@ -19,6 +19,7 @@
               <th scope="col">Precio</th>
               <th scope="col">Cantidad</th>
               <th scope="col">Total</th>
+              <th scope="col">Nota</th>
               <th scope="col">Eliminar</th>
 
             </tr>
@@ -28,7 +29,7 @@
           </thead>
           <tbody>
 
-            <tr *ngFor="let productoC of cantProducto">
+            <tr *ngFor="let productoC of cantProducto; index as index">
               
               <td>
                 <div class="media">
@@ -55,12 +56,13 @@
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
                   </a>
                 </div>
-
-
-
               </td>
               <td>
                 <h5>S/.{{(productoC.producto.precio*productoC.count).toFixed(2)}}</h5>
+              </td>
+              <td >
+                
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Ingrese una nota"  (change)="asignarNota(index, $event)" ></textarea>
               </td>
               <td>
                 <button class="btn btn-danger" (click)="eliminarProducto(productoC.producto.idProducto)"><i
@@ -76,6 +78,7 @@
               <td></td>
               <td></td>
               <td></td>
+              
               <td>
                 <div class="cupon_text float-right">
                   <a class="btn_1" style="margin: 10px" (click)="comprarProducto()">Seguir comprando</a>
@@ -83,12 +86,12 @@
                 </div>
               </td>
             </tr>
-
             <tr>
               <td></td>
               <td></td>
               <td></td>
-
+              <td></td>
+              
               <td>
                 <h5>Subtotal</h5>
               </td>
@@ -100,7 +103,7 @@
               <td></td>
               <td></td>
               <td></td>
-
+              <td></td>
               <td>
                 <h5>I.G.V</h5>
               </td>
@@ -112,7 +115,7 @@
               <td></td>
               <td></td>
               <td></td>
-
+              
               <td>
                 <h5>Total: </h5>
               </td>

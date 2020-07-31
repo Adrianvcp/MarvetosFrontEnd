@@ -4,4 +4,5 @@ export interface DetalleCarrito {
   idProducto: number;
   subTotal: number;
   cantProducto: number;
+  TNote?: string;
 }

@@ -32,12 +32,14 @@ export class ShoppingcarComponent implements OnInit {
   cantProducto: any = [];
   suma: any = 0;
   resultadoTotal: number = 0;
-
+  datoNota: any = "";
   //Distritos
   getDistrito: any = [];
   Distritos: any = [];
   nameDistrito = "";
-
+  index = 0;
+  arregloNota: any=[];
+  tnote="";
   //Comentario y Direccion
   direccion = "";
   comentario = "";
@@ -65,6 +67,7 @@ export class ShoppingcarComponent implements OnInit {
     idProducto: 0,
     subTotal: 0,
     cantProducto: 0,
+    TNote: "",
   };
 
   obj_or = {
@@ -367,6 +370,7 @@ export class ShoppingcarComponent implements OnInit {
         var dataLoginToken = await this.loginservice.givemeData(
           this.loginservice.getToken()
         );
+       
         console.log("EMAIL");
         console.log(dataLoginToken);
         //wait for response (true buy or undefined)
@@ -390,6 +394,9 @@ export class ShoppingcarComponent implements OnInit {
             this.Objdetallecarrito.idProducto = this.cantProducto[index][
               "producto"
             ].idProducto;
+
+            this.Objdetallecarrito.TNote = this.arregloNota[index];
+            console.log(this.Objdetallecarrito.TNote);
             this.Objdetallecarrito.subTotal =
               this.cantProducto[index]["producto"].precio *
               this.cantProducto[index]["count"];
@@ -457,7 +464,8 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idPago = this.idPago;
     this.obj_or.idUbicacion = this.idUbicacion;
     this.obj_or.bDescuento = 0;
-
+    
+    console.log(this.Objdetallecarrito.TNote);
     delete this.obj_or.fechaEntrega;
 
     delete this.obj_or.idOrden;
@@ -482,6 +490,14 @@ export class ShoppingcarComponent implements OnInit {
       }
     ); */
     return data[0]["max(idOrden)"];
+  }
+
+  asignarNota(ind, valor){
+    this.arregloNota[ind] = valor.target.value;
+   
+    console.log(this.arregloNota);
+    console.log(ind);
+    
   }
 
 }
