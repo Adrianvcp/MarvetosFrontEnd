@@ -20,6 +20,8 @@ createFormGroup(){
   })
 }
 
+  Rpass="";
+  RpassE="";
   //Model user to send - Register
   userM: User = {
     idUser: 0,
@@ -32,7 +34,7 @@ createFormGroup(){
     idRol: 0,
     NombreEmpresa: "",
     telefono: "",
-    Rpass: "",
+   
    
   };
 
@@ -47,7 +49,7 @@ createFormGroup(){
     idRol: 0,
     NombreEmpresa: "",
     telefono: "",
-    Rpass: "",
+    
   };
 
   respuesta:any;
@@ -150,7 +152,7 @@ createFormGroup(){
       timer: 2000,
     }).then((result) => {
     });
-   }else if(this.userM.pass!=this.userM.Rpass){
+   }else if(this.userM.pass!=this.Rpass){
     Swal.fire({
       icon: "warning",
       title: "Las contraseñas no coiciden, vuelve a intarlo por favor!!",
@@ -242,7 +244,7 @@ createFormGroup(){
       }).then((result) => {
       });
      }
-     else if(this.userE.pass!=this.userE.Rpass){
+     else if(this.userE.pass!=this.RpassE){
       Swal.fire({
         icon: "warning",
         title: "Las contraseñas no coiciden, vuelve a intarlo por favor!!",

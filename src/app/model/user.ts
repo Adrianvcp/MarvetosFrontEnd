@@ -9,7 +9,7 @@ export interface User {
   idRol: number;
   NombreEmpresa: string;
   telefono: string;
-  Rpass: string;
+  
 }
 
 //cambiar dni number a string
