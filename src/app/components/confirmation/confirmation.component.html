@@ -112,11 +112,6 @@
                 <th> <span>S/. {{orden.subTotal}}</span></th>
               </tr>
 
-              <tr>
-                <th colspan="3">IG.V.</th>
-                <th><span>S/. {{igv}}</span></th>
-              </tr>
-
               <tr *ngFor="let orden of ordenes; first as isFirst">
                 <ng-container *ngIf="isFirst">
                   <th colspan="3">Delivery</th>

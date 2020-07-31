@@ -41,7 +41,7 @@ export class ProductsService {
   }
 
   //mostrar la lista de los productos con su categoria seleccionada
-  getSelecCat(ids: string) {
+  getSelecCat(ids: string|number) {
     return this.http.get(`${this.API_URI}/producto/${ids}`);
   }
 
@@ -84,5 +84,17 @@ export class ProductsService {
   
   getMarca(id: number|string) {
     return this.http.get(`${this.API_URI}/marca/filtro/${id}`);
+  }
+
+  getProductsxMarca(marca: string|number, id: number|string) {
+    return this.http.get(`${this.API_URI}/marca/filtro/marca/${marca}/${id}`);
+  }
+
+  getProductsxBuscador(nombre: string){
+    return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/${nombre}`);  
+  }
+
+  getProductsxBuscadorCategoria(nombre: string, id: number){
+    return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/prod/${nombre}/${id}`);  
   }
 }
