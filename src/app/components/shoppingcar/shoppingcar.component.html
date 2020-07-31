@@ -1,6 +1,6 @@
 <!-- breadcrumb start-->
 <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
-  <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Carrito de Compras 
+  <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Carrito de Compras
   </h3>
 </div>
 <!-- breadcrumb start-->
@@ -12,9 +12,9 @@
       <div class="table-responsive">
 
         <table class="table  table-hover ">
-          <thead class="table-primary"  >
+          <thead class="table-primary">
             <tr>
-              
+
               <th scope="col">Producto</th>
               <th scope="col">Precio</th>
               <th scope="col">Cantidad</th>
@@ -23,21 +23,21 @@
 
             </tr>
 
-           
+
 
           </thead>
           <tbody>
 
             <tr *ngFor="let productoC of cantProducto">
-              
+
               <td>
                 <div class="media">
-                  
-                  <div> 
-                    <img src="{{productoC.producto.image}}" width="60" height="60" alt="#" >
+
+                  <div>
+                    <img src="{{productoC.producto.image}}" width="60" height="60" alt="#">
                   </div>
-                  <div class="media-body"  style="padding: 10px;">
-                   
+                  <div class="media-body" style="padding: 10px;">
+
                     <p>{{productoC.producto.name}}</p>
                   </div>
                 </div>
@@ -83,12 +83,12 @@
                 </div>
               </td>
             </tr>
-
+            <!-- 
             <tr>
               <td></td>
               <td></td>
               <td></td>
-
+              
               <td>
                 <h5>Subtotal</h5>
               </td>
@@ -107,7 +107,7 @@
               <td>
                 <h5>S/.{{(suma*0.17).toFixed(2)}}</h5>
               </td>
-            </tr>
+            </tr> -->
             <tr>
               <td></td>
               <td></td>
@@ -119,8 +119,8 @@
               <td>
                 <!--                 <h5>S/.{{((suma*0.17)+ suma).toFixed(2)}}</h5>
  -->
-               <input disabled value="{{((suma*0.17)+ suma).toFixed(2)}}" />
-                
+                <input disabled value="{{(suma).toFixed(2)}}" />
+
               </td>
             </tr>
 
@@ -137,7 +137,7 @@
 
               <td>
                 <div class="shipping_box">
-                 
+
                   <h5>Informacion de Entrega</h5>
                   <br>
                   <!-- DISTRITOS -->
@@ -165,7 +165,7 @@
                   <input class="post_code" type="text" placeholder="Comentario" [(ngModel)]=comentario />
 
                   <input class="post_code" type="text" placeholder="Direccion de entrega" [(ngModel)]=direccion />
-                
+
                 </div>
               </td>
             </tr>
@@ -176,7 +176,7 @@
         </table>
 
         <div class="checkout_btn_inner float-right">
-         
+
           <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Comprar Producto</a>
         </div>
       </div>

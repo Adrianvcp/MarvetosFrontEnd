@@ -20,6 +20,7 @@ import { Orden } from "../../model/orden";
 
 //Alert's - Notifications
 import Swal from "sweetalert2";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-shoppingcar",
@@ -45,8 +46,8 @@ export class ShoppingcarComponent implements OnInit {
   //FormaPago
   pago: any = [];
   idPago = 0;
-  idUbicacion = 0;
-  
+  iDDUbicacion = 0;
+
   //Vendedores
   vendedores: any = [];
   idVendG = 0;
@@ -194,14 +195,14 @@ export class ShoppingcarComponent implements OnInit {
 
   onEditClickDistrito(skill: any) {
     this.CostDelivery = true;
-
     this.nameDistrito = skill;
 
-    console.log(this.Distritos);
-    //Costo delivery
+    //Costo delivery e idDistrito
     for (let i = 0; i < this.Distritos.length; i++) {
       if (this.Distritos[i].Distrito == skill) {
+        this.iDDUbicacion = this.Distritos[i].idUbicacion;
         this.DeliveryPrecio = this.Distritos[i].Precio;
+
         console.log(this.DeliveryPrecio);
       }
     }
@@ -224,8 +225,8 @@ export class ShoppingcarComponent implements OnInit {
           diasSemana[f.getDay()],
           this.nameDistrito
         );
-        console.log("Hay descuento?");
-        console.log(b_Discount);
+        /*         console.log("Hay descuento?");
+        console.log(b_Discount); */
         b_Discount == true
           ? (this.descuentoShow = true)
           : (this.descuentoShow = false);
@@ -245,11 +246,7 @@ export class ShoppingcarComponent implements OnInit {
   }
 
   onEditClick(skill: any) {
-    console.log(this.idPago);
-    console.log(skill[0]);
-    console.log("skill name", skill);
     this.idPago = skill;
-    this.idUbicacion = skill;
   }
 
   //Recargar componente
@@ -317,14 +314,9 @@ export class ShoppingcarComponent implements OnInit {
       cancelButtonColor: "#d33",
       confirmButtonText: "Si,Comprar!",
     }).then((result) => {
-      console.log("en el metodo");
-      console.log(result.value);
       respuesta = String(result.value);
-      console.log("respuesta en el metodo");
-      console.log(respuesta);
     });
-    await console.log("respuesta fuera del metodo");
-    await console.log(respuesta);
+
     return respuesta;
   }
 
@@ -367,8 +359,7 @@ export class ShoppingcarComponent implements OnInit {
         var dataLoginToken = await this.loginservice.givemeData(
           this.loginservice.getToken()
         );
-        console.log("EMAIL");
-        console.log(dataLoginToken);
+
         //wait for response (true buy or undefined)
         var data = "";
         data = await this.alertConfirmBuy();
@@ -381,8 +372,6 @@ export class ShoppingcarComponent implements OnInit {
           //Get Last ID
           var lastid = await this.lastIDOrder();
 
-          console.log("ID ULTIMO:" + lastid);
-          console.log("ID PARA GUARDAR :" + parseInt(lastid + 1));
           //Save Details order
           for (let index = 0; index < this.cantProducto.length; index++) {
             this.Objdetallecarrito.idDetalleCarrito = 1;
@@ -398,23 +387,12 @@ export class ShoppingcarComponent implements OnInit {
             ];
 
             delete this.Objdetallecarrito.idDetalleCarrito;
-            console.log("DATO A ENVIAR");
-            console.log(this.Objdetallecarrito);
+
             //Save DetailsProducts on DB
 
             await this.productsService
               .postDetalleCarrito(this.Objdetallecarrito)
               .toPromise();
-            /* this.productsService
-              .postDetalleCarrito(this.Objdetallecarrito)
-              .subscribe(
-                (res) => {
-                  console.log(res);
-                },
-                (err) => {
-                  console.log(err);
-                }
-              ); */
           }
 
           //Eliminar carrito del localstorage
@@ -439,7 +417,7 @@ export class ShoppingcarComponent implements OnInit {
     }
   }
 
-  comprarProducto(){
+  comprarProducto() {
     this.router.navigateByUrl("/productos");
   }
 
@@ -450,12 +428,12 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idVendedor = this.idVendG;
     this.obj_or.idUser = parseInt(pdataLoginToken.id);
     this.obj_or.fechaOrden = String(new Date());
-    this.obj_or.fechaEntrega ="";
+    this.obj_or.fechaEntrega = "";
     this.obj_or.Comentario = this.comentario;
     this.obj_or.Direccion = this.direccion;
     this.obj_or.PrecioTotal = this.resultadoTotal;
     this.obj_or.idPago = this.idPago;
-    this.obj_or.idUbicacion = this.idUbicacion;
+    this.obj_or.idUbicacion = this.iDDUbicacion;
     this.obj_or.bDescuento = 0;
 
     delete this.obj_or.fechaEntrega;
@@ -463,25 +441,12 @@ export class ShoppingcarComponent implements OnInit {
     delete this.obj_or.idOrden;
 
     //Save Order on DB
-    console.log(this.obj_or);
     var rsp = await this.productsService.postOrden(this.obj_or).toPromise();
-
-    console.log(rsp);
   }
 
   async lastIDOrder() {
     var data = await this.productsService.getUltimoID().toPromise();
-    /* var data = await this.productsService.getUltimoID().subscribe(
-      (res) => {
-        id = res[0]["max(idOrden)"];
-        console.log("data id en el metodo");
-        console.log(id);
-      },
-      (err) => {
-        console.log(err);
-      }
-    ); */
+
     return data[0]["max(idOrden)"];
   }
-
 }
