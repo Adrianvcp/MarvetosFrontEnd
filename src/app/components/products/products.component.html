@@ -1,20 +1,20 @@
-
 <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
-    <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;"><div class="search_input" id="search_input_box">
-        <div class="container">
-            <!-- <form class="d-flex justify-content-between search-inner">
+    <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">
+        <div class="search_input" id="search_input_box">
+            <div class="container">
+                <!-- <form class="d-flex justify-content-between search-inner">
                 <input type="text" class="form-control" id="search_input" name="filterPost"
                     placeholder="Buscar producto" [(ngModel)]="filterPost" />
                
 
             </form> -->
-            <input type="text" class="form-control" id="search_input" value="{{prueba}}" (keyup)="getBusqueda($event.target.value)"
-                    placeholder="Buscar producto" />
+                <input type="text" class="form-control" id="search_input" value="{{prueba}}"
+                    (keyup)="getBusqueda($event.target.value)" placeholder="Buscar producto" />
+            </div>
         </div>
-    </div>
 
     </h3>
-  </div>
+</div>
 
 
 <!-- (click)="buscarProduc(producto.name   ) -->
@@ -33,60 +33,52 @@
                         </div>
                         <div class="widgets_inner ">
                             <ul class="list" id="util" *ngFor="let categoria of categoria">
-                                <ng-container [ngSwitch]="categoria.name">
-                                    <ng-container *ngSwitchCase="'Verduras'">
+                                <ng-container [ngSwitch]="categoria.idCategoria">
+                                    <ng-container *ngSwitchCase="'1'">
                                         <li> <i class="fas fa-carrot"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
-                                        <!-- <div class="widgets_inner">
-                                            <ul class="list">
-                                                <p>Marcas</p>
-                                                <li>
-                                                    <input type="radio" aria-label="Radio button for following text input">
-                                                    <a href="#">Apple</a>
-                                                </li>
-                                        </div> -->
                                     </ng-container>
-                                    <ng-container *ngSwitchCase="'Frutas'">
+                                    <ng-container *ngSwitchCase="'2'">
                                         <li> <i class="fas fa-apple-alt"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
-                                    <ng-container *ngSwitchCase="'Pollo'">
+                                    <ng-container *ngSwitchCase="'3'">
                                         <li> <i class="fas fa-drumstick-bite"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
-                                    <ng-container *ngSwitchCase="'Hogar'">
+                                    <ng-container *ngSwitchCase="'4'">
                                         <li> <i class="fas fa-home"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
-                                        </li>
-                                    </ng-container>
-                                
-                                    <ng-container *ngSwitchCase="'Cereales'">
-                                        <li> <i class="fas fa-cookie"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
-                                        </li>
-                                    </ng-container>
-                                    <ng-container *ngSwitchCase="'Abarrotes'">
-                                        <li> <i class="fas fa-cheese"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
 
-                                    <ng-container *ngSwitchCase="'Tubérculos'">
-                                        <li> <i class="fas fa-lemon"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                    <ng-container *ngSwitchCase="'5'">
+                                        <li> <i class="fas fa-cookie"></i>
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
                                                 {{categoria.name}}</a>
                                         </li>
                                     </ng-container>
-                                    
+                                    <ng-container *ngSwitchCase="'6'">
+                                        <li> <i class="fas fa-cheese"></i>
+                                            <a class="pointer"
+                                                (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
+                                                {{categoria.name}}</a>
+                                        </li>
+                                    </ng-container>
+
+
                                 </ng-container>
                             </ul>
                         </div>
@@ -94,7 +86,7 @@
 
                     <aside class="left_widgets p_filter_widgets sidebar_box_shadow" *ngIf="prodElegido != 0">
                         <div class="l_w_title">
-                            <h3>Marcas </h3>
+                            <h3>Marcas</h3>
                         </div>
                         <div class="widgets_inner">
                             <ul class="list">
@@ -104,16 +96,16 @@
                                 </li>
                                 <ng-container *ngFor="let m of marcas">
                                     <li>
-                                        <input type="radio" name="marca" (click)="getProductsxMarca(m.marca)" >
+                                        <input type="radio" name="marca" (click)="getProductsxMarca(m.marca)">
                                         <a href="#">{{m.marca}}</a>
                                     </li>
                                 </ng-container>
                             </ul>
-                            
+
                         </div>
                     </aside>
                 </div>
-                
+
             </div>
 
 
@@ -157,11 +149,12 @@
                         </div>
                     </div>
                     <!--filter:filterPost |-->
-                    <div class="col-lg-4 col-sm-6" *ngFor="let producto of products | orderBy: order: reverse |  paginate: { itemsPerPage: 9, currentPage: paginaActual }">
+                    <div class="col-lg-4 col-sm-6"
+                        *ngFor="let producto of products | orderBy: order: reverse |  paginate: { itemsPerPage: 9, currentPage: paginaActual }">
                         <div class=" single_category_product">
                             <div class="single_category_img img-thumbnail">
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">
-                                    <img src="{{producto.image}}" alt="" height="200px"  >
+                                    <img src="{{producto.image}}" alt="" height="200px">
                                 </a>
                                 <!-- <div class="category_social_icon">
                                     <ul>
@@ -175,20 +168,21 @@
 
                                     <p>{{producto.producto}} x {{producto.unidades}}</p>
 
-                                    
+
                                     <p>S/ {{(producto.precio).toFixed(2)}} </p>
 
-                                    <button class="btn " (click)="localsito(producto)" type="submit">Agregar Carrito</button>
+                                    <button class="btn " (click)="localsito(producto)" type="submit">Agregar
+                                        Carrito</button>
                                     <p></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
             </div>
-            
+
         </div>
     </div>
 </section>
