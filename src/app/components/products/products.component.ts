@@ -23,6 +23,12 @@ export class ProductsComponent implements OnInit {
   reverse = false;
   count = 0;
   prueba = "";
+  showproduct1 = false;
+  showproduct2 = false;
+  showproduct3 = false;
+  showproduct4 = false;
+  showproduct5 = false;
+  showproduct6 = false;
   constructor(
     private productsService: ProductsService,
     private router: Router,

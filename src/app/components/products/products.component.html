@@ -35,57 +35,165 @@
                             <ul class="list" id="util" *ngFor="let categoria of categoria">
                                 <ng-container [ngSwitch]="categoria.name">
                                     <ng-container *ngSwitchCase="'Verduras'">
-                                        <li> <i class="fas fa-carrot"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                        <li class="sub-menu"> <i class="fas fa-carrot"></i>
+                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); ">
+                                                {{categoria.name}}</a> <a (click)="showproduct1 = !showproduct1" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct1 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul>
                                         </li>
-                                        <!-- <div class="widgets_inner">
-                                            <ul class="list">
-                                                <p>Marcas</p>
-                                                <li>
-                                                    <input type="radio" aria-label="Radio button for following text input">
-                                                    <a href="#">Apple</a>
-                                                </li>
-                                        </div> -->
+                             
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Frutas'">
                                         <li> <i class="fas fa-apple-alt"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                                {{categoria.name}}</a><a (click)="showproduct2 = !showproduct2" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct2 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul>   
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Pollo'">
                                         <li> <i class="fas fa-drumstick-bite"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                                {{categoria.name}}</a><a (click)="showproduct3 = !showproduct3" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct3 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul>  
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Hogar'">
                                         <li> <i class="fas fa-home"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                                {{categoria.name}}</a><a (click)="showproduct4 = !showproduct4" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct4 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul>    
                                         </li>
                                     </ng-container>
                                 
                                     <ng-container *ngSwitchCase="'Cereales'">
                                         <li> <i class="fas fa-cookie"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                                {{categoria.name}}</a><a (click)="showproduct5 = !showproduct5" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct5 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul> 
                                         </li>
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'Abarrotes'">
                                         <li> <i class="fas fa-cheese"></i>
                                             <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
+                                                {{categoria.name}}</a><a (click)="showproduct6 = !showproduct6" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
+                                                <ul *ngIf="showproduct6 == true">
+                                                    <li>
+                                                        <a>Home Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Smartphones</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Kitchen Appliances</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Computer Accessories</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Meat Alternatives</a>
+                                                    </li>
+                                                    <li>
+                                                        <a>Appliances</a>
+                                                    </li>
+                                                </ul>
                                         </li>
                                     </ng-container>
 
-                                    <ng-container *ngSwitchCase="'Tubérculos'">
-                                        <li> <i class="fas fa-lemon"></i>
-                                            <a class="pointer" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);">
-                                                {{categoria.name}}</a>
-                                        </li>
-                                    </ng-container>
+                                    
                                     
                                 </ng-container>
                             </ul>
