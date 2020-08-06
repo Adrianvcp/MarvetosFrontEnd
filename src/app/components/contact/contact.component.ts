@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { EmailConfirmationService } from "../../services/email-confirmation.service";
 import * as XLSX from "xlsx";
 import * as FileSaver from "file-saver";
+
 @Component({
   selector: "app-contact",
   templateUrl: "./contact.component.html",
@@ -58,6 +59,7 @@ export class ContactComponent implements OnInit {
     };
     readFile.readAsArrayBuffer(this.fileUploaded);
   }
+
   readAsExcel() {
     this.csvData = XLSX.utils.sheet_to_csv(this.worksheet);
     const data: Blob = new Blob([this.csvData], {
