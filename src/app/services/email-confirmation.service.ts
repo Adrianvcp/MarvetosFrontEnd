@@ -5,9 +5,10 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class EmailConfirmationService {
-  // API_URI = "http://localhost:5000/api/email";
+  // API_URI = "https://marvetos-web.herokuapp.com/api/email http://localhost:5000/api/email";
 
   API_URI = "https://marvetos-web.herokuapp.com/api/email";
+
   constructor(private http: HttpClient) {}
 
   sendEmailConfirmation(data: any) {
