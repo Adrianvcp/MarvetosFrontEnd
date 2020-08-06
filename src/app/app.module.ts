@@ -41,6 +41,9 @@ import { OrderModule } from "ngx-order-pipe";
 import { StepBystepComponent } from "./components/step-bystep/step-bystep.component";
 import { OrderquestionComponent } from './components/orderquestion/orderquestion.component';
 import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
+import { ConocenosComponent } from './components/conocenos/conocenos.component';
+import { CovidComponent } from './components/covid/covid.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +66,9 @@ import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.compo
     StepBystepComponent,
     OrderquestionComponent,
     OrdersadminComponent,
-    EmailconfirmationComponent
+    EmailconfirmationComponent,
+    ConocenosComponent,
+    CovidComponent
   ], 
    
   imports: [

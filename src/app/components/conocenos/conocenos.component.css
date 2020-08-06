@@ -1,0 +1,61 @@
+.marvetos {
+    text-align: justify;
+    
+
+}
+
+h2{
+        font-size:25px;
+        padding: 10px 0px;
+    }
+
+p{
+    font-size: 35px;
+    color:#006b85;  
+}
+
+h3{
+    font-size:28px;
+    padding: 10px 0px;
+    font-weight: 550;
+    
+}
+
+
+.valores{
+    text-align: center;
+}
+
+.padding-space{
+    padding: 20px 0px;
+}
+
+.img-fluid-q{
+    width: 120px; height: 150px;
+}
+
+@media screen and (max-width: 991px){
+    h2{
+  
+        font-size:12px;
+        padding: 5px 0px;
+        margin:  1px;
+    }
+    p{
+        font-size: 23px;
+        margin:  1px;
+        font-weight: 400;
+       
+    }
+    .img-fluid-q{
+        width: 70px;
+         height: 80px;
+    }
+    h3{
+  
+        font-size:12px;
+        padding: 5px 0px;
+        margin:  1px;
+        font-weight: 550;
+    }
+}

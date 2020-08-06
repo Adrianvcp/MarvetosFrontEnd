@@ -20,7 +20,8 @@ import { OrderquestionComponent } from "./components/orderquestion/orderquestion
 
 import { AuthGuardService } from "./services/auth-guard.service";
 import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
-
+import { ConocenosComponent  } from './components/conocenos/conocenos.component';
+import { CovidComponent  } from './components/covid/covid.component';
 //reparar
 const routes: Routes = [
   //ahora si porfa
@@ -54,9 +55,19 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: "covid",
+    component: CovidComponent,
+  },
+  {
     path: "orden/confirmacion/:id",
     component: ConfirmationComponent,
     canActivate: [AuthGuardService],
+  },
+
+  {
+    path: "conocenos",
+    component: ConocenosComponent,
+   
   },
   {
     //YA NO DEBERIA ESTAR
