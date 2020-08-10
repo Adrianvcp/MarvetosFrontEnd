@@ -48,6 +48,7 @@ export class ShoppingcarComponent implements OnInit {
   //FormaPago
   pago: any = [];
   idPago = 0;
+  
   iDDUbicacion = 0;
 
   //Vendedores

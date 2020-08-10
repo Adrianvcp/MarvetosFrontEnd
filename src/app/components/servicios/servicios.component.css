@@ -1,0 +1,132 @@
+
+
+    .marvetos {
+        text-align: justify;
+    }
+    
+    h2{
+            font-size:25px;
+            padding: 10px 0px;
+        }
+     h5{
+            font-size:25px;
+            padding: 1px 0px;
+            margin-left: 30px;
+        }
+    p{
+        
+        color: #000000;
+        font-size:25px;
+        padding: 1px 0px;
+        font-weight: 550;  
+        margin: 1px;
+        margin-left: 15px;
+       
+    }
+    
+    h3{
+        font-size:35px;
+        padding: 20px 0px;
+        font-weight: 550;
+    }
+    .valores{
+        text-align: center;
+    }
+    
+    .padding-space{
+        padding: 10px 0px;
+    }
+    .img-fluid-q{
+        width: 550px; height: 650px;
+    }
+
+
+
+@media screen and (max-width: 991px){
+    .marvetos {
+        text-align: justify;
+    }
+    h2{
+  
+        font-size:11px;
+        padding: 5px 0px;
+        margin:  1px;
+    }
+    h5{
+  
+        font-size:11px;
+        padding: 1px 0px;
+        margin-left: 16px;  
+    }
+    h4{
+        font-size:12px;
+        padding: 0px 0px;
+        margin:  1px;
+    }
+    p{
+        font-size:11px;
+        margin-left: 6px;
+    }
+    .col-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .img-fluid-q{
+        width: 550px;
+         height: 335px;
+    }
+    h3{
+  
+        font-size:12px;
+        padding: 12px 0px;
+        margin:  1px;
+        font-weight: 550;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    h2{
+  
+        font-size:25px;
+        padding: 5px 0px;
+        margin:  1px;
+    }
+    h5{
+  
+        font-size:25px;
+        padding: 1px 0px;
+        margin-left: 10px;
+       
+    }
+    h4{
+        font-size:12px;
+        padding: 0px 0px;
+        margin:  1px;
+    }
+    p{
+        font-size:25px;
+        margin-left: 10px;
+        color: #000000;
+        font-weight: 550;  
+    }
+
+    .col-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .img-fluid-q{
+        width: 550px;
+         height: 700px;
+    }
+    h3{
+  
+        font-size:25px;
+        padding: 12px 0px;
+        margin:  1px;
+        font-weight: 550;
+    }
+}
+
+
+
+

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Products } from "../model/products";
 import { Categoria } from "../model/categoria";
 import { Orden } from "../model/orden";
+import {Marca} from "../model/marca";
 import { DetalleCarrito } from "../model/detallecarrito";
 
 @Injectable({
@@ -13,6 +14,8 @@ export class ProductsService {
   API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient) {}
+
+
 
   getProducts() {
     return this.http.get(`${this.API_URI}/producto`);
@@ -96,5 +99,22 @@ export class ProductsService {
 
   getProductsxBuscadorCategoria(nombre: string, id: number){
     return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/prod/${nombre}/${id}`);  
+  }
+
+  getUnidad() {
+    return this.http.get(`${this.API_URI}/unidad`);
+  }
+
+  getSubCat() {
+    return this.http.get(`${this.API_URI}/subCategoria`);
+  }
+
+  getMarcaPro() {
+    return this.http.get(`${this.API_URI}/marca`);
+  }
+
+  saveProducto(products: Products) {
+    console.log(products);
+    return this.http.post(`${this.API_URI}/producto`, products);
   }
 }

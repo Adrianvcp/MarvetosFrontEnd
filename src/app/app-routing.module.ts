@@ -22,6 +22,8 @@ import { AuthGuardService } from "./services/auth-guard.service";
 import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
 import { ConocenosComponent  } from './components/conocenos/conocenos.component';
 import { CovidComponent  } from './components/covid/covid.component';
+import {  IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
+import {ServiciosComponent} from "./components/servicios/servicios.component"
 //reparar
 const routes: Routes = [
   //ahora si porfa
@@ -53,6 +55,14 @@ const routes: Routes = [
   {
     path: "ingresar",
     component: LoginComponent,
+  },
+  {
+    path: "ingresarProducto",
+    component: IngresoProductoComponent,
+  },
+  {
+    path: "servicios",
+    component: ServiciosComponent,
   },
   {
     path: "covid",

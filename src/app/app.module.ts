@@ -43,6 +43,8 @@ import { OrderquestionComponent } from './components/orderquestion/orderquestion
 import { OrdersadminComponent } from './components/ordersadmin/ordersadmin.component';
 import { ConocenosComponent } from './components/conocenos/conocenos.component';
 import { CovidComponent } from './components/covid/covid.component';
+import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
+import { ServiciosComponent } from './components/servicios/servicios.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { CovidComponent } from './components/covid/covid.component';
     OrdersadminComponent,
     EmailconfirmationComponent,
     ConocenosComponent,
-    CovidComponent
+    CovidComponent,
+    IngresoProductoComponent,
+    ServiciosComponent
   ], 
    
   imports: [
