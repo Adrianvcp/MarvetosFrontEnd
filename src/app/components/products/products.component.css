@@ -21,7 +21,11 @@
       background-image: linear-gradient(to bottom, #1a3742, #1a3742);
       text-decoration: none;
     }
-
+    .category_product_text p {
+      font-size: 17px;
+      font-weight: 600;
+      color: #606060;
+  }
     @media (max-width: 991px) {
       
    
@@ -42,3 +46,9 @@
   background: #a7dbd9;
   border-radius:5px;
 }
+    .category_product_text p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #606060;
+}
+  }

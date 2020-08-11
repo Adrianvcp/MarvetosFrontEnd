@@ -5,7 +5,7 @@
 </div>
 <!-- breadcrumb start-->
 
-<!--================Cart Area =================-->
+<!--================Cart Area ================sdas=-->
 <section class="cart_area ">
   <div class="container">
     <div class="cart_inner">
@@ -30,15 +30,15 @@
           <tbody>
 
             <tr *ngFor="let productoC of cantProducto; index as index">
-              
+
               <td>
                 <div class="media">
 
                   <div>
                     <img src="{{productoC.producto.image}}" width="60" height="60" alt="#">
                   </div>
-                  <div class="media-body"  style="padding: 10px;">
-                   
+                  <div class="media-body" style="padding: 10px;">
+
                     <p>{{productoC.producto.producto}} x {{productoC.producto.unidades}}</p>
                   </div>
                 </div>
@@ -60,9 +60,10 @@
               <td>
                 <h5>S/.{{(productoC.producto.precio*productoC.count).toFixed(2)}}</h5>
               </td>
-              <td >
-                
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Ingrese una nota"  (change)="asignarNota(index, $event)" ></textarea>
+              <td>
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Ingrese una nota"
+                  (change)="asignarNota(index, $event)"></textarea>
               </td>
               <td>
                 <button class="btn btn-danger" (click)="eliminarProducto(productoC.producto.idProducto)"><i
@@ -78,7 +79,7 @@
               <td></td>
               <td></td>
               <td></td>
-              
+
               <td>
                 <div class="cupon_text float-right">
                   <a class="btn_1" style="margin: 10px" (click)="comprarProducto()">Seguir comprando</a>
@@ -90,8 +91,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
-              
+
               <td>
                 <h5>Subtotal</h5>
               </td>
@@ -103,28 +103,14 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td>
-                <h5>I.G.V</h5>
+                <h5>Total</h5>
               </td>
               <td>
-                <h5>S/.{{(suma*0.17).toFixed(2)}}</h5>
-              </td>
-            </tr> 
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              
-              <td>
-                <h5>Total: </h5>
-              </td>
-              <td>
-                             <!--    <h5>S/.{{((suma*0.17)+ suma).toFixed(2)}}</h5> -->
-                <input disabled value="{{(suma).toFixed(2)}}" />
-
+                <h5> <input disabled value="{{(suma).toFixed(2)}}" /></h5>
               </td>
             </tr>
+
 
 
 

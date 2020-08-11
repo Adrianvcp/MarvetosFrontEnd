@@ -11,7 +11,7 @@ import { Products } from '../../model/products';
 export class EditarproductosComponent implements OnInit {
   products: Products = {
     idProducto : 0,
-    idCategoria : 0,
+   // idCategoria : 0,
     name: '',
     image: '',
     precio: 0,
@@ -44,7 +44,7 @@ export class EditarproductosComponent implements OnInit {
     this.products.precio = prod.precio;
     this.products.stock = prod.stock;
     this.products.descripcion = prod.descripcion;
-    this.products.idCategoria = prod.idCategoria;
+    //this.products.idCategoria = prod.idCategoria;
     this.products.image = prod.image;
     this.products.idUnidad = prod.idUnidad;
   }

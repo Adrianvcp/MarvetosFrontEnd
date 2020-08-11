@@ -1,0 +1,68 @@
+
+<div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
+    <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Registro de productos
+    </h3>
+  </div>
+
+<section class="padding-space">
+    <div class="container">
+        
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Producto</label>
+              <!-- <input type="email" class="form-control" id="exampleFormControlInput1"  [(ngModel)]=Name placeholder="Ingresa producto"> -->
+              <input class="post_code" type="text" placeholder="Ingresa producto" [(ngModel)]=Name  name="Name"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Imagen</label>
+                <!-- <input type="email" class="form-control" id="exampleFormControlInput1"  placeholder="Ingresa imagen del producto"> -->
+                <input class="post_code" type="text" placeholder="Ingresa Image" [(ngModel)]=Image name="Image" />
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Precio</label>
+               <!--  <input type="email" class="form-control" id="exampleFormControlInput1"  placeholder="Ingresa precio"> -->
+                <input class="post_code" type="text" placeholder="Ingresa precio" [(ngModel)]=Precio name="Precio" (keypress) ="ValidaSoloNumeros($event)"/>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Stock</label>
+                <!-- <input type="email" class="form-control" id="exampleFormControlInput1"  placeholder="Ingresa stock"> -->
+                <input class="post_code" type="text" placeholder="Ingresa stock" [(ngModel)]=Stock name="Stock" (keypress) ="ValidaSoloNumeros($event)"/>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Descripcion</label>
+               <!--  <input type="email" class="form-control" id="exampleFormControlInput1"  [(ngModel)]=Descripcion placeholder="Ingresa descripcion"> -->
+                <input class="post_code" type="text" placeholder="Ingresa descripcion" [(ngModel)]=Descripcion name="Descripcion"/>
+              </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Unidad</label>
+              <select class="form-control" id="exampleFormControlSelect1" (change)="onEditClickUnidad($event.target.value)" >
+                <option [value]=0>Selecciona una unidad</option>
+                <option  [value]="unidad.idUnidad" *ngFor="let unidad of unidad">{{unidad.name}}</option>
+               
+              </select>
+            </div>
+            <div class="form-group" >
+                <label for="exampleFormControlSelect1">Sub Categoria</label>
+                <select class="form-control" id="exampleFormControlSelect1" (change)="onEditClickSubCategoria($event.target.value)" >
+                  <option [value]=0>Selecciona una sub categoria</option>
+                  <option [value]="subCategoria.idSubCategoria" *ngFor="let subCategoria of subCategoria">{{subCategoria.T_NameCategoria}}</option>
+                 
+                </select>
+              </div>
+              <div class="form-group" >
+                <label for="exampleFormControlSelect1">Marca</label>
+                <select class="form-control" id="exampleFormControlSelect1"  (change)="onEditClickMarca($event.target.value)"   >
+                  <option [value]=0>Selecciona una marca</option>
+                  <option [value]="marca.idMarca" *ngFor="let marca of marca">{{marca.Name}}</option>
+                 
+                </select>
+              </div>
+            
+              <div class="form-group">
+              <button class="btn btn-danger" style="margin: 5px;" (click)="cancelarRegistro()" >Cancelar producto</button>
+           
+              <button class="btn btn-primary" (click)="saveProducto()" >Registrar producto</button>
+              </div>
+          </form>
+    </div>
+</section>

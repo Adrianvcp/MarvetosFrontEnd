@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+  }
+
+  conocenos(){
+   
+    this.router.navigateByUrl("/conocenos");
+  }
+  covid(){
+   
+    this.router.navigate(['covid']);
+  }
+  contactenos(){
+   
+    this.router.navigate(['contacto']);
   }
 
 }
