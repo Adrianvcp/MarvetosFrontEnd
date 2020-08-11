@@ -86,15 +86,40 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/marca/filtro/${id}`);
   }
 
+  getMarcaxSubcat(cat: number|string,sub: number|string){
+    return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/subcategoria/filtro/${cat}/${sub}`);
+  }
+
+
+
   getProductsxMarca(marca: string|number, id: number|string) {
     return this.http.get(`${this.API_URI}/marca/filtro/marca/${marca}/${id}`);
   }
 
+  //Buscador sin seleccion
   getProductsxBuscador(nombre: string){
     return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/${nombre}`);  
   }
-
+  
+  //Buscador por categoria
   getProductsxBuscadorCategoria(nombre: string, id: number){
     return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/prod/${nombre}/${id}`);  
   }
+
+  //Buscador por categoria y subcategoria
+  getProductsxBuscadorCateSub(nombre: string, idcat: number, idsub: string|number){
+    return this.http.get(`${this.API_URI}/marca/buscar/producto/categoria/prod/sub/${nombre}/${idcat}/${idsub}`); 
+  }
+
+
+  getSubCatexCate(id: string|number){
+    return this.http.get(`${this.API_URI}/producto/produc/form/ASC/sub/${id}`);  
+  }
+
+  //Productos seleccionando categoria y subcategoria
+  getProductxCateSub(idcat: string|number, idsub: string|number){
+    return this.http.get(`${this.API_URI}/producto/produc/form/ASC/cat/sub/${idcat}/${idsub}`);  
+  }
+
+
 }

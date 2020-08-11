@@ -32,3 +32,13 @@
      float: left;
    }
   }
+
+.select:hover{
+  background: #a7dbd9;
+  border-radius:5px;
+}
+
+.select2{
+  background: #a7dbd9;
+  border-radius:5px;
+}
