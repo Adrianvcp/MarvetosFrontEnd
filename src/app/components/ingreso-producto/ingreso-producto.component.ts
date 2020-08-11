@@ -29,7 +29,7 @@ export class IngresoProductoComponent implements OnInit {
     Precio: 0;
     Stock: 0;
     Descripcion = "";
-    
+   
 
   products ={
     idProducto : 0,
@@ -41,6 +41,7 @@ export class IngresoProductoComponent implements OnInit {
     idUnidad: 1,
     idMarca: 1,
     idSubCategoria: 1,
+   
   };
 
   constructor(
@@ -55,6 +56,7 @@ export class IngresoProductoComponent implements OnInit {
       (res) => {
         this.unidad = res;
         console.log(res);
+       
       },
       (err) => console.error(err)
     );
@@ -82,7 +84,11 @@ export class IngresoProductoComponent implements OnInit {
 
 
   async saveProducto() {
-    if (this.Name == "" || this.Image == "" || this.Descripcion == "" || this.idUnidad == 0 || this.idMarca == 0 || this.idSubCategoria == 0  || this.Precio == 0 || this.Stock == 0) {
+    
+    
+
+    if (this.Name == "" || this.Image == "" || this.Descripcion == "" || this.idUnidad == 0 || this.idMarca == 0 || this.idSubCategoria == 0  ){
+      
       Swal.fire({
         icon: "warning",
         title: "Datos Faltantes, completa los campos vacios",
@@ -91,7 +97,25 @@ export class IngresoProductoComponent implements OnInit {
       }).then((result) => {
       });
      
+     }else if(this.Precio==0){
+      Swal.fire({
+        icon: "warning",
+        title: "El Precio no puede ser 0 o vacio, vuelve a interntarlo",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then((result) => {
+      });
      }
+     else if(this.Stock==0){
+      Swal.fire({
+        icon: "warning",
+        title: "El Stock no puede ser 0 o vacio, vuelve a interntarlo",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then((result) => {
+      });
+     }
+
      else{  this.products.idProducto = 1;
       this.products.name=this.Name;
       this.products.descripcion=this.Descripcion;
@@ -107,6 +131,7 @@ export class IngresoProductoComponent implements OnInit {
       delete this.products.idProducto;
       //Save Order on DB
       var rsp = await this.productsService.saveProducto(this.products).toPromise();
+      this.router.navigateByUrl("/productos");
       Swal.fire({
         icon: "success",
         title: "Producto Registrado",

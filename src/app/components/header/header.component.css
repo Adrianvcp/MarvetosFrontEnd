@@ -19,7 +19,7 @@
 }
 
 .view-name-mobile{
-    background: #38839E;
+    background: #007bff;
     display: none;
 }
 
@@ -42,6 +42,7 @@
     .dropdown-menu-m{
         position: absolute;
         z-index: 10;
+        background-color: #fccc2f;
     }
 } 
 .dropdown-menu-m{
@@ -58,7 +59,7 @@
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color:#2f7dfc;
+    background-color:#007bff;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
@@ -71,13 +72,14 @@
 
 .dropdown-item:hover, .dropdown-item:active, .dropdown-item:focus{
     color: black!important;
-    background-color:#2f7dfc;
+    background-color:#007bff;
 }
 
 
 .dropdown-item{
     color:white!important;
 }
+
 
 
 
