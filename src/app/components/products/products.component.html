@@ -36,7 +36,7 @@
                                 <ng-container [ngSwitch]="categoria.idCategoria">
                                     <ng-container *ngSwitchCase="'1'">
                                         <li class="sub-menu"> <i class="fas fa-carrot"></i>
-                                            <a class="pointer select"  (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(1); showIcon(1);"> {{categoria.name}}</a> <a class="pointer"  *ngIf="prodElegido == 1" (click)="limpiarProdElegido()"><i class="far fa-times-circle"></i></a>
+                                            <a class="pointer select" [ngClass]="prodElegido==1 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(1); showIcon(1);"> {{categoria.name}}</a> <a class="pointer"  *ngIf="prodElegido == 1" (click)="limpiarProdElegido()"><i class="far fa-times-circle"></i></a>
                                             <!--ICONO MAS-->
                                             <a [ngClass]="icon1 ? 'd-none' : 'd-block'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(1); showIcon(1);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>  
                                             <!--ICONO MENOS-->
@@ -44,7 +44,7 @@
                                                 <ul *ngIf="showproduct1 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -55,7 +55,7 @@
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'2'">
                                         <li class="sub-menu"> <i class="fas fa-apple-alt"></i>
-                                            <a class="pointer select"  (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);  showIcon(2); showSubCategoria(2); "> {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()"  *ngIf="prodElegido == 2"><i class="far fa-times-circle"></i></a>
+                                            <a class="pointer select" [ngClass]="prodElegido==2 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria);  showIcon(2); showSubCategoria(2); "> {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()"  *ngIf="prodElegido == 2"><i class="far fa-times-circle"></i></a>
                                             <!--ICONO MAS-->
                                             <a [ngClass]="icon2 ? 'd-none' : 'd-block'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(2); showIcon(2);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a> 
                                             <!--ICONO MENOS-->
@@ -63,7 +63,7 @@
                                                 <ul *ngIf="showproduct2 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -73,14 +73,14 @@
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'3'">
                                         <li class="sub-menu"> <i class="fas fa-drumstick-bite"></i>
-                                            <a class="pointer select"  (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(3); showSubCategoria(3);">
+                                            <a class="pointer select" [ngClass]="prodElegido==3 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(3); showSubCategoria(3);">
                                                 {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()"  *ngIf="prodElegido == 3"><i class="far fa-times-circle"></i></a>
                                                 <a [ngClass]="icon3 ? 'd-none' : 'd-block'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(3); showIcon(3);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
                                                 <a [ngClass]="icon3 ? 'd-block' : 'd-none'" (click)="showIcon(3); showSubCategoria(3);" style="float: right;"><div class="right ti-minus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
                                                 <ul *ngIf="showproduct3 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -90,14 +90,14 @@
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'4'">
                                         <li class="sub-menu"> <i class="fas fa-home"></i>
-                                            <a class="pointer select"  (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(4); showSubCategoria(4);">
+                                            <a class="pointer select" [ngClass]="prodElegido==4 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(4); showSubCategoria(4);">
                                                 {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()" *ngIf="prodElegido == 4"><i class="far fa-times-circle"></i></a>
                                                 <a [ngClass]="icon4 ? 'd-none' : 'd-block'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showSubCategoria(4); showIcon(4);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a> 
                                                 <a [ngClass]="icon4 ? 'd-block' : 'd-none'" (click)="showIcon(4); showSubCategoria(4);" style="float: right;"><div class="right ti-minus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
                                                 <ul *ngIf="showproduct4 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -108,7 +108,7 @@
 
                                     <ng-container *ngSwitchCase="'5'">
                                         <li class="sub-menu"> <i class="fas fa-cookie"></i>
-                                            <a  class="pointer select"  (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(5); showSubCategoria(5);">
+                                            <a  class="pointer select" [ngClass]="prodElegido==5 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(5); showSubCategoria(5);">
                                                 {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()" *ngIf="prodElegido == 5"><i class="far fa-times-circle"></i></a>
                                                 <a [ngClass]="icon5 ? 'd-none' : 'd-block'" (click)=" selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(5); showSubCategoria(5);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a> 
                                                 <a [ngClass]="icon5 ? 'd-block' : 'd-none'" (click)="showIcon(5); showSubCategoria(5);" style="float: right;"><div class="right ti-minus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
@@ -116,7 +116,7 @@
                                                 <ul *ngIf="showproduct5 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria)">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -126,14 +126,14 @@
                                     </ng-container>
                                     <ng-container *ngSwitchCase="'6'">
                                         <li class="sub-menu"> <i class="fas fa-cheese"></i>
-                                            <a class="pointer select" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(6); showSubCategoria(6);">
+                                            <a class="pointer select" [ngClass]="prodElegido==6 ? 'select2' : 'h'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(6); showSubCategoria(6);">
                                                 {{categoria.name}}</a><a class="pointer" (click)="limpiarProdElegido()" *ngIf="prodElegido == 6"><i class="far fa-times-circle"></i></a>
                                                 <a [ngClass]="icon6 ? 'd-none' : 'd-block'" (click)="selectCat(categoria.idCategoria); filtroMarca(categoria.idCategoria); showIcon(6); showSubCategoria(6);" style="float: right;"><div class="right ti-plus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a> 
                                                 <a [ngClass]="icon6 ? 'd-block' : 'd-none'" (click)="showIcon(6); showSubCategoria(6);" style="float: right;"><div class="right ti-minus" style="display: inline-block; cursor: pointer; margin-top: 7px;"></div></a>
                                                 <ul *ngIf="showproduct6 == true">
                                                     <ng-container *ngFor="let sub of subcategorias">
                                                         <li>
-                                                            <a class="select pointer"  (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria); getMarcaxSubcat();">{{sub.subcategoria}}</a>
+                                                            <a class="select pointer" [ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'" (click)="getProductxCateSub(categoria.idCategoria,sub.idSubcategoria);">{{sub.subcategoria}}</a>
                                                             <a class="pointer" (click)="limpiarSubCategoria()" *ngIf="idSubElegido == sub.idSubcategoria"><i class="far fa-times-circle"></i></a>
                                                         </li>
 
@@ -259,16 +259,3 @@
     }
 </style>
 <!--================End Category Product Area =================-->
-<!--[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-[ngClass]="idSubElegido==sub.idSubcategoria ? 'select2' : 'h'"
-
-[ngClass]="prodElegido==6 ? 'select2' : 'h'" 
-[ngClass]="prodElegido==1 ? 'select2' : 'h'"
-[ngClass]="prodElegido==2 ? 'select2' : 'h'"
-[ngClass]="prodElegido==3 ? 'select2' : 'h'"
-[ngClass]="prodElegido==4 ? 'select2' : 'h'"
-[ngClass]="prodElegido==5 ? 'select2' : 'h'"-->
