@@ -51,7 +51,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     console.log("se ejecuta");
-
     this.productsService.getCategoria().subscribe(
       (res) => {
         this.categoria = res;
@@ -119,7 +118,12 @@ export class ProductsComponent implements OnInit {
       this.productsService.getSelecCat(id).subscribe(
         (res) => {
           this.products = res;
+
           this.prodElegido = this.products[0].idCategoria;
+          console.log("prodElegido");
+          console.log(res);
+          console.log(this.products[0].idCategoria);
+          console.log(this.prodElegido);
         },
         (err) => console.error(err)
       );
