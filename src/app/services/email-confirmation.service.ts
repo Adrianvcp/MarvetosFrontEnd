@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class EmailConfirmationService {
   // API_URI = "https://marvetos-web.herokuapp.com/api/email http://localhost:5000/api/email";
 
-  API_URI = "https://marvetos-web.herokuapp.com/api/email";
+  API_URI = "http://localhost:5000/api/email";
 
   constructor(private http: HttpClient) {}
 
@@ -19,5 +19,9 @@ export class EmailConfirmationService {
   sendticket(data: any) {
     console.log(data);
     return this.http.post(`${this.API_URI}/ticket`, data);
+  }
+
+  uploadExcel(id: any, formData: any) {
+    return this.http.post(`${this.API_URI}/excel/upload/${id}`, formData);
   }
 }

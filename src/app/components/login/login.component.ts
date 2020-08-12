@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     idRol: 0,
     NombreEmpresa: "",
     telefono: "",
-  
   };
 
   constructor(

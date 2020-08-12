@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   paginaActual = 1;
   carrito: any = [];
   prodElegido = 0; //Categoria elegida
-  idSubElegido= 0; //Subcategoria elegida
+  idSubElegido = 0; //Subcategoria elegida
   marcas: any = [];
   order = "0";
   subcategorias: any = [];
@@ -51,6 +51,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     console.log("se ejecuta");
+
     this.productsService.getCategoria().subscribe(
       (res) => {
         this.categoria = res;
@@ -58,12 +59,9 @@ export class ProductsComponent implements OnInit {
       },
       (err) => console.error(err)
     );
-    
-    this.getProducts();
 
-    
+    this.getProducts();
   }
-  
 
   onclickFilter(skill: any) {
     switch (this.order) {
@@ -102,7 +100,7 @@ export class ProductsComponent implements OnInit {
     return this.carrito.length;
   }
 
-  getProducts(){
+  getProducts() {
     this.productsService.getProducts().subscribe(
       (res) => {
         this.products = res;
@@ -120,41 +118,32 @@ export class ProductsComponent implements OnInit {
     if (id) {
       this.productsService.getSelecCat(id).subscribe(
         (res) => {
-          
           this.products = res;
-         
-          
-          this.prodElegido= this.products[0].idCategoria;
-          console.log("prodElegido");
-          console.log(res);
-          console.log(this.products[0].idCategoria);
-          console.log(this.prodElegido);
+          this.prodElegido = this.products[0].idCategoria;
         },
         (err) => console.error(err)
       );
     }
-    
-
   }
 
   //limpiar la categoria
-  limpiarProdElegido(){
+  limpiarProdElegido() {
     this.prodElegido = 0;
-    this.idSubElegido= 0;
+    this.idSubElegido = 0;
     this.buscar = "";
     this.getProducts();
     this.limpiarTodo();
   }
 
   //limpiar la subcategoria
-  limpiarSubCategoria(){
+  limpiarSubCategoria() {
     this.idSubElegido = 0;
     this.selectCat(this.prodElegido);
     this.buscar = "";
     this.filtroMarca(this.prodElegido);
   }
 
-  limpiarTodo(){
+  limpiarTodo() {
     this.showproduct1 = false;
     this.showproduct2 = false;
     this.showproduct3 = false;
@@ -168,7 +157,7 @@ export class ProductsComponent implements OnInit {
     this.icon5 = false;
     this.icon6 = false;
   }
-  filtroMarca(id){
+  filtroMarca(id) {
     console.log("porfi");
     console.log(this.prodElegido);
     this.productsService.getMarca(id).subscribe(
@@ -180,14 +169,14 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  getProductsxMarca(marca){
+  getProductsxMarca(marca) {
     console.log(this.prodElegido);
-    console.log(marca);  
-    
+    console.log(marca);
+
     this.buscar = "";
-    this.productsService.getProductsxMarca(marca,this.prodElegido).subscribe(
+    this.productsService.getProductsxMarca(marca, this.prodElegido).subscribe(
       (res) => {
-        //  this.products = [];  
+        //  this.products = [];
         this.products = res;
         console.log(res);
         this.marcaElegida = true;
@@ -196,89 +185,91 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  showIcon(id){
-     switch (id) {
-        case 1:
-          this.icon1 = !this.icon1;
-          this.icon2 = false;
-          this.icon3 = false;
-          this.icon4 = false;
-          this.icon5 = false;
-          this.icon6 = false;
-          break;
-        case 2:
-          this.icon2 = !this.icon2;
-          this.icon1 = false;
-          this.icon3 = false;
-          this.icon4 = false;
-          this.icon5 = false;
-          this.icon6 = false;
-          break;
-        case 3:
-          this.icon3 = !this.icon3;
-          this.icon1 = false;
-          this.icon2 = false;
-          this.icon4 = false;
-          this.icon5 = false;
-          this.icon6 = false;
-          break;
-        case 4:
-          this.icon4 = !this.icon4;
-          this.icon1 = false;
-          this.icon2 = false;
-          this.icon3 = false;
-          this.icon5 = false;
-          this.icon6 = false;
-          break;
-        case 5:
-          this.icon5 = !this.icon5;
-          this.icon1 = false;
-          this.icon2 = false;
-          this.icon3 = false;
-          this.icon4 = false;
-          this.icon6 = false;
-          break;
-        case 6:
-          this.icon6 = !this.icon6;
-          this.icon1 = false;
-          this.icon2 = false;
-          this.icon3 = false;
-          this.icon4 = false;
-          this.icon5 = false;
-          break;
-        default:
-          break;
-      }
+  showIcon(id) {
+    switch (id) {
+      case 1:
+        this.icon1 = !this.icon1;
+        this.icon2 = false;
+        this.icon3 = false;
+        this.icon4 = false;
+        this.icon5 = false;
+        this.icon6 = false;
+        break;
+      case 2:
+        this.icon2 = !this.icon2;
+        this.icon1 = false;
+        this.icon3 = false;
+        this.icon4 = false;
+        this.icon5 = false;
+        this.icon6 = false;
+        break;
+      case 3:
+        this.icon3 = !this.icon3;
+        this.icon1 = false;
+        this.icon2 = false;
+        this.icon4 = false;
+        this.icon5 = false;
+        this.icon6 = false;
+        break;
+      case 4:
+        this.icon4 = !this.icon4;
+        this.icon1 = false;
+        this.icon2 = false;
+        this.icon3 = false;
+        this.icon5 = false;
+        this.icon6 = false;
+        break;
+      case 5:
+        this.icon5 = !this.icon5;
+        this.icon1 = false;
+        this.icon2 = false;
+        this.icon3 = false;
+        this.icon4 = false;
+        this.icon6 = false;
+        break;
+      case 6:
+        this.icon6 = !this.icon6;
+        this.icon1 = false;
+        this.icon2 = false;
+        this.icon3 = false;
+        this.icon4 = false;
+        this.icon5 = false;
+        break;
+      default:
+        break;
+    }
   }
 
   //Busqueda del filtro de palabras
-  getBusqueda(event: any){
-
-      this.buscar = event;
-      if(event == "" && this.prodElegido == 0 && this.idSubElegido == 0){
-        this.getProducts();
-      } else if(event == "" && this.prodElegido != 0 && this.idSubElegido == 0){
-        this.selectCat(this.prodElegido);
-      } else if(event == "" && this.prodElegido != 0 && this.idSubElegido != 0){
-        this.productsService.getProductxCateSub(this.prodElegido,this.idSubElegido).subscribe(
-        (res) => {
-          console.log("aca es");
-          this.products = res;
-          console.log(res);
-        },
-        (err) => console.error(err)
-        );
-      } 
-      else if (event != "" && this.prodElegido == 0 && this.idSubElegido == 0){
-        this.productsService.getProductsxBuscador(event).subscribe(
+  getBusqueda(event: any) {
+    this.buscar = event;
+    if (event == "" && this.prodElegido == 0 && this.idSubElegido == 0) {
+      this.getProducts();
+    } else if (event == "" && this.prodElegido != 0 && this.idSubElegido == 0) {
+      this.selectCat(this.prodElegido);
+    } else if (event == "" && this.prodElegido != 0 && this.idSubElegido != 0) {
+      this.productsService
+        .getProductxCateSub(this.prodElegido, this.idSubElegido)
+        .subscribe(
           (res) => {
-            console.log(res);
+            console.log("aca es");
             this.products = res;
+            console.log(res);
           },
           (err) => console.error(err)
         );
-      } else if (event != "" && this.prodElegido != 0 && this.idSubElegido == 0) {
-        this.productsService.getProductsxBuscadorCategoria(event,this.prodElegido).subscribe(
+    } else if (event != "" && this.prodElegido == 0 && this.idSubElegido == 0) {
+      this.productsService.getProductsxBuscador(event).subscribe(
+        (res) => {
+          console.log(res);
+          this.products = res;
+        },
+        (err) => console.error(err)
+      );
+    } else if (event != "" && this.prodElegido != 0 && this.idSubElegido == 0) {
+      this.productsService
+        .getProductsxBuscadorCategoria(event, this.prodElegido)
+        .subscribe(
           (res) => {
             console.log(res);
             console.log("tmr");
@@ -287,8 +278,10 @@ export class ProductsComponent implements OnInit {
           },
           (err) => console.error(err)
         );
-        }else if(event != "" && this.prodElegido != 0 && this.idSubElegido !=  0) {
-        this.productsService.getProductsxBuscadorCateSub(event,this.prodElegido,this.idSubElegido).subscribe(
+    } else if (event != "" && this.prodElegido != 0 && this.idSubElegido != 0) {
+      this.productsService
+        .getProductsxBuscadorCateSub(event, this.prodElegido, this.idSubElegido)
+        .subscribe(
           (res) => {
             console.log("prueba rapida");
             console.log(this.prodElegido);
@@ -298,120 +291,113 @@ export class ProductsComponent implements OnInit {
           },
           (err) => console.error(err)
         );
-      }
- 
-  } 
+    }
+  }
 
   //Muestra las subcategorias por categoria
   getSubCatexCate() {
     console.log("con fe");
     console.log(this.prodElegido);
     this.productsService.getSubCatexCate(this.prodElegido).subscribe(
-        (res) => {
-          this.subcategorias = res;
-          
-        },
-        (err) => console.error(err)
-      );
+      (res) => {
+        this.subcategorias = res;
+      },
+      (err) => console.error(err)
+    );
   }
 
-  
-  showSubCategoria(id){
-    
-      this.productsService.getSubCatexCate(id).subscribe(
-        (res) => {
-          this.subcategorias = res;
-          console.log("aca es");
-          console.log(res);
-          
-          switch (id) {
-            case 1:        
-              this.showproduct1 = !this.showproduct1;
-              this.showproduct2 = false;
-              this.showproduct3 = false;
-              this.showproduct4 = false;
-              this.showproduct5 = false;
-              this.showproduct6 = false;
-              break;
-            case 2:
-              this.showproduct2 = !this.showproduct2;
-              this.showproduct1 = false;
-              this.showproduct3 = false;
-              this.showproduct4 = false;
-              this.showproduct5 = false;
-              this.showproduct6 = false;
-              break;
-            case 3:
-              this.showproduct3 = !this.showproduct3;
-              this.showproduct1 = false;
-              this.showproduct2 = false;
-              this.showproduct4 = false;
-              this.showproduct5 = false;
-              this.showproduct6 = false;
-              break;
-            case 4:
-              this.showproduct4 = !this.showproduct4;
-              this.showproduct1 = false;
-              this.showproduct2 = false;
-              this.showproduct3 = false;
-              this.showproduct5 = false;
-              this.showproduct6 = false;
-              break;
-            case 5:
-              this.showproduct5 = !this.showproduct5;
-              this.showproduct1 = false;
-              this.showproduct2 = false;
-              this.showproduct3 = false;
-              this.showproduct4 = false;
-              this.showproduct6 = false;
-              break;
-            case 6:
-              this.showproduct6 = !this.showproduct6;
-              this.showproduct1 = false;
-              this.showproduct2 = false;
-              this.showproduct3 = false;
-              this.showproduct4 = false;
-              this.showproduct5 = false;
-              break;
-              default:
-              break;
-          }
-        },
-        (err) => console.error(err)
-      );
+  showSubCategoria(id) {
+    this.productsService.getSubCatexCate(id).subscribe(
+      (res) => {
+        this.subcategorias = res;
+        console.log("aca es");
+        console.log(res);
 
-     
+        switch (id) {
+          case 1:
+            this.showproduct1 = !this.showproduct1;
+            this.showproduct2 = false;
+            this.showproduct3 = false;
+            this.showproduct4 = false;
+            this.showproduct5 = false;
+            this.showproduct6 = false;
+            break;
+          case 2:
+            this.showproduct2 = !this.showproduct2;
+            this.showproduct1 = false;
+            this.showproduct3 = false;
+            this.showproduct4 = false;
+            this.showproduct5 = false;
+            this.showproduct6 = false;
+            break;
+          case 3:
+            this.showproduct3 = !this.showproduct3;
+            this.showproduct1 = false;
+            this.showproduct2 = false;
+            this.showproduct4 = false;
+            this.showproduct5 = false;
+            this.showproduct6 = false;
+            break;
+          case 4:
+            this.showproduct4 = !this.showproduct4;
+            this.showproduct1 = false;
+            this.showproduct2 = false;
+            this.showproduct3 = false;
+            this.showproduct5 = false;
+            this.showproduct6 = false;
+            break;
+          case 5:
+            this.showproduct5 = !this.showproduct5;
+            this.showproduct1 = false;
+            this.showproduct2 = false;
+            this.showproduct3 = false;
+            this.showproduct4 = false;
+            this.showproduct6 = false;
+            break;
+          case 6:
+            this.showproduct6 = !this.showproduct6;
+            this.showproduct1 = false;
+            this.showproduct2 = false;
+            this.showproduct3 = false;
+            this.showproduct4 = false;
+            this.showproduct5 = false;
+            break;
+          default:
+            break;
+        }
+      },
+      (err) => console.error(err)
+    );
   }
 
-  
-  getProductxCateSub(cat,subcat){
+  getProductxCateSub(cat, subcat) {
     this.buscar = "";
     this.marcaElegida = false;
-    this.productsService.getProductxCateSub(cat,subcat).subscribe(
-        (res) => {
-          console.log("aquisito");
-          this.products = res;
+    this.productsService.getProductxCateSub(cat, subcat).subscribe(
+      (res) => {
+        console.log("aquisito");
+        this.products = res;
 
-          this.idSubElegido = this.products[0].idSubCategoria;
-          console.log("checa");
-          console.log(res);
-          console.log(this.idSubElegido);
-        },
-        (err) => console.error(err)
-      );
+        this.idSubElegido = this.products[0].idSubCategoria;
+        console.log("checa");
+        console.log(res);
+        console.log(this.idSubElegido);
+      },
+      (err) => console.error(err)
+    );
 
-      this.getMarcaxSubcat(cat,subcat);
+    this.getMarcaxSubcat(cat, subcat);
   }
 
-  getMarcaxSubcat(cat,subcat){
+  getMarcaxSubcat(cat, subcat) {
     this.tituloMarca = "Subcategoría";
     this.productsService.getMarcaxSubcat(cat, subcat).subscribe(
-        (res) => {
-          this.marcas = res;
-          console.log("prueba subcat");
-          console.log(res);
-        },
-        (err) => console.error(err)
+      (res) => {
+        this.marcas = res;
+        console.log("prueba subcat");
+        console.log(res);
+      },
+      (err) => console.error(err)
     );
   }
 }

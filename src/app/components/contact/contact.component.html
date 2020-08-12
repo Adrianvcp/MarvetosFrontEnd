@@ -1,7 +1,7 @@
 <!--================Home Banner Area =================-->
 <!-- breadcrumb start-->
 <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
-  <h4 >Sitio de Mensajes a Marvetos Catering 
+  <h4>Sitio de Mensajes a Marvetos Catering
   </h4>
 </div>
 <!-- breadcrumb start-->
@@ -9,21 +9,55 @@
 <!-- ================ contact section start ================= -->
 <div class="gmaps1 mb-5 pb-4 row">
   <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.4808141790054!2d-77.12861542890384!3d-12.048801203516119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb8ba812f671%3A0xac239cf206526a76!2sMarvetos%20Catering!5e0!3m2!1ses!2spe!4v1592681313742!5m2!1ses!2spe"
-  width="1535" height="550" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false"
-  tabindex="0"></iframe>
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.4808141790054!2d-77.12861542890384!3d-12.048801203516119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb8ba812f671%3A0xac239cf206526a76!2sMarvetos%20Catering!5e0!3m2!1ses!2spe!4v1592681313742!5m2!1ses!2spe"
+    width="1535" height="550" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false"
+    tabindex="0"></iframe>
 </div>
 <!-- <img src="../../../assets/img/portadaMarveto/contacto2 (1).png" class="img-fluid-q" alt="Responsive image" > -->
 <section class="contact-section">
   <div class="container">
-    
+
+    <div style="margin-bottom: 30px;">
+
+      <h3>¿Necesitas una cotizacion? Agrega tu archivo excel y nos contactaremos a la brevedad</h3>
+
+      <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+        <div class="row">
+          <div class="col-sm-12">
+            <div>
+              <h6 class="head-title margin-top-8"><span>Busca tu Archivo</span></h6>
+            </div>
+          </div>
+
+          <div class="col-sm-6 text-center">
+
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" name="myfile" (change)="onFileSelect($event)"
+                #UploadFileInput>
+              <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Adjuntar Archivo'}}</label>
+            </div>
+
+          </div>
+          <div class="col-sm-6 text-center">
+            <button class="btn btn-primary" type="submit">Cotizar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="gmaps1 mb-5 pb-4 row">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.4808141790054!2d-77.12861542890384!3d-12.048801203516119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb8ba812f671%3A0xac239cf206526a76!2sMarvetos%20Catering!5e0!3m2!1ses!2spe!4v1592681313742!5m2!1ses!2spe"
+        width="700" height="500" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false"
+        tabindex="0"></iframe>
+    </div>
     <div class="gmaps2 mb-5 pb-4 row">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.923847726168!2d-77.13065524879218!3d-12.048760545178254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb8ba812f671%3A0xac239cf206526a76!2sMarvetos%20Catering!5e0!3m2!1ses-419!2spe!4v1596038523771!5m2!1ses-419!2spe"
         width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
         tabindex="0"></iframe>
     </div>
-    
+
     <div class="row">
       <div class="col-12">
         <h1 class="contact-title">Comunícate con Nosotros</h1>
@@ -87,43 +121,41 @@
           </div>
         </div>
         <div class="row">
-        <div class="col" >
+          <div class="col">
+            <div class="media-body">
+              <a href="https://www.facebook.com/marvetos.pe"> <img
+                  src="../../../assets/img/portadaMarveto/facebook (2).png" class="img-fluid-q"
+                  alt="Responsive image"></a>
+              <a href="https://www.linkedin.com/company/marvetos/"><img
+                  src="../../../assets/img/portadaMarveto/linkedin (1).png" class="img-fluid-q"
+                  alt="Responsive image"></a>
+              <a href="https://www.instagram.com/marvetos.pe/?igshid=6v74tawhic9q"> <img
+                  src="../../../assets/img/portadaMarveto/instagram (2).png" class="img-fluid-q"
+                  alt="Responsive image"></a>
+            </div>
+          </div>
+        </div>
+        <div class="media contact-info" style="margin-left: 90px !important">
           <div class="media-body">
-            <a href="https://www.facebook.com/marvetos.pe"> <img  src="../../../assets/img/portadaMarveto/facebook (2).png" class="img-fluid-q" alt="Responsive image" ></a>
-            <a href="https://www.linkedin.com/company/marvetos/"><img src="../../../assets/img/portadaMarveto/linkedin (1).png" class="img-fluid-q" alt="Responsive image"></a>
-            <a href="https://www.instagram.com/marvetos.pe/?igshid=6v74tawhic9q"> <img src="../../../assets/img/portadaMarveto/instagram (2).png" class="img-fluid-q" alt="Responsive image" ></a>
+            <img src="../../../assets/img/portadaMarveto/contacto1 (1).png" class="img-fluid" alt="Responsive image"
+              style="width: 100%;">
           </div>
         </div>
       </div>
-      <div class="media contact-info" style="margin-left: 90px !important">
-        <div class="media-body">
-          <img  src="../../../assets/img/portadaMarveto/contacto1 (1).png" class="img-fluid" alt="Responsive image" style="width: 100%;">
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 form-group">
-        <input type="file" class="form-control" (change)="uploadedFile($event)" placeholder="Upload file"
-          accept=".xlsx">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 form-group">
-        <button type="button" class="btn btn-info" (click)="readAsExcel()">Abrir Archivo</button>
-      </div>
-
-      <div class="col-md-2 form-group">
-        <button type="button" class="btn btn-info" (click)="readAsExcel()">Enviar presupuesto</button>
-      </div>
     </div>
 
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
 </section>
 <!-- ================ contact section end ================= -->
