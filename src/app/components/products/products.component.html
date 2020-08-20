@@ -2,12 +2,7 @@
     <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">
         <div class="search_input" id="search_input_box">
             <div class="container">
-                <!-- <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" name="filterPost"
-                    placeholder="Buscar producto" [(ngModel)]="filterPost" />
                
-
-            </form> -->
                 <input type="text" class="form-control" id="search_input" value="{{buscar}}"
                     (keyup)="getBusqueda($event.target.value)" placeholder="Buscar producto" />
             </div>
@@ -17,8 +12,7 @@
 </div>
 
 
-<!-- (click)="buscarProduc(producto.name   ) -->
-<!-- breadcrumb start-->
+
 
 <!--================Category Product Area =================-->
 <section class="cat_product_area border_top">
@@ -301,20 +295,7 @@
 
                             </div>
 
-                            <!--                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Filtros
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item">A - Z </a>
-                                    <a class="dropdown-item">Mayor
-                                        Precio</a>
-                                    <a class="dropdown-item">Menor Precio</a>
-                                    <a class="dropdown-item">Menor Stock</a>
-                                    <a class="dropdown-item">Menor Stock</a>
-                                </div>
-                            </div> -->
+                        
 
 
                         </div>
@@ -327,14 +308,7 @@
                                 <a [routerLink]="['/detallesproducto',producto.idProducto]">
                                     <img src="{{producto.image}}" alt="" height="200px">
                                 </a>
-                                <!-- <div class="category_social_icon">
-                                    <ul>
-                                        <li><a [routerLink]="['/detallesproducto',producto.idProducto]"><i
-                                                    class="fas fa-info"></i></a></li>
-                                        <li><a (click)="localsito(producto)"><i class="ti-bag"></i></a></li>
-
-                                    </ul>
-                                </div> -->
+                               
                                 <div class="category_product_text">
 
                                     <p>{{producto.producto}} x {{producto.unidades}}</p>
@@ -358,9 +332,4 @@
     </div>
 </section>
 
-<style>
-    .pointer {
-        cursor: pointer;
-    }
-</style>
-<!--================End Category Product Area =================-->
+

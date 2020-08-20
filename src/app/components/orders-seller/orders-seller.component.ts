@@ -46,7 +46,7 @@ export class OrdersSellerComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
      this.idVendedor = parseInt(JSON.stringify(this.loginService.givemeData(this.loginService.getToken()).id));
-    //  console.log(parseInt(JSON.stringify(this.loginService.givemeData(this.loginService.getToken()).id))); 
+    
   }
 
   ngOnInit() {
@@ -55,7 +55,7 @@ export class OrdersSellerComponent implements OnInit {
 
   getOrderxSeller() {
     let id = this.idVendedor;
-    // console.log(id);
+   
     if (id) {
       this.ordersService.getOrdersxSeller(id).subscribe(
         (res) => {
@@ -94,7 +94,6 @@ export class OrdersSellerComponent implements OnInit {
 
     Swal.fire({
       title: "¿Desea confirmar el pedido?",
-      // text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
@@ -106,7 +105,7 @@ export class OrdersSellerComponent implements OnInit {
       if (result.value) {
         this.ordersService.putOrdenStatus(id, this.objorden).subscribe(
           (res) => {
-            console.log(res);
+           
             this.getOrderxSeller();
           },
           (err) => console.error(err)
@@ -137,7 +136,7 @@ export class OrdersSellerComponent implements OnInit {
     this.objorden.idConductor = cond;
     Swal.fire({
       title: "¿Desea confirmar el pedido?",
-      // text: "You won't be able to revert this!",
+      
       icon: "warning",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
@@ -151,7 +150,7 @@ export class OrdersSellerComponent implements OnInit {
           (res) => {
             
             this.getOrderxSeller();
-            // this.close();
+          
           },
           (err) => console.error(err)
         );
@@ -176,9 +175,7 @@ export class OrdersSellerComponent implements OnInit {
     );
   }
 
-//   cerrar() {
-//       $('#modal').modal(toggle)
-// };
+
   
  
 }

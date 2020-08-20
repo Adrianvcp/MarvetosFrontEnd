@@ -51,4 +51,8 @@
     font-weight: 600;
     color: #606060;
 }
+
+.pointer {
+  cursor: pointer;
+}
   

@@ -109,16 +109,14 @@ createFormGroup(){
 
 
   async saveNewUserPersona() {
-    //var pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2-3}$"
+   
    
     var emailR={
       email:this.userM.email
     };
-    console.log(emailR);
+    
     let esValido:boolean = true;
-    console.log(this.userM)
-    console.log(this.userM.telefono.length);
-    console.log(this.userM.DNI.length);
+   
    if (this.userM.Apellidos == "" || this.userM.DNI == "" || this.userM.email== "" || this.userM.pass == "" || this.userM.telefono == "" || this.userM.Nombres == ""    ) {
     Swal.fire({
       icon: "warning",
@@ -206,10 +204,10 @@ createFormGroup(){
     var emailR={
       email:this.userE.email
     };
-    console.log(this.userE)
+   
      
     
-    console.log( this.userE.telefono.length);
+   
     if (this.userE.NombreEmpresa == "" || this.userE.RUC == "" || this.userE.telefono== "" || this.userE.email == "" || this.userE.pass == "") {
       Swal.fire({
         icon: "warning",
@@ -300,16 +298,7 @@ createFormGroup(){
           //No esta permitido - eliminar 
   }
 
-  soloLetraAs(skill:any) {
-   
-   
-    console.log(skill.charCode)
-    if ((skill.charCode <97 ) || (skill.charCode > 122) ) 
-      skill.returnValue = false;
-
-      
-          //No esta permitido - eliminar 
-  }
+  
   
    soloLetras(e:any) {
     var key = e.keyCode || e.which;

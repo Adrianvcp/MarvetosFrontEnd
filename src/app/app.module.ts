@@ -47,6 +47,7 @@ import { IngresoProductoComponent } from "./components/ingreso-producto/ingreso-
 import { ServiciosComponent } from "./components/servicios/servicios.component";
 
 import { ReactiveFormsModule } from "@angular/forms";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common'; 
 
 @NgModule({
   declarations: [
@@ -75,7 +76,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     CovidComponent,
     IngresoProductoComponent,
     ServiciosComponent,
+    
+   
   ],
+  
 
   imports: [
     BrowserModule,
@@ -86,8 +90,12 @@ import { ReactiveFormsModule } from "@angular/forms";
     NgxPaginationModule,
     NgbCollapseModule,
     ReactiveFormsModule,
+    
   ],
-  providers: [ProductsService, CookieService],
+  
+  providers: [ProductsService, CookieService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
+ 
+  
 })
 export class AppModule {}

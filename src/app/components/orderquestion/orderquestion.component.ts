@@ -42,7 +42,7 @@ export class OrderquestionComponent implements OnInit {
       //Enviar correo
       this.emailservice.sendticket(this.ticket).subscribe(
         (res) => {
-          console.log("ticket enviado");
+         
           console.log(res);
         },
         (err) => {
@@ -50,7 +50,6 @@ export class OrderquestionComponent implements OnInit {
         }
       );
     }
-    console.log("funciona");
-    console.log(this.ticket);
+ 
   }
 }

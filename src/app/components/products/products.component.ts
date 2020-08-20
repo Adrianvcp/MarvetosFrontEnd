@@ -46,15 +46,15 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnChanges() {
-    console.log("se cambio");
+    
   }
 
   ngOnInit() {
-    console.log("se ejecuta");
+    
     this.productsService.getCategoria().subscribe(
       (res) => {
         this.categoria = res;
-        console.log(res);
+       
       },
       (err) => console.error(err)
     );
@@ -80,7 +80,7 @@ export class ProductsComponent implements OnInit {
   }
 
   localsito(pr: Products) {
-    console.log(pr);
+    
     this.carrito.push(pr);
     let carrito = [];
     if (localStorage.getItem("carrito") === null) {
@@ -92,7 +92,7 @@ export class ProductsComponent implements OnInit {
       carrito.push(pr);
       localStorage.setItem("carrito", JSON.stringify(carrito));
     }
-    console.log(carrito.length);
+    
   }
 
   getCantidad() {
@@ -120,10 +120,7 @@ export class ProductsComponent implements OnInit {
           this.products = res;
 
           this.prodElegido = this.products[0].idCategoria;
-          console.log("prodElegido");
-          console.log(res);
-          console.log(this.products[0].idCategoria);
-          console.log(this.prodElegido);
+         
         },
         (err) => console.error(err)
       );
@@ -162,27 +159,25 @@ export class ProductsComponent implements OnInit {
     this.icon6 = false;
   }
   filtroMarca(id) {
-    console.log("porfi");
-    console.log(this.prodElegido);
+   
     this.productsService.getMarca(id).subscribe(
       (res) => {
         this.marcas = res;
-        // console.log(res);
+        
       },
       (err) => console.error(err)
     );
   }
 
   getProductsxMarca(marca) {
-    console.log(this.prodElegido);
-    console.log(marca);
+   
 
     this.buscar = "";
     this.productsService.getProductsxMarca(marca, this.prodElegido).subscribe(
       (res) => {
         //  this.products = [];
         this.products = res;
-        console.log(res);
+        
         this.marcaElegida = true;
       },
       (err) => console.error(err)
@@ -256,16 +251,16 @@ export class ProductsComponent implements OnInit {
         .getProductxCateSub(this.prodElegido, this.idSubElegido)
         .subscribe(
           (res) => {
-            console.log("aca es");
+          
             this.products = res;
-            console.log(res);
+           
           },
           (err) => console.error(err)
         );
     } else if (event != "" && this.prodElegido == 0 && this.idSubElegido == 0) {
       this.productsService.getProductsxBuscador(event).subscribe(
         (res) => {
-          console.log(res);
+          
           this.products = res;
         },
         (err) => console.error(err)
@@ -275,9 +270,7 @@ export class ProductsComponent implements OnInit {
         .getProductsxBuscadorCategoria(event, this.prodElegido)
         .subscribe(
           (res) => {
-            console.log(res);
-            console.log("tmr");
-            console.log(this.idSubElegido);
+           
             this.products = res;
           },
           (err) => console.error(err)
@@ -287,10 +280,7 @@ export class ProductsComponent implements OnInit {
         .getProductsxBuscadorCateSub(event, this.prodElegido, this.idSubElegido)
         .subscribe(
           (res) => {
-            console.log("prueba rapida");
-            console.log(this.prodElegido);
-            console.log(this.idSubElegido);
-            console.log(res);
+           
             this.products = res;
           },
           (err) => console.error(err)
@@ -300,8 +290,7 @@ export class ProductsComponent implements OnInit {
 
   //Muestra las subcategorias por categoria
   getSubCatexCate() {
-    console.log("con fe");
-    console.log(this.prodElegido);
+    
     this.productsService.getSubCatexCate(this.prodElegido).subscribe(
       (res) => {
         this.subcategorias = res;
@@ -314,8 +303,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.getSubCatexCate(id).subscribe(
       (res) => {
         this.subcategorias = res;
-        console.log("aca es");
-        console.log(res);
+      
 
         switch (id) {
           case 1:
@@ -379,13 +367,11 @@ export class ProductsComponent implements OnInit {
     this.marcaElegida = false;
     this.productsService.getProductxCateSub(cat, subcat).subscribe(
       (res) => {
-        console.log("aquisito");
+        
         this.products = res;
 
         this.idSubElegido = this.products[0].idSubCategoria;
-        console.log("checa");
-        console.log(res);
-        console.log(this.idSubElegido);
+        
       },
       (err) => console.error(err)
     );
@@ -398,8 +384,7 @@ export class ProductsComponent implements OnInit {
     this.productsService.getMarcaxSubcat(cat, subcat).subscribe(
       (res) => {
         this.marcas = res;
-        console.log("prueba subcat");
-        console.log(res);
+       
       },
       (err) => console.error(err)
     );

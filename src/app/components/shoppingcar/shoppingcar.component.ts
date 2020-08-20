@@ -116,7 +116,7 @@ export class ShoppingcarComponent implements OnInit {
     };
 
     var grouped = group(this.carrito);
-    console.log(JSON.stringify(grouped, null, 4));
+    
     (this.cantProducto = grouped), null, 4;
   }
 
@@ -172,7 +172,7 @@ export class ShoppingcarComponent implements OnInit {
     //Promesa
     this.Vendedores();
 
-    console.log(this.idVendG);
+    
   }
 
   async Vendedores() {
@@ -207,7 +207,7 @@ export class ShoppingcarComponent implements OnInit {
         this.iDDUbicacion = this.Distritos[i].idUbicacion;
         this.DeliveryPrecio = this.Distritos[i].Precio;
 
-        console.log(this.DeliveryPrecio);
+        
       }
     }
     this.DescuentoTotal = this.DeliveryPrecio * 0.25;
@@ -229,8 +229,7 @@ export class ShoppingcarComponent implements OnInit {
           diasSemana[f.getDay()],
           this.nameDistrito
         );
-        /*         console.log("Hay descuento?");
-        console.log(b_Discount); */
+       
         b_Discount == true
           ? (this.descuentoShow = true)
           : (this.descuentoShow = false);
@@ -335,7 +334,7 @@ export class ShoppingcarComponent implements OnInit {
     };
     this.emailservice.sendEmailConfirmation(ObjEmail).subscribe(
       (res) => {
-        console.log("Resultado email confirmacion");
+        
         console.log(res);
       },
       (err) => {
@@ -384,7 +383,7 @@ export class ShoppingcarComponent implements OnInit {
             ].idProducto;
 
             this.Objdetallecarrito.TNote = this.arregloNota[index];
-            console.log(this.Objdetallecarrito.TNote);
+            
             this.Objdetallecarrito.subTotal =
               this.cantProducto[index]["producto"].precio *
               this.cantProducto[index]["count"];
@@ -442,7 +441,7 @@ export class ShoppingcarComponent implements OnInit {
     this.obj_or.idUbicacion = this.iDDUbicacion;
     this.obj_or.bDescuento = 0;
     
-    console.log(this.Objdetallecarrito.TNote);
+    
     delete this.obj_or.fechaEntrega;
 
     delete this.obj_or.idOrden;
@@ -460,8 +459,7 @@ export class ShoppingcarComponent implements OnInit {
   asignarNota(ind, valor){
     this.arregloNota[ind] = valor.target.value;
    
-    console.log(this.arregloNota);
-    console.log(ind);
+   
     
   }
 

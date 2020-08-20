@@ -65,11 +65,15 @@ export class LoginComponent implements OnInit {
         });
 
         lg = true;
-        console.log(data);
+        
         this.loginService.setToken(data["token"]);
 
         this.router.navigateByUrl("/index");
       }
     });
+  }
+
+  registroUsuario() {
+    this.router.navigateByUrl("/registro");
   }
 }

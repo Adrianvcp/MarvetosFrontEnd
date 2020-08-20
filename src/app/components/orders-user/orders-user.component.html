@@ -78,7 +78,7 @@
             <div class="modal-body">
               <table class="table">
                 <thead class="thead-dark">
-                  <!--Tabla de los productos mas condicional Pendiente-->
+                
                   <tr>
                     <th scope="col" class="text-center">Producto</th>
                     <th scope="col" class="text-center">Cantidad</th>
@@ -91,12 +91,12 @@
                           <tr *ngFor="let detail of details">                    
                               <th scope="row" class="text-center">{{detail.nombreProducto}}</th>
                               <th scope="row" class="text-center">{{detail.cantProducto}} {{detail.unidades}}</th>
-                              <!-- <th scope="row" class="text-center">{{detalle.subTotal}}</th> -->
+                            
                           </tr>  
                   </ng-container>              
                   
               </tbody>
-              <!-- <button type="button" class="btn btn-primary">cerrar</button> -->
+              
               </table>
             </div>
    
@@ -165,13 +165,7 @@
                             </div>
                         </div>
                         </div>
-                        <!-- <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
-                        <div class="custom-control custom-checkbox mr-3">
-                            <input class="custom-control-input" type="checkbox" id="notify_me" checked="">
-                            <label class="custom-control-label" for="notify_me">Notify me when order is delivered</label>
-                        </div>
-                        <div class="text-left text-sm-right"><a class="btn btn-outline-primary btn-rounded btn-sm" href="orderDetails" data-toggle="modal" data-target="#orderDetails">View Order Details</a></div>
-                        </div> -->
+                     
                     </div>
               </div>  
               </div>
