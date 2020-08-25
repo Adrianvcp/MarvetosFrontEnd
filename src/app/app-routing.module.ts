@@ -24,6 +24,7 @@ import { ConocenosComponent  } from './components/conocenos/conocenos.component'
 import { CovidComponent  } from './components/covid/covid.component';
 import {  IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 import {ServiciosComponent} from "./components/servicios/servicios.component"
+import {CotizacionComponent} from "./components/cotizacion/cotizacion.component"
 //reparar
 const routes: Routes = [
   //ahora si porfa
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: "detallesproducto/:id",
     component: DetailsproductComponent,
+  },
+  {
+    path: "cotizacion",
+    component: CotizacionComponent,
   },
   {
     path: "contacto",

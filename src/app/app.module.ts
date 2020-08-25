@@ -47,7 +47,8 @@ import { IngresoProductoComponent } from "./components/ingreso-producto/ingreso-
 import { ServiciosComponent } from "./components/servicios/servicios.component";
 
 import { ReactiveFormsModule } from "@angular/forms";
-import { HashLocationStrategy, LocationStrategy } from '@angular/common'; 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CotizacionComponent } from './components/cotizacion/cotizacion.component'; 
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     CovidComponent,
     IngresoProductoComponent,
     ServiciosComponent,
+    CotizacionComponent,
     
    
   ],

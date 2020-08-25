@@ -27,4 +27,10 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['contacto']);
   }
 
+  producto(){
+   
+    this.router.navigateByUrl("/productos");
+  }
+
+
 }

@@ -1,0 +1,165 @@
+<div class="alert alert-primary" style="background-color: #1a3742" role="alert">
+  <h3>Cotizaciones</h3>
+</div>
+
+<!--================Cart Area =================-->
+<section class="cart_area padding-space">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive-xl">
+        <table class="table table-hover">
+          <thead class="table table-primary">
+            <tr>
+              <th scope="col">N° Cotizacion</th>
+              <th scope="col">Nombre del Archivo</th>
+              <th scope="col">Fecha Subida</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p></p>
+              </td>
+
+              <td>
+                <p></p>
+              </td>
+              <td>
+                <p></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Cart Area =================-->
+
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title center" id="exampleModalLongTitle">
+          Detalle Carrito
+        </h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let detalle of detalleCarrito">
+            <tr>
+              <td>
+                <p>{{ detalle.Productos }}</p>
+              </td>
+              <td>
+                <p>{{ detalle.cantProducto }} {{ detalle.unidades }}</p>
+              </td>
+              <td>
+                <p>{{ detalle.nota }}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Listo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalCenter1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Actualizar Estado
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Estado</label>
+            <select
+              (change)="onclicEdit($event.target.value)"
+              class="form-control"
+              id="exampleFormControlSelect1 "
+            >
+              <option>Elige un estado</option>
+
+              <option>En camino</option>
+              <option>Entregado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"
+              >Comentario del Conductor:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="recipient-name"
+              (change)="onclicEditComentario($event.target.value)"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          [routerLink]="['/detalleC']"
+          type="button"
+          (click)="updateEstado()"
+          class="btn btn-primary"
+          data-dismiss="modal"
+        >
+          Listo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

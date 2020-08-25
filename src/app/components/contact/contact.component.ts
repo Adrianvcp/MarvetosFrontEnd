@@ -80,6 +80,7 @@ export class ContactComponent implements OnInit {
   }
 
   readExcel() {
+
     let readFile = new FileReader();
     readFile.onload = (e) => {
       this.storeData = readFile.result;
@@ -134,7 +135,14 @@ export class ContactComponent implements OnInit {
       // console.log(file);
 
       if (!_.includes(af, file.type)) {
-        alert("Solo esta permitido archivos excel!");
+       
+        Swal.fire({
+          icon: "warning",
+          title: "Solo esta permitido archivos excel!!!",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then((result) => {
+        });
       } else {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get("myfile").setValue(file);
@@ -143,14 +151,20 @@ export class ContactComponent implements OnInit {
   }
 
   async onFormSubmit() {
-    if (!this.fileUploadForm.get("myfile").value) {
-      alert("Por favor agrege un archivo excel!");
-      return false;
-    }
-
     const formData = new FormData();
     formData.append("file", this.fileUploadForm.get("myfile").value);
     formData.append("agentId", "007");
+    if (!this.fileUploadForm.get("myfile").value) {
+      Swal.fire({
+        icon: "warning",
+        title: "Ingrese un archivo excell, por favor!!",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then((result) => {
+      });
+    } else
+
+    
 
     //Cliente Logueado
     if (this.loginService.getToken() != "") {
@@ -162,7 +176,7 @@ export class ContactComponent implements OnInit {
       console.log("------------");
       this.http
         .post<any>(
-          `http://localhost:5000/api/email/excel/upload/${dataLoginToken.email}`,
+          `https://marvetos.beessac.com/api/email/excel/upload/${dataLoginToken.email}`,
           formData
         )
         .subscribe(

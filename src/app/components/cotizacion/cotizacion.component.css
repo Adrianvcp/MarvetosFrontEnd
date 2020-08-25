@@ -1,0 +1,35 @@
+.cart_inner .table thead tr th {
+    border-top: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    color: #0e0e0e;
+    border-bottom: 0px !important;
+    text-align: center;
+}
+
+h3{
+  
+        text-align: center;
+        font: oblique bold 120% cursive;
+        color: #ffffff;
+        font-size: 30px;
+    
+}
+
+@media screen and (max-width: 991px){
+    .cart_inner .table thead tr th {
+        border-top: 0px;
+        font-size: 12px;
+        font-weight: 500;
+        font-family: "Roboto", sans-serif;
+        color: #0e0e0e;
+        border-bottom: 0px !important;
+    }
+
+    
+    h3{
+            font-size: 20px;
+    }
+
+}

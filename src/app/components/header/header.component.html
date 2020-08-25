@@ -59,6 +59,7 @@
                                     </li>
 
                                 </ng-container>
+
                                 <!-- EMPRESA :1, PERSONA NATURAL:2 ! -->
                                 <ng-container *ngSwitchDefault>
                                     <li class="nav-item view-name-mobile">
@@ -66,6 +67,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" (click)="isCollapsed = true" routerLink="">Inicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" routerLink="/cotizacion">Cotizaciones</a>
                                     </li>
 
                                     <li class="nav-item dropdown">
@@ -127,8 +131,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="single_product">
-                                    <a class="dropdown-item" *ngIf="!login" href="ingresar">Inicar Sesion</a>
-                                    <a class="dropdown-item" *ngIf="!login" href="registro">Registrate</a>
+                                    <a class="dropdown-item" *ngIf="!login" routerLink="/ingresar">Inicar Sesion</a>
+                                    <a class="dropdown-item" *ngIf="!login" routerLink="/registro">Registrate</a>
                                     <a class="dropdown-item" *ngIf="login" (click)=cerrarSesion()>Cerrar Sesion</a>
 
                                 </div>

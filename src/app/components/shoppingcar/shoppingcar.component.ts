@@ -353,9 +353,8 @@ export class ShoppingcarComponent implements OnInit {
         "Direccion y/o Comentario no ingresados.",
         "Lo sentimos"
       );
-    } else if (this.resultadoTotal < 80.0) {
-      this.alertContinue("Minimo de precio S/. 80.00", "Lo sentimos");
-    } else {
+    } 
+     else {
       //Logued ?
       if (this.loginservice.getToken() != "") {
         //Get Data Login
