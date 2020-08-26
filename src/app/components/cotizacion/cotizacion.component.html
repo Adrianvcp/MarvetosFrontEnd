@@ -15,10 +15,10 @@
               <th scope="col">Fecha Subida</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngFor="let cotizacion of cotizacion"> 
             <tr>
               <td>
-                <p></p>
+                <p>C00{{cotizacion.IDCotizacion}}</p>
               </td>
 
               <td>
@@ -36,7 +36,7 @@
 </section>
 <!--================End Cart Area =================-->
 
-<div
+<!-- <div
   class="modal fade"
   id="exampleModalCenter"
   tabindex="-1"
@@ -163,3 +163,4 @@
     </div>
   </div>
 </div>
+ -->
