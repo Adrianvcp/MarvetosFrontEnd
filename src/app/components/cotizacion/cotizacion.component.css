@@ -8,6 +8,19 @@
     text-align: center;
 }
 
+p{
+    text-align: center;
+    color: #0e0e0e;
+    font-size: 15px;
+}
+
+.cart_inner .table tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 3px;
+    vertical-align: middle;
+    align-self: center;
+}
+
 h3{
   
         text-align: center;
@@ -27,6 +40,10 @@ h3{
         border-bottom: 0px !important;
     }
 
+    p{
+        
+        font-size: 12px;
+    }
     
     h3{
             font-size: 20px;

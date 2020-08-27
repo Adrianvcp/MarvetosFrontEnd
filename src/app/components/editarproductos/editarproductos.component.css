@@ -1,7 +1,14 @@
 .padding-space{
-    padding: 60px 0px;
+    padding: 40px 0px;
 }
 
 .altura-contenido{
     min-height: 65rem;
+}
+
+.cart_inner .table tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    vertical-align: middle;
+    align-self: center;
 }

@@ -6,11 +6,11 @@ import { Cotizacion } from "../model/cotizacion";
 })
 export class CotizacionService {
 
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient) { }
 
-  getCotizacion() {
-    return this.http.get(`${this.API_URI}/cotizacion`);
+  getCotizacion(id: string) {
+    return this.http.get(`${this.API_URI}/cotizacion/${id}`);
   }
 }

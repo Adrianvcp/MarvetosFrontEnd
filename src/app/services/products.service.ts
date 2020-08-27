@@ -11,7 +11,7 @@ import { DetalleCarrito } from "../model/detallecarrito";
 })
 export class ProductsService {
   // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient) {}
 

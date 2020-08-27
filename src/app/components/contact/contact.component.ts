@@ -133,8 +133,9 @@ export class ContactComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       // console.log(file);
-
-      if (!_.includes(af, file.type)) {
+      this.fileInputLabel = file.name;
+      this.fileUploadForm.get("myfile").setValue(file);
+      /* if (!_.includes(af, file.type)) {
        
         Swal.fire({
           icon: "warning",
@@ -146,7 +147,7 @@ export class ContactComponent implements OnInit {
       } else {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get("myfile").setValue(file);
-      }
+      } */
     }
   }
 
@@ -176,7 +177,7 @@ export class ContactComponent implements OnInit {
       console.log("------------");
       this.http
         .post<any>(
-          `https://marvetos.beessac.com/api/email/excel/upload/${dataLoginToken.email}`,
+          `https://marvetos-web.herokuapp.com/api/email/excel/upload/${dataLoginToken.email}`,
           formData
         )
         .subscribe(

@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class OrdersService {
   // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient) {}
 

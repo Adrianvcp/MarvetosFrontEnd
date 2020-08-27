@@ -65,3 +65,9 @@ h4 {
   color: #54ba58;
   background-color: #ffffff;
 }
+
+
+.text-center {
+  text-align: center !important;
+  padding-top: 10px;
+}

@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class EmailConfirmationService {
   // API_URI = "https://marvetos-web.herokuapp.com/api/email http://localhost:5000/api/email";
 
-  API_URI = "https://marvetos.beessac.com/api/email";
+  API_URI = "https://marvetos-web.herokuapp.com/email";
 
   constructor(private http: HttpClient) {}
 
