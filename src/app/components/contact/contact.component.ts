@@ -180,13 +180,10 @@ export class ContactComponent implements OnInit {
       var dataLoginToken = await this.loginService.givemeData(
         this.loginService.getToken()
       );
-      console.log("------------");
-      console.log(dataLoginToken);
-      console.log(this.csvData);
+
       //service cotizacion
       this.cotizacionService.sendCotizacion(dataLoginToken, formData).subscribe(
         (res) => {
-          console.log("sin error");
           try {
             this.insertCotizacion(
               dataLoginToken.id,
@@ -211,30 +208,6 @@ export class ContactComponent implements OnInit {
           console.log(err);
         }
       );
-      /*       this.http
-        .post<any>(
-          `https://marvetos.beessac.com/api/email/excel/upload/${dataLoginToken.email}`,
-          formData
-        )
-        .subscribe(
-          (response) => {
-            console.log(response);
-            if (response.statusCode === 200) {
-              // Reset the file input
-              this.uploadFileInput.nativeElement.value = "";
-              this.fileInputLabel = undefined;
-            }
-
-            Swal.fire(
-              "Cotizacion Enviada!",
-              "En unos minutos la cotizacion sera respondida.",
-              "success"
-            );
-          },
-          (error) => {
-            console.log(error);
-          }
-        ); */
     } else {
       this.alertContinue("Debes ingresar con una cuenta!", "Lo sentimos");
     }
