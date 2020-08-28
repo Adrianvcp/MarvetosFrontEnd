@@ -7,7 +7,7 @@ import { Products } from "../model/products";
 })
 export class AllService {
   // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
   constructor(private http: HttpClient) {}
 
   getOneBuy(id: string) {
@@ -16,5 +16,9 @@ export class AllService {
 
   getVendedores() {
     return this.http.get(`${this.API_URI}/user/sellers/`);
+  }
+
+  saveCotizacion(data: any) {
+    return this.http.post(`${this.API_URI}/cotizacion/`, data);
   }
 }

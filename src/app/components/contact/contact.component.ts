@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { EmailConfirmationService } from "../../services/email-confirmation.service";
 import * as XLSX from "xlsx";
 import * as FileSaver from "file-saver";
 import { dirname } from "path";
@@ -7,8 +6,15 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import * as _ from "lodash";
 
-import { LoginService } from "../../services/login.service";
 import Swal from "sweetalert2";
+
+/* Services */
+import { LoginService } from "../../services/login.service";
+import { EmailConfirmationService } from "../../services/email-confirmation.service";
+import { CotizacionService } from "../../services/cotizacion.service";
+
+//model
+import { Cotizacion } from "../../model/cotizacion";
 
 @Component({
   selector: "app-contact",
@@ -25,6 +31,15 @@ export class ContactComponent implements OnInit {
   fileUploaded: File;
   worksheet: any;
 
+  //Objeto Cotizacion
+  ObjCotizacion = {
+    IDCotizacion: 0,
+    NNombreArchivo: "",
+    FechaSubida: "",
+    idUser: 0,
+    Source: "",
+  };
+
   //New
   @ViewChild("UploadFileInput", { static: false }) uploadFileInput: ElementRef;
   fileUploadForm: FormGroup;
@@ -34,7 +49,8 @@ export class ContactComponent implements OnInit {
     private emailservice: EmailConfirmationService,
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private cotizacionService: CotizacionService
   ) {}
 
   ngOnInit() {
@@ -80,7 +96,6 @@ export class ContactComponent implements OnInit {
   }
 
   readExcel() {
-
     let readFile = new FileReader();
     readFile.onload = (e) => {
       this.storeData = readFile.result;
@@ -103,7 +118,7 @@ export class ContactComponent implements OnInit {
       type: "text/csv;charset=utf-8;",
     });
     var a = FileSaver.saveAs(data, "CSVFile" + new Date().getTime() + ".csv");
-
+    console.log(a);
     const formData = new FormData();
     //formData.append('file', );
     this.emailservice.uploadExcel("pedro.velacc@gmail.com", formData).subscribe(
@@ -135,14 +150,12 @@ export class ContactComponent implements OnInit {
       // console.log(file);
 
       if (!_.includes(af, file.type)) {
-       
         Swal.fire({
           icon: "warning",
           title: "Solo esta permitido archivos excel!!!",
           showConfirmButton: false,
           timer: 2000,
-        }).then((result) => {
-        });
+        }).then((result) => {});
       } else {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get("myfile").setValue(file);
@@ -160,21 +173,45 @@ export class ContactComponent implements OnInit {
         title: "Ingrese un archivo excell, por favor!!",
         showConfirmButton: false,
         timer: 2000,
-      }).then((result) => {
-      });
-    } else
-
-    
-
+      }).then((result) => {});
+    }
     //Cliente Logueado
-    if (this.loginService.getToken() != "") {
+    else if (this.loginService.getToken() != "") {
       var dataLoginToken = await this.loginService.givemeData(
         this.loginService.getToken()
       );
-
-      console.log(dataLoginToken);
       console.log("------------");
-      this.http
+      console.log(dataLoginToken);
+      console.log(this.csvData);
+      //service cotizacion
+      this.cotizacionService.sendCotizacion(dataLoginToken, formData).subscribe(
+        (res) => {
+          console.log("sin error");
+          try {
+            this.insertCotizacion(
+              dataLoginToken.id,
+              this.fileInputLabel,
+              "backend"
+            );
+
+            this.uploadFileInput.nativeElement.value = "";
+            this.fileInputLabel = undefined;
+            //insert on db cotizacion
+
+            Swal.fire(
+              "Cotizacion Enviada!",
+              "En unos minutos la cotizacion sera respondida.",
+              "success"
+            );
+          } catch (error) {
+            Swal.fire("Error!", "No se pudo enviar .", "success");
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+      /*       this.http
         .post<any>(
           `https://marvetos.beessac.com/api/email/excel/upload/${dataLoginToken.email}`,
           formData
@@ -189,17 +226,30 @@ export class ContactComponent implements OnInit {
             }
 
             Swal.fire(
-              "Comprado!",
-              "En unos minutos te llegara la confirmacion a tu correo.",
+              "Cotizacion Enviada!",
+              "En unos minutos la cotizacion sera respondida.",
               "success"
             );
           },
           (error) => {
             console.log(error);
           }
-        );
+        ); */
     } else {
       this.alertContinue("Debes ingresar con una cuenta!", "Lo sentimos");
     }
+  }
+
+  async insertCotizacion(p_idUser, p_nameArchivo, p_source) {
+    this.ObjCotizacion.IDCotizacion = 1;
+    this.ObjCotizacion.FechaSubida = "01/01/01";
+    this.ObjCotizacion.Source = p_source;
+    this.ObjCotizacion.NNombreArchivo = p_nameArchivo;
+    this.ObjCotizacion.idUser = p_idUser;
+
+    delete this.ObjCotizacion.FechaSubida;
+    delete this.ObjCotizacion.IDCotizacion;
+
+    await this.cotizacionService.saveCotizacion(this.ObjCotizacion).toPromise();
   }
 }

@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Products } from "../model/products";
 import { Orden } from "../model/orden";
-import {Observable} from 'rxjs';
+import { Observable } from "rxjs";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class OrdersService {
   // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient) {}
 
-  getOrdersxSeller(id: string|number) {
+  getOrdersxSeller(id: string | number) {
     return this.http.get(`${this.API_URI}/orden/vendedor/${id}`);
   }
 
-  getOrdersxUser(id: string|number) {
+  getOrdersxUser(id: string | number) {
     return this.http.get(`${this.API_URI}/orden/usuario/${id}`);
   }
 
@@ -24,11 +24,11 @@ export class OrdersService {
     return this.http.get(`${this.API_URI}/orden/`);
   }
 
-  putOrdenStatus(id: string|number, updatedOrden: Orden) {
+  putOrdenStatus(id: string | number, updatedOrden: Orden) {
     return this.http.put(`${this.API_URI}/orden/${id}`, updatedOrden);
   }
 
-  getConductor(){
+  getConductor() {
     return this.http.get(`${this.API_URI}/conductor`);
   }
 }

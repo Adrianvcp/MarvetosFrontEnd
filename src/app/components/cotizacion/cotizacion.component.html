@@ -15,17 +15,17 @@
               <th scope="col">Fecha Subida</th>
             </tr>
           </thead>
-          <tbody *ngFor="let cotizacion of cotizacion"> 
+          <tbody *ngFor="let cotizacion of cotizacion">
             <tr>
               <td>
                 <p>C00{{cotizacion.IDCotizacion}}</p>
               </td>
 
               <td>
-                <p></p>
+                <p>{{cotizacion.NNombreArchivo}}</p>
               </td>
               <td>
-                <p></p>
+                <p>{{cotizacion.FechaSubida | date:'dd-MM-yyyy HH:mm:ss'}}</p>
               </td>
             </tr>
           </tbody>

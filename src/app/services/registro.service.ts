@@ -8,7 +8,7 @@ import { CookieService } from "ngx-cookie-service";
 })
 export class RegistroService {
   // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos.beessac.com/api";
+  API_URI = "https://marvetos-web.herokuapp.com/api";
 
   constructor(private http: HttpClient, private cookies: CookieService) {}
 
@@ -30,8 +30,7 @@ export class RegistroService {
 
   emailRepetido(obj: any) {
     console.log("data service");
-    console.log(obj)
-    return this.http.post(`${this.API_URI}/user/email`,obj);
+    console.log(obj);
+    return this.http.post(`${this.API_URI}/user/email`, obj);
   }
-  
 }
