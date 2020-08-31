@@ -100,12 +100,14 @@ export class DetalleCComponent implements OnInit {
      
       var comen ={"comentarioConductor":""}
       
-     
+        
       comen.comentarioConductor=this.comentarioConductor;
-      
+      var p = Object.assign(obj,fec);
+      var y = Object.assign(comen,fec);
       if(this.comentarioConductor != "" && this.idEstado != 0 ){
        
         var u = Object.assign(obj,comen,fec);
+        
         console.log(u);
         this.detalleCService.updateEstado(String(this.idOrden),u).subscribe(
           (res) => {
@@ -118,7 +120,7 @@ export class DetalleCComponent implements OnInit {
 
       }else if (this.comentarioConductor != "" ){
         comen.comentarioConductor = this.comentarioConductor;
-        this.detalleCService.updateEstado(String(this.idOrden),comen).subscribe(
+        this.detalleCService.updateEstado(String(this.idOrden),y).subscribe(
           (res) => {
             this.getDetalleC(this.id);
             
@@ -127,7 +129,7 @@ export class DetalleCComponent implements OnInit {
           (err) => console.error(err)
          );
         
-      }else{        this.detalleCService.updateEstado(String(this.idOrden),obj).subscribe(
+      }else{        this.detalleCService.updateEstado(String(this.idOrden),p).subscribe(
           (res) => {
             this.getDetalleC(this.id);
             
