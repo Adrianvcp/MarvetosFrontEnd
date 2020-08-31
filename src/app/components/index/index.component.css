@@ -1,3 +1,57 @@
 .padding-space{
     padding: 30px 0px;
 }
+@keyframes slider {
+    to {
+      -moz-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      }
+}
+
+.slider {
+   
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 960px;
+}
+.slider::before, .slider::after {
+    
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+.slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+.slider::before {
+    left: 0;
+    top: 0;
+}
+.slider .slide-track {
+    -moz-animation: slider 10s infinite linear;
+  -webkit-animation: slider 10s infinite linear;
+  animation: slider 10s infinite linear;
+    display: flex;
+    width: calc(250px * 7);
+}
+.slider .slide {
+    height: 100px;
+    width: 250px;
+}
+
+@media screen and (max-width: 991px){
+    
+.slider {
+   
+    height: 80px;
+   
+    width: 260px;
+}
+}
