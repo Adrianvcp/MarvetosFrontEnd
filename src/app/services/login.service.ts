@@ -7,8 +7,8 @@ import { CookieService } from "ngx-cookie-service";
   providedIn: "root",
 })
 export class LoginService {
-  // API_URI = "http://localhost:5000/api/user";
-  API_URI = "https://marvetos-web.herokuapp.com/api/user";
+   API_URI = "http://localhost:5000/api/user";
+  //API_URI = "https://marvetos-web.herokuapp.com/api/user";
 
   constructor(private http: HttpClient, private cookies: CookieService) {}
   login(user: User) {

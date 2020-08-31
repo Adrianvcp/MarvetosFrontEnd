@@ -37,7 +37,7 @@
               <ng-container *ngFor="let producto of productos | paginate: { itemsPerPage: 8, currentPage: paginaActual }">
                 <tr>                    
                     
-                    <td class="text-center">{{producto.name}}</td>
+                    <td class="text-center">{{producto.producto}}</td>
                     <td class="text-center">{{producto.precio}}</td>
                     <td class="text-center">{{producto.descripcion}} </td>
                     <td class="text-center">{{producto.stock}}</td>
@@ -80,7 +80,7 @@
       </div>
       <div class="modal-body">
           <div class="form-group">
-            <label for="titulo" class="col-sm-2 col-form-label">Título</label>
+            <label for="titulo" class="col-sm-2 col-form-label">Producto</label>
             <input type="text" [(ngModel)]="products.name" id="titulo" name="titulo" class="form-control">
             
           </div>

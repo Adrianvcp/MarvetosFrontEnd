@@ -8,8 +8,8 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class DetalleCService {
-  // API_URI = "http://localhost:5000/api";
-  API_URI = "https://marvetos-web.herokuapp.com/";
+   API_URI = "http://localhost:5000/api";
+  //API_URI = "https://marvetos-web.herokuapp.com/";
 
   constructor(private http: HttpClient) {}
 

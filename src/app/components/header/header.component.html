@@ -39,6 +39,13 @@
                                 </ng-container>
                                 <ng-container *ngSwitchCase="'5'">
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/ingresarProducto">Registro producto</a>
+                                    </li>
+
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'5'">
+
                                     <li>
                                         <a class="nav-link" routerLink="/productos/editar">Editar productos</a>
                                     </li>
@@ -69,7 +76,7 @@
                                         <a class="nav-link" (click)="isCollapsed = true" routerLink="">Inicio</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="/cotizacion">Cotizaciones</a>
+                                        <a class="nav-link" *ngIf="login" routerLink="/cotizacion">Cotizaciones</a>
                                     </li>
 
                                     <li class="nav-item dropdown">

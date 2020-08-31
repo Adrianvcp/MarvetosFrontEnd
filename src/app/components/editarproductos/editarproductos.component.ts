@@ -17,6 +17,8 @@ export class EditarproductosComponent implements OnInit {
     precio: 0,
     stock: 0
   }
+  
+
   paginaActual : 1;
   productos: any = [];
 
@@ -40,7 +42,7 @@ export class EditarproductosComponent implements OnInit {
   
   getOneProduct(prod: any) {
     this.products.idProducto = prod.idProducto;
-    this.products.name = prod.name;
+    this.products.name = prod.producto;
     this.products.precio = prod.precio;
     this.products.stock = prod.stock;
     this.products.descripcion = prod.descripcion;
