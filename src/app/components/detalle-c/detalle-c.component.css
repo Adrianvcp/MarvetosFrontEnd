@@ -1,5 +1,30 @@
 .padding-space{
-    padding: 20px 0px;
+    padding: 60px;
 }
 
 
+.cart_inner .table thead tr th  {
+   
+    color: #131212;
+    
+}
+p {
+   
+    color: #131212;
+    
+}
+
+h3{
+    text-align: center;
+    font: oblique bold 120% cursive;
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+@media screen and (max-width: 991px){
+    
+    h3 {
+       
+        font-size: 15px;
+    }
+    }
